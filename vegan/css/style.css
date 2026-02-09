@@ -1,0 +1,1020 @@
+:root {
+  --color-primary: #3C4C3A;
+  --color-text: #333333;
+  --color-background: #FFFFFF;
+  --font-family-base: 'Noto Serif JP', serif;
+  --content-width: 1000px;  /* コンテンツの最大幅を設定 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  background-color: var(--color-background);
+}
+
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ヘッダー */
+.header {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;  /* 上下左右にパディングを設定 */
+}
+
+.logo img {
+  height: auto;
+  /*max-width: 200px;*/
+}
+
+.nav img {
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+.nav img:hover {
+  opacity: 0.7; 
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 20px; /* ロゴとナビの間隔 */
+  }
+
+  .logo {
+    text-align: left;
+    width: 100%;
+  }
+
+  .logo img {
+    max-width: 80%; /* スマホでの最大幅を制限 */
+    margin: 0 auto;
+  }
+
+  .nav {
+    text-align: right;
+    width: 100%;
+  }
+
+  .nav img {
+    max-width: 80%; /* スマホでの最大幅を制限 */
+    margin: 0 auto;
+  }
+}
+
+/* メインビジュアル */
+.hero {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  /*padding: 20px;*/  /* 上下左右にパディングを設定 */
+}
+
+.hero-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  position: relative;
+  min-height: 500px;
+  padding-top: 40px;
+}
+
+.hero__content {
+  position: relative; /* z-indexを効かせるため */
+  z-index: 2; /* 画像より前面に */
+  max-width: 60%; /* コンテンツ幅を制限 */
+}
+
+.hero__title {
+  margin-bottom: 30px;
+}
+
+.hero__title img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero__copy {
+  margin-top: 20px;
+  font-size: 2.1rem;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.hero__copy sup {
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.sup {
+  max-width: var(--content-width);
+  margin: 0 auto 40px;
+  /*padding: 20px;*/  /* 上下左右にパディングを設定 */
+}
+
+.hero__image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%; /* 画像の幅を調整 */
+  z-index: 1;
+}
+
+.hero__image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sup01 {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+/* レスポンシブ対応 - パディングを維持 */
+@media (max-width: 768px) {
+  .header {
+    padding: 20px;  /* スマホ表示時もパディングを維持 */
+  }
+
+  .hero {
+    margin-top: -70px;
+    padding: 20px;  /* スマホ表示時もパディングを維持 */
+  }
+
+  .hero-inner {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .hero__content {
+    max-width: 100%;
+    margin-bottom: 20px;
+    position: static;
+  }
+
+  .hero__copy {
+    font-size: 1.4rem;
+  }
+
+  .hero__image {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .sup01 {
+    padding: 20px;  /* スマホ表示時もパディングを維持 */
+    margin-bottom: 40px;
+  }
+}
+
+/* キャッチ下のプロダクト情報 */
+.product-info{
+  margin: 0 20px 20px;
+}
+
+.product-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  line-height: 1.8;
+}
+
+.product-row:last-child {
+  margin-bottom: 0;
+}
+
+.product-row dt {
+  flex: 0 0 100px; /* 固定幅 */
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.product-row dd {
+  flex: 1;
+  margin: 0;
+  padding-left: 20px; /* dtとddの間のマージン */
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .product-row {
+    flex-direction: column;
+}
+
+.product-row dt {
+    flex: none;
+    margin-bottom: 5px;
+}
+
+.product-row dd {
+    padding-left: 0;
+}
+}
+
+/* NEWS　新着情報 */
+.news {
+  padding: 60px 20px;
+  background-color: #f2f9ea;
+  background-size: cover;
+}
+
+.news-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.news-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+}
+
+.news span {
+  display: block;
+  color: #6a755f;
+  letter-spacing: 1px;
+  line-height: 2;
+  font-size: 0.9rem;
+}
+
+.news__text {
+  line-height: 2;
+  font-size: 1.0rem;
+  text-align: left;
+  margin-left: 30px;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 600px) {
+  .news-title {
+    text-align: center;
+  }
+
+    .news-inner {
+      display: block;
+      text-align: left;
+    }
+
+    .news__text {
+        font-size: 1.0rem;
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+
+/* コンセプト */
+.concept {
+  padding: 60px 20px;
+  background-image: url('../images/concept-background.jpg');
+  background-size: cover;
+}
+
+.concept-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.concept__text {
+  line-height: 2;
+  margin-top: 30px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 600px) {
+    .concept{
+        background-position: center;
+    }
+    .concept__text {
+        font-size: 1.2rem;
+        text-align: left;
+    }
+}
+
+/* スマホの時だけ改行させるクラス */
+.br-sp {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .br-sp {
+      display: block;
+  }
+}
+
+/* PCの時だけ改行させるクラス */
+.br-pc {
+display: none;
+}
+
+@media (min-width: 600px) {
+.br-pc {
+    display: block;
+}
+}
+
+/* VEGAN認証エリア */
+.vegan {
+  padding: 40px 20px 20px;
+}
+
+.vegan + .vegan {
+  padding-top: 0;
+  margin-bottom: 50px;
+}
+
+.vegan + .vegan .vegan-inner {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.vegan-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vegan-content {
+  display: block;
+  padding: 0;
+}
+
+/* PC表示 */
+@media screen and (min-width: 768px) {
+  .vegan-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .vegan-image-main {
+    width: 30%;
+    flex-shrink: 0;
+  }
+
+  .vegan-text {
+    flex: 1;
+  }
+}
+
+/* スマホ表示 */
+@media screen and (max-width: 767px) {
+  .vegan-image-main {
+    width: 60%;
+    margin: 0 auto 20px;
+  }
+
+  .vegan-text {
+    text-align: center;
+  }
+}
+
+/* 共通スタイル */
+.vegan-image-main img {
+  width: 100%;
+  height: auto;
+}
+
+.vegan-text h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.vegan-text p {
+  line-height: 1.8;
+}
+
+
+/* 商品情報 */
+.product {
+  padding: 60px 20px;
+}
+
+.product-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.product-title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.product-title img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.product-text {
+  grid-column: 2 / 3;
+  font-size: 1.3rem;
+  line-height: 2;
+  text-align: left;
+}
+
+.product-note {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-top: 20px;
+  color: #666;
+}
+
+.product-image-main {
+  grid-column: 1 / 2;
+}
+
+.product-image-detail {
+  grid-column: 1 / -1;  /* 全幅に変更 */
+  margin-top: 40px;    /* 上部に余白を追加 */
+}
+
+.product-image-main img,
+.product-image-detail img {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  max-width: 800px;
+  margin: 0 0;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .product {
+    padding: 60px 20px;
+  }
+
+  .product-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .product-text,
+  .product-image-main {
+    grid-column: 1;
+  }
+
+  .product-text {
+    font-size: 1.1rem;
+  }
+
+  .product-note {
+    margin-top: 15px;
+  }
+
+  .product-image-detail {
+    margin-top: 30px;  /* スマホでは余白を少し縮小 */
+  }
+}
+
+/* 製品のポイント全体のスタイル */
+.product-points {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 60px 20px 5px;
+  background-color: #f0f4d9;
+  border-radius: 10px;
+}
+
+/* ポイントタイトル部分 */
+.title-point {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-point img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.title-point .point {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* ポイントの説明文 */
+.text-point {
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+/* 比較セクション */
+.m60 {
+  display: flex;
+  gap: 40px;
+  margin: 60px 0;
+}
+
+.col-2 {
+  flex: 1;
+}
+
+/* 比較のサブタイトル */
+.subtitle {
+  background-color: #3C4C3A;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+/* チャート部分 */
+.chart {
+  padding-top: 20px;
+}
+
+.chart p {
+  padding: 20px 0 0;
+  line-height: 1.7;
+}
+
+.chart img {
+  /*width: 100%;*/
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .product-points {
+    /*padding: 60px;*/
+  }
+
+  .title-point .point {
+    font-size: 1.5rem;
+  }
+
+  .text-point {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .m60 {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+}
+
+.recommended-section {
+  background-color: #ffffff;
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 10px;
+}
+
+.recommended-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333333;
+}
+
+.recommended-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommended-list li {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.recommended-list li:last-child {
+  margin-bottom: 0;
+}
+
+.material-symbols-outlined {
+  color: #F4A460;
+  margin-right: 10px;  color
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .recommended-section {
+    padding: 20px;
+  }
+
+  .recommended-title {
+    font-size: 1.3rem;
+  }
+
+  .recommended-list li {
+    font-size: 1.1rem;
+  }
+}
+
+/* お問い合わせ */
+.contact {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #6a755f;
+  color: #FFFFFF;
+}
+
+.contact-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.contact .section-title {
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.contact .section-title img {
+  max-width: 100%;
+}
+
+.company-name {
+  font-size: 1.0rem;
+  margin-bottom: 10px;
+}
+
+.phone {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+} 
+
+.phone a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.phone a hover {
+  text-decoration-line: none;
+  color: #FFFFFF;
+}
+
+.contact-form img{
+  max-width: 100%;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.contact-form img:hover {
+  opacity: 0.7; 
+}
+
+.contact p.sup{
+  font-family: "Meiryo";
+  font-size: 0.9rem;
+  margin: 20px auto 0px;
+}
+
+
+/* メリット */
+.benefits {
+  padding: 60px 20px;
+  background-color: #F5F5F5;
+}
+
+.benefits-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.benefits-title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.benefits-title img {
+  max-width: 100%;
+  height: auto;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.benefit-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  /*align-items: center;*/
+}
+
+.benefit-content {
+  order: 1;
+}
+
+.benefit-image {
+  order: 2;
+}
+
+/* 2番目の項目は画像を左に配置 */
+/*.benefit-item:nth-child(2) .benefit-content {
+  order: 2;
+}
+
+.benefit-item:nth-child(2) .benefit-image {
+  order: 1;
+}*/
+
+.benefit-item__title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: var(--color-primary);
+}
+
+.benefit-item__title img {
+  /*width: 40px;*/
+  height: auto;
+}
+
+.benefit-item__text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.benefit-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.benefit-image__caption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: left;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .benefits {
+    padding: 60px 20px;
+  }
+
+  .benefits-list {
+    gap: 60px;
+  }
+
+  .benefit-item {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* スマホではすべての項目で同じ順序に統一 */
+  .benefit-content {
+    order: 1;
+  }
+
+  .benefit-image {
+    order: 2;
+  }
+
+  /* 2番目の項目もスマホでは通常の順序に戻す */
+  /*.benefit-item:nth-child(2) .benefit-content {
+    order: 1;
+  }
+
+  .benefit-item:nth-child(2) .benefit-image {
+    order: 2;
+  }
+
+  .benefit-item__title {
+    font-size: 1.2rem;
+  }
+
+  .benefit-item__text {
+    font-size: 0.9rem;
+  }*/
+}
+
+/* フッター */
+.footer {
+  /*background-color: var(--color-primary);*/
+  position: relative; /* Safari用に追加 */
+  z-index: 1; /* Safari用に追加 */
+  color: var(--color-background);
+  padding: 40px 20px;
+  text-align: center;
+  width: 100%; /* Safari用に追加 */
+  overflow: visible; /* Safari用に追加 */
+}
+
+.footer-inner {
+  position: relative; /* Safari用に追加 */
+  max-width: var(--content-width);
+  margin: 0 auto;
+  z-index: 2; /* Safari用に追加 */
+}
+
+.footer__logos {
+  position: relative; /* Safari用に追加 */
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  z-index: 2; /* Safari用に追加 */
+}
+
+.footer__logos img {
+  max-width: 100%;
+  height: auto;
+  /*margin: 10px;*/
+  display: block; /* Safari用に追加 */
+}
+
+.footer__soc {
+  position: relative;
+  margin: 30px auto;
+  width: 44px;  /* 固定サイズ */
+  height: 44px; /* 固定サイズ */
+  display: block;
+  z-index: 2;
+}
+
+.soc-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;  /* 固定サイズ */
+  height: 44px; /* 固定サイズ */
+  z-index: 3;
+}
+
+.in-icon {
+  width: 44px;  /* SVGの表示サイズを指定 */
+  height: 44px; /* SVGの表示サイズを指定 */
+  color: #333333; /* SVGの色を指定 */
+  transition: opacity 0.3s ease;
+}
+
+.soc-link img {
+  display: block; /* Safari用に追加 */
+  width: 100%; /* 親要素に合わせる */
+  height: 100%; /* 親要素に合わせる */
+  object-fit: contain; /* アスペクト比を保持 */
+  -webkit-transform: translateZ(0); /* Safari用に追加 */
+  transform: translateZ(0); /* Safari用に追加 */
+}
+
+.soc-link:hover .in-icon {
+  color: #333333;
+  opacity: 0.7;
+}
+
+.footer__nav {
+  position: relative; /* Safari用に追加 */
+  margin-bottom: 20px;
+  z-index: 2; /* Safari用に追加 */
+}
+
+.footer__link {
+  color: #333333;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.footer__copyright {
+  font-size: 0.9rem;
+  color: #333333;
+  position: relative; /* Safari用に追加 */
+  z-index: 2; /* Safari用に追加 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .hero-inner {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .hero__content {
+      padding-right: 0;
+      margin-bottom: 30px;
+  }
+
+  .benefit-item__title {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .benefit-item__title img {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+  .footer__logos {
+    flex-direction: column;
+    align-items: center;
+
+    .footer__soc {
+      position: relative;
+      margin: 30px auto;
+      width: 44px;
+      height: 44px;
+      display: block;
+      z-index: 2;
+    }
+    
+    .in-icon {
+      width: 24px;
+      height: 24px;
+      color: #333333;
+    }
+    
+    .soc-link {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+    }
+
+    .soc-link:hover .in-icon {
+      color: #333333;
+      opacity: 0.7;
+    }
+    
+    .soc-link img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      color: #333333;
+    }
+}
+}
+
+
+/* Safari特有の問題に対処するためのスタイル */
+@supports (-webkit-touch-callout: none) {
+  .footer__soc {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .soc-link {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .footer__soc {
+      margin: 30px auto;
+  }
+  
+  .soc-link img {
+      width: 100%;
+      height: 100%;
+  }
+}
