@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #f8f4ef;
+      --ink: #1a1a18;
+      --dust: #b8a99a;
+      --accent: #8b6f5e;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 40px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--dust);
+      padding-bottom: 32px;
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 15vw, 140px);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .year span {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: 24px;
+    }
+
+    .project-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .project-item {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .project-item:nth-child(1) { animation-delay: 0.3s; }
+    .project-item:nth-child(2) { animation-delay: 0.45s; }
+    .project-item:nth-child(3) { animation-delay: 0.6s; }
+
+    .project-link {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid transparent;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
+
+    .project-link:hover::after { width: 100%; }
+
+    .project-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--dust);
+      min-width: 24px;
+    }
+
+    .project-name {
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dust);
+      border: 1px solid var(--dust);
+      padding: 3px 8px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .project-link:hover .project-tag {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .arrow {
+      font-size: 16px;
+      color: var(--dust);
+      transform: translateX(-4px);
+      transition: transform 0.3s ease, color 0.3s;
+    }
+
+    .project-link:hover .arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: auto;
+      padding-top: 48px;
+      font-size: 11px;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="year">20<span>26</span></div>
+    <p class="subtitle">Project Index — COSS &amp; Clients</p>
+  </header>
+
+  <p class="section-label">Landing Pages</p>
+
+  <ul class="project-list">
+    <li class="project-item">
+      <a class="project-link" href="https://kahonri.github.io/2026/policy/double-cleanse-spring-2026">
+        <span class="project-num">01</span>
+        <span class="project-name">Policy — Double Cleanse Spring 2026</span>
+        <span class="project-tag">Skincare</span>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+    <!-- 追加プロジェクトはここに -->
+  </ul>
+
+  <footer>kahonri / 2026 &nbsp;·&nbsp; GitHub Pages</footer>
+
+</body>
+</html>
