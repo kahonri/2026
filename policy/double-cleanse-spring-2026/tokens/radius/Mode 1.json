@@ -1,0 +1,38 @@
+{
+  "radius-sm": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 8
+  },
+  "radius-md": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 16
+  },
+  "radius-lg": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 24
+  },
+  "radius-100": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 100
+  }
+}

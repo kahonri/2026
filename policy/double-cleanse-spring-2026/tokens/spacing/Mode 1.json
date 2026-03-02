@@ -1,0 +1,74 @@
+{
+  "space-8": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 8
+  },
+  "space-16": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 16
+  },
+  "space-24": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 24
+  },
+  "space-48": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 48
+  },
+  "space-32": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 32
+  },
+  "space-80": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 80
+  },
+  "space-4": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 4
+  },
+  "space-12": {
+    "$extensions": {
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "$type": "number",
+    "$value": 12
+  }
+}
