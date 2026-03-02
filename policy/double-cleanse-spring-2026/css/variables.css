@@ -1,0 +1,80 @@
+/* =============================================
+   Design Tokens — Double Cleanse Spring 2026
+   ============================================= */
+
+:root {
+  /* ----- カラー: テキスト ----- */
+  --color-text-primary: #555555;
+  --color-text-eyecatch: #ffffff;
+  --color-text-cta: #ffffff;
+  --color-text-data01: #EB6972;
+  --color-text-data02: #55B5AE;
+
+  /* ----- カラー: 背景 ----- */
+  --color-bg-cta: #eb5600;
+  --color-bg-empathy: #dfdfdf;
+  --color-bg-eyecatch: #d9b783;
+  --color-bg-cta2: #ffd4bf;
+  --color-bg-faq: #f2ece0;
+  --color-bg-datatitle: #f2ece0;
+  --color-bg-company: #f2ece0;
+
+  /* ----- カラー: ライン ----- */
+  --color-line: #999999;
+
+  /* ----- タイポグラフィ ----- */
+  --font-family-base: 'Inter', sans-serif;
+
+  --font-size-h1: 100px;
+  --font-size-h2: 55px;
+  --font-size-h2-sub: 60px;
+  --font-size-h3: 48px;
+  --font-size-body: 36px;
+  --font-size-note: 24px;
+
+  --font-weight-bold: 700;
+  --font-weight-regular: 400;
+
+  --line-height-h2: 80px;
+  --line-height-h3: 80px;
+  --line-height-body: 65%;
+  --line-height-auto: auto;
+
+  --letter-spacing-wide: 0.03em;
+  --letter-spacing-normal: 0.02em;
+
+  /* ----- スペーシング ----- */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-80: 80px;
+
+  /* ----- レイアウト ----- */
+  --width-page: 100%;
+  --width-container: 960px;
+
+  /* ----- ボーダー半径 ----- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 100px;
+}
+
+/* ----- タイポグラフィ（SP） ----- */
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 50px;
+    --font-size-h2: 25px;
+    --font-size-h2-sub: 26px;
+    --font-size-h3: 24px;
+    --font-size-body: 16px;
+    --font-size-note: 12px;
+
+    --line-height-h2: 32px;
+    --line-height-h3: 32px;
+  }
+}
