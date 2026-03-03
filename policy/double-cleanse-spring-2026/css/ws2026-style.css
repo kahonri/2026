@@ -1092,6 +1092,7 @@
     padding: var(--space-16);
     white-space: normal;
     border-radius: var(--radius-md);
+    text-align: center;
   }
 
   #ws2026 .cta__button-icon {
