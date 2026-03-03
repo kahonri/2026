@@ -86,7 +86,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-8);
+  gap: var(--space-12);
   margin-top: var(--space-32);
   /* width: 100%; */
   max-width: var(--width-container);
@@ -1032,8 +1032,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-8);
-  width: 100%;
+  gap: var(--space-12);
+  /* width: 100%; */
   max-width: var(--width-container);
   padding: 48px 80px;
   background-color: var(--color-bg-cta);
@@ -1087,6 +1087,7 @@
   }
 
   #ws2026 .cta__button {
+    width: 100%;
     max-width: 100%;
     padding: var(--space-16);
     white-space: normal;
