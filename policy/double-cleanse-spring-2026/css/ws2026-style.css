@@ -449,6 +449,11 @@
   letter-spacing: var(--letter-spacing-wide);
 }
 
+#ws2026 .step-name__sup {
+  font-size: var(--font-size-note);
+  vertical-align: super;
+}
+
 /* --- 商品詳細ブロック --- */
 #ws2026 .product-steps__block {
   padding: 55px 0;
