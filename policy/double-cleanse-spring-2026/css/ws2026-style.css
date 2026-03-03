@@ -188,7 +188,7 @@
 
 /* 見出し */
 #ws2026 .empathy__title {
-  font-size: var(--font-size-h3);
+  font-size: var(--font-size-h2);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   letter-spacing: var(--letter-spacing-wide);
