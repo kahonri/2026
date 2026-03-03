@@ -813,6 +813,7 @@
   color: var(--color-line);
   letter-spacing: var(--letter-spacing-normal);
   align-self: flex-end;
+  text-align: right;
 }
 
 /* ----- SP ----- */
