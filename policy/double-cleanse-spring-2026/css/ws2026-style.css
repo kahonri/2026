@@ -136,6 +136,7 @@
   }
 
   #ws2026 .hero__cta-button {
+    width: 100%;
     max-width: 100%;
     padding: var(--space-16);
     white-space: normal;
