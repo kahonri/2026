@@ -1,0 +1,59 @@
+/* =============================================
+   Reset & Base — Double Cleanse Spring 2026
+   ============================================= */
+
+/* 既存のヘッダー・フッターを非表示 */
+#header_top, header, .subtitle02_wrapper, #locator, #contents_right, footer {
+    display: none;
+}
+
+#ws2026 *,
+#ws2026 *::before,
+#ws2026 *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#ws2026 {
+  max-width: var(--width-page);
+  margin: 0 auto;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-normal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ws2026 img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+#ws2026 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#ws2026 ul, #ws2026 ol {
+  list-style: none;
+}
+
+/* レスポンシブ表示切替 */
+#ws2026 .sp-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #ws2026 .sp-only {
+    display: inline;
+  }
+}
