@@ -412,7 +412,6 @@ display: none;
 .veggy-magazine img {
   max-width: 180px;
   height: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 
@@ -424,8 +423,10 @@ display: none;
 
 @media screen and (min-width: 768px) {
   .veggy-magazine {
-    text-align: left;
-    padding-left: calc(30% + 40px);
+    margin-top: 0;
+    flex-shrink: 0;
+    width: 160px;
+    text-align: center;
   }
 }
 
