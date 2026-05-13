@@ -1,0 +1,320 @@
+/* 既存のヘッダー・フッターを非表示 */
+#header_top, header, .subtitle02_wrapper, #locator, #contents_right, footer {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* メインビジュアル */
+h1.mv-title {
+    width: auto;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+}
+
+.main-visual {
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+/* 応募ボタン */
+.btn-apply {
+    display: block;
+    height: auto;
+    margin: 30px auto;
+    transition: all 0.3s ease;
+}
+
+.btn-apply:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* セクション２ */
+.section2 {
+    width: 100%;
+    padding: 40px 55px;
+    text-align: center;
+}
+
+.section2-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.section2-subtitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.section2-description {
+    font-size: 28px;
+    line-height: 1.8;
+    color: #666;
+    text-align: center;
+    max-width: 678px;
+    margin: 0 auto 55px;
+}
+
+/* 商品紹介 */
+.product-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 60px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.product-title {
+    display: block;
+    height: auto;
+    margin: 0 auto 15px;
+}
+
+.product-image-container {
+    position: relative;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 515px;
+    height: 319px;
+}
+
+.product-image {
+    width: 515px;
+    height: 319px;
+    display: block;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 10px;
+    color: #999;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 4px;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.product-description {
+    font-size: 24px;
+    line-height: 1.6;
+    color: #666;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-ingredients {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #999;
+    text-align: left;
+}
+
+.ingredients-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* 商品の改定に関する注意書き用のクラス */
+.product-note {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* 応募要項 */
+.application-section {
+    background: linear-gradient(to bottom, #f5e6d3, #e8d2b8);
+    padding: 40px 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.application-title {
+    font-size: 55px;
+    font-weight: bold;
+    color: #8B4513;
+    margin-bottom: 40px;
+}
+
+.application-item {
+    margin-bottom: 30px;
+}
+
+.application-item-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.application-item-content {
+    font-size: 28px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.application-note {
+    font-size: 18px;
+    color: #ff2b2b;
+    margin-top: 10px;
+}
+
+.btn-apply-bottom {
+    display: block;
+    height: auto;
+    margin: 40px auto 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-apply-bottom:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* コピーライト */
+.copyright {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+    width: 100%;
+}
+
+/* スマホの時だけ改行させるクラス */
+.sp-only {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    .section2 {
+    width: 100%;
+    padding: 40px 15px;
+    text-align: center;
+    }
+    
+    .product-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .section2-title {
+        font-size: 30px;
+    }
+
+    .section2-subtitle {
+        font-size: 20px;
+    }
+
+    .section2-description {
+        font-size: 20px;
+    }
+
+    .application-title {
+        font-size: 30px;
+    }
+
+    .btn-apply,
+    .btn-apply-bottom {
+        width: 300px;
+    }
+
+    .product-section {
+        padding: 0 10px;
+    }
+
+    .product-item {
+        width: calc(100% - 20px);
+    }
+
+    .product-title {
+        max-width: 65%;
+        margin: 0 auto 15px;
+    }
+
+    .product-description {
+    font-size: 20px;
+    }
+
+    .application-item-title {
+    font-size: 28px;
+    }
+
+    .product-image-container {
+        position: relative;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: 100%;
+        max-width: 400px; /* スマホでは最大400pxに制限 */
+        height: auto;
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 515 / 319; /* アスペクト比を維持 */
+        display: block;
+    }
+
+    .image-caption {
+        font-size: 9px;
+        bottom: 0px;
+        right: 0px;
+        white-space: nowrap;
+    }
+
+    .product-note {
+        font-size: 12px;
+    }
+
+    .sp-only {
+        display: block;
+    }
+    
+}

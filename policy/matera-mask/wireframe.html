@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マテラマスク ワイヤーフレーム</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: sans-serif; font-size: 14px; background: #fff; color: #333; }
+
+  .page { max-width: 800px; margin: 0 auto; border: 1px solid #ccc; }
+
+  /* セクション共通 */
+  .section { padding: 40px 40px; border-bottom: 1px solid #e8e8e8; }
+  .section:last-child { border-bottom: none; }
+
+  /* ワイヤー部品 */
+  .img-box {
+    background: #e8e8e8; border: 1px solid #ccc;
+    display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 12px; text-align: center;
+  }
+  .img-box.mv   { width: 100%; height: 220px; }
+  .img-box.md   { width: 220px; height: 220px; flex-shrink: 0; }
+  .img-box.wide { width: 100%; height: 160px; }
+
+  .wf-h1   { font-size: 18px; font-weight: bold; line-height: 1.6; color: #222; margin-bottom: 10px; }
+  .wf-h2   { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 8px; }
+  .wf-h3   { font-size: 13px; font-weight: bold; color: #444; margin-bottom: 4px; }
+  .wf-p    { font-size: 12px; line-height: 1.8; color: #555; margin-bottom: 6px; }
+  .wf-note { font-size: 10px; color: #999; margin-top: 6px; }
+
+  .badge {
+    display: inline-block; background: #c66; color: #fff;
+    font-size: 10px; font-weight: bold; padding: 2px 8px; margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .row { display: flex; gap: 20px; align-items: flex-start; }
+  .col { flex: 1; }
+  .txt-c { text-align: center; }
+
+  /* 04 チェックリスト */
+  .checklist { list-style: none; margin: 10px 0; }
+  .checklist li { font-size: 13px; padding: 5px 0; border-bottom: 1px dashed #ddd; }
+  .checklist li::before { content: "☑ "; color: #aaa; }
+
+  /* 05 feature */
+  .feature-section-ttl {
+    text-align: center; margin-bottom: 32px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .feature-section-ttl::before,
+  .feature-section-ttl::after {
+    content: ""; display: block; width: 60px; border-top: 1px dashed #aaa;
+  }
+  .feature-section-ttl-inner { font-size: 15px; font-weight: bold; line-height: 1.5; }
+
+  .feature-cols { display: flex; align-items: flex-start; }
+  .feature-col { flex: 1; padding: 0 12px; text-align: center; }
+  .feature-col.center { margin-top: 60px; }
+  .feature-col-ttl { font-size: 13px; font-weight: bold; line-height: 1.5; margin-bottom: 12px; min-height: 42px; }
+  .img-circle {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: #e8e8e8; border: 2px solid #ccc;
+    display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 11px; margin: 0 auto 14px;
+  }
+  .feature-col-txt { font-size: 11px; color: #555; line-height: 1.7; text-align: left; }
+
+  /* 06 成分グリッド */
+  .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .grid-item { text-align: center; }
+  .img-box-xs {
+    width: 80px; height: 80px; margin: 0 auto 6px;
+    background: #e8e8e8; border: 1px solid #ccc;
+    display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 10px; border-radius: 50%;
+  }
+  .grid-item .name { font-size: 10px; font-weight: bold; margin-bottom: 3px; }
+  .grid-item .desc { font-size: 9px; color: #777; line-height: 1.4; }
+
+  /* 06 成分グリッド上段（画像あり 5成分）*/
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 20px; }
+
+  /* 06 成分名のみ下段（6成分）*/
+  .name-only-list { display: flex; flex-wrap: wrap; gap: 6px 16px; border-top: 1px dashed #ccc; padding-top: 12px; }
+  .name-only-item { font-size: 11px; font-weight: bold; color: #555; padding: 3px 10px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 20px; }
+
+  /* 07 レビュー */
+  .review-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .review-item { border: 1px solid #ddd; padding: 14px; }
+  .review-ba { display: flex; gap: 8px; margin-bottom: 10px; }
+  .img-box-ba { flex: 1; background: #e8e8e8; border: 1px solid #ccc; height: 90px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 10px; text-align: center; }
+  .review-ttl { font-size: 13px; font-weight: bold; margin-bottom: 6px; }
+  .review-txt { font-size: 11px; color: #666; line-height: 1.6; }
+  .review-age { font-size: 10px; color: #999; text-align: right; margin-top: 6px; }
+
+  /* ページタイトル */
+  .page-title { text-align: center; padding: 20px 0 16px; font-size: 16px; font-weight: bold; color: #333; border-bottom: 2px solid #ccc; background: #fff; }
+
+  /* ヘッダー・フッター */
+  .chrome-bar { background: #666; color: #fff; text-align: center; padding: 28px 0; font-size: 13px; font-weight: bold; letter-spacing: 0.05em; }
+
+  /* 04 囲みボックス */
+  .kakomi-wrap { border: 1px solid #ccc; padding: 24px; margin: 0 40px; }
+
+  @media print {
+    @page { size: A3 portrait; margin: 3mm; }
+    body { zoom: 95%; }
+    .section { break-inside: avoid; }
+    #kakomi { break-after: page; }
+  }
+
+  /* 未確定マーカー */
+  .tbd { background: #fffbe6; border: 1px dashed #e0b800; padding: 3px 8px; font-size: 10px; color: #a07800; margin-top: 8px; display: inline-block; }
+</style>
+</head>
+<body>
+<p class="page-title">肌活マテラマスクのページ構成案</p>
+<div class="page">
+
+  <div class="chrome-bar">ページヘッダー</div>
+
+  <!-- 00 title -->
+  <div class="section" style="padding: 0;">
+    <div class="img-box mv" style="position: relative;">
+      <div style="position:absolute; top: 10px; right: 10px; text-align: right; font-size: 10px; color: #666; background: rgba(255,255,255,0.75); padding: 4px 8px; line-height: 1.6;">
+        マスクシート箱切り抜き.jpg ＋ <br>マスクシートシートイメージ.jpgを合成
+      </div>
+      <!-- 左寄せテキスト（赤字追加）-->
+      <div style="position:absolute; bottom: 20px; left: 40px; display: flex; flex-direction: column; gap: 8px;">
+        <p class="wf-h1" style="background: rgba(255,255,255,0.88); padding: 6px 10px;">クスミを脱ぎ捨て光をまとう肌へ</p>
+        <p class="wf-p" style="background: rgba(255,255,255,0.88); padding: 6px 10px;">肌エネルギーを巡らす肌活マスクシート</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 point -->
+  <div class="section">
+    <div class="row" style="align-items: center; margin-bottom: 20px;">
+      <div class="col">
+        <p class="wf-h2" style="margin-bottom: 10px;">業界初！マテラ蓄熱シートとは？</p>
+        <p class="wf-p">肌にのせると体温をやさしくキャッチし、そのぬくもりを肌にじんわりと還す。<br>業界初※1の「マテラ練りこみ蓄熱シート※2」を採用</p>
+        <p class="wf-note">※1 当社調べ（2026年2月時点）　※2 温熱効果はありません</p>
+      </div>
+      <div class="img-box md" style="flex-shrink:0; width:198px; height:198px;">マテラ蓄熱シートの仕組みイラスト</div>
+    </div>
+    <div class="row" style="align-items: center;">
+      <div class="col">
+        <p class="wf-h2" style="margin-bottom: 10px;">業界初のマテラの蓄熱シートが、<br>肌の奥の「オートファジー」を目覚めさせる</p>
+        <p class="wf-p">オートファジーとは、細胞の中で古くなったタンパク質や不要な物質を<br>"分解して再利用する"細胞の浄化システムのこと。<br>オートファジーがきちんと働くことで、肌の中※がクリアに保たれ、透明感がアップ！</p>
+        <p class="wf-note">※ 角質層まで</p>
+      </div>
+      <div class="img-box md" style="flex-shrink:0; width:198px; height:198px;">オートファジーを説明する<br>肌の断面図</div>
+    </div>
+  </div>
+
+  <!-- 02 subtitle -->
+  <div class="section">
+    <p class="wf-h1">肌活マテラマスク</p>
+  </div>
+
+  <!-- 03 product -->
+  <div class="section">
+    <div class="row">
+      <div class="img-box md">商品画像</div>
+      <div class="col">
+        <p class="wf-h3" style="margin-bottom: 10px;">マスクシート<span class="badge">新発売</span></p>
+        <p class="wf-h2" style="margin: 10px 0 12px;">肌エネルギーを巡らす肌活マスクシート</p>
+        <p class="wf-p">業界初のマテラ練り込み蓄熱シートが体温をキャッチし、遠赤外線で肌の巡りを活性化。オートファジー成分「セイヨウネズエキス」が細胞の浄化力（オートファジー）を引き出し、グルタチオン×アルブチンのW配合が透明感とツヤをもたらします。肌エネルギーを巡らし、より肌結果へアプローチする、マスクシートです。</p>
+        <p class="wf-p">5枚入り（美容液25ml/1枚）　<strong>5,940円（税抜5,400円）</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 kakomi -->
+  <div class="section" id="kakomi">
+    <div class="kakomi-wrap">
+      <div class="row">
+        <div class="col">
+          <p class="wf-h2" style="margin-bottom: 12px;">こんな方におすすめ</p>
+          <ul class="checklist">
+            <li>美白ケアをしても結果が出にくい</li>
+            <li>クスミが気になる</li>
+            <li>年齢による濁りを感じる</li>
+            <li>大事な予定前の即効ケアを探している</li>
+          </ul>
+        </div>
+        <div class="img-box md">イメージ画像</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 feature -->
+  <div class="section">
+    <div class="feature-section-ttl">
+      <div class="feature-section-ttl-inner">肌活マテラマスクの<br>特徴</div>
+    </div>
+    <div class="feature-cols">
+      <div class="feature-col">
+        <p class="feature-col-ttl">業界初※の<br>マテラ蓄熱シート</p>
+        <div class="img-circle">特徴画像①</div>
+        <p class="feature-col-txt">肌にのせた体温をキャッチし、遠赤外線で肌の巡りを活性化。肌をやわらかく整え、美容成分がなじみやすい状態へ。</p>
+      </div>
+      <div class="feature-col center">
+        <p class="feature-col-ttl">ポリシー化粧品初！<br>オートファジーに<br>着目した処方</p>
+        <div class="img-circle">特徴画像②</div>
+        <p class="feature-col-txt">細胞内の古いたんぱく質などを分解して再利用する「オートファジー」に着目。セイヨウネズエキスがその働きをサポートし、肌の透明感がアップ。</p>
+      </div>
+      <div class="feature-col">
+        <p class="feature-col-ttl">透明感を引き出す<br>成分を高配合</p>
+        <div class="img-circle">特徴画像③</div>
+        <p class="feature-col-txt">「グルタチオン」×「アルブチン」のW配合で、内側から発光するようなツヤと透明感を。澄みわたるようなクリアな素肌へ。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 component -->
+  <div class="section">
+    <p class="wf-h2" style="margin-bottom: 20px;">主な美容成分</p>
+    <!-- 上段：画像＋名前＋説明文（5成分）-->
+    <div class="grid-5">
+      <div class="grid-item"><div class="img-box-xs">画像</div><p class="name">セイヨウネズエキス</p><p class="desc">オートファジー発想で肌を整える植物成分。</p></div>
+      <div class="grid-item"><div class="img-box-xs">画像</div><p class="name">グルタチオン</p><p class="desc">うるおいを守り、いきいきとした肌印象へ。</p></div>
+      <div class="grid-item"><div class="img-box-xs">画像</div><p class="name">アルブチン</p><p class="desc">透明感を感じる、なめらかな肌印象へ。</p></div>
+      <div class="grid-item"><div class="img-box-xs">画像</div><p class="name">プロテクトヒアルロン酸</p><p class="desc">ヒアルロン酸を守ることで、ゆるみに先回りしてハリや弾力をキープ。</p></div>
+      <div class="grid-item"><div class="img-box-xs">画像</div><p class="name">復活の木</p><p class="desc">乾いた肌にすばやく水分を補給し、乾燥から守る。</p></div>
+    </div>
+    <!-- 下段：名前のみ（6成分）赤字トルツメ対応 -->
+    <ul class="name-only-list">
+      <li class="name-only-item">クララ根エキス</li>
+      <li class="name-only-item">カンゾウ根エキス</li>
+      <li class="name-only-item">ビフィズス菌培養液</li>
+      <li class="name-only-item">オウゴン根エキス</li>
+      <li class="name-only-item">マグワ根皮エキス</li>
+      <li class="name-only-item">DNA-Na</li>
+    </ul>
+  </div>
+
+  <!-- 07 customer -->
+  <div class="section">
+    <p class="wf-h2" style="margin-bottom: 16px;">お客様の声</p>
+    <div class="review-list">
+      <div class="review-item">
+        <!-- Before/After画像（エビデンス）-->
+        <div class="review-ba">
+          <div style="flex:1; text-align:center;">
+            <p style="font-size:10px; color:#999; margin-bottom:4px;">使用前</p>
+            <div class="img-box-ba">画像</div>
+          </div>
+          <div style="flex:1; text-align:center;">
+            <p style="font-size:10px; color:#999; margin-bottom:4px;">使用後</p>
+            <div class="img-box-ba">画像</div>
+          </div>
+        </div>
+        <p class="review-txt">しっかり保湿されてハリ・弾力を実感。肌がもっちりしました。</p>
+        <p class="review-age">（45歳女性）</p>
+      </div>
+      <div class="review-item">
+        <!-- Before/After画像（エビデンス）-->
+        <div class="review-ba">
+          <div style="flex:1; text-align:center;">
+            <p style="font-size:10px; color:#999; margin-bottom:4px;">使用前</p>
+            <div class="img-box-ba">画像</div>
+          </div>
+          <div style="flex:1; text-align:center;">
+            <p style="font-size:10px; color:#999; margin-bottom:4px;">使用後</p>
+            <div class="img-box-ba">画像</div>
+          </div>
+        </div>
+        <p class="review-txt">外した瞬間から透明感を感じられました。継続して使い続けたいです。</p>
+        <p class="review-age">（37歳女性）</p>
+      </div>
+    </div>
+    <p class="wf-note" style="margin-top: 10px;">※個人の感想です。効果を保証するものではありません。<br>※肌解析機「iPas」での測定結果です</p>
+  </div>
+
+  <div class="chrome-bar">ページフッター</div>
+
+</div><!-- /page -->
+</body>
+</html>

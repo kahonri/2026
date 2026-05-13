@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【特別】新商品発表会バナー 最終仮コーディング（section_bi2024差し替え用）</title>
+<style>
+/* ============================================================
+   【既存 top.css の上書き・追記ブロック】
+   section_bi2024 の中身を【特別】新商品発表会バナーに差し替え
+   ============================================================ */
+
+/* 背景画像を差し替え */
+.section_bi2024 {
+  width: 100%;
+  margin: 0 auto;
+  background: url(/dcms_media/image/background-image.png) no-repeat center center;
+  background-size: cover;
+}
+
+.section_bi2024_in {
+  max-width: 1000px;
+  width: 94%;
+  min-height: 280px;
+  margin: 0 auto;
+  display: table;
+}
+
+.section_bi2024_left {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 36px 0;
+}
+
+.section_bi2024_right {
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.section_bi2024_right .bi2026_product-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ---- サブコピー行（横線付き） ---- */
+.bi2026_sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+  line-height: 1.6;
+}
+.bi2026_sub::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: #999;
+  flex-shrink: 0;
+}
+.bi2026_sub_main {
+  font-size: 120%;
+  color: #666;
+}
+.bi2026_sub_accent {
+  font-size: 120%;
+  color: #cb6100;
+}
+
+/* ---- NEWアイコン ---- */
+.bi2026_new {
+  display: inline-block;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #fff;
+  background: #cb6100;
+  padding: 2px 7px;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+  margin-left: 20px;
+  line-height: 1.6;
+}
+
+/* ---- メインコピー ---- */
+.bi2026_tit_main {
+  display: block;
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 4px;
+}
+.bi2026_tit_sub {
+  display: block;
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 0 16px -25px;
+}
+
+/* ---- 日時エリア ---- */
+.bi2026_event {
+  margin-bottom: 20px;
+}
+.bi2026_date-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+}
+.bi2026_date {
+  font-size: 150%;
+  color: #cb6100;
+}
+.bi2026_dow {
+  font-size: 150%;
+  color: #cb6100;
+}
+.bi2026_sep {
+  font-size: 120%;
+  color: #cb6100;
+}
+.bi2026_time {
+  font-size: 120%;
+  color: #cb6100;
+}
+.bi2026_place {
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+  font-size: 100%;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ---- CTAボタン ---- */
+.bi2026_btn {
+  display: inline-block;
+}
+.bi2026_btn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 40px;
+  background: #ffffff;
+  border: 1px solid #cb6100;
+  color: #cb6100;
+  font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", serif, "MatisseProN M";
+  font-size: 120%;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: opacity 0.2s;
+}
+.bi2026_btn a::after {
+  content: "＞";
+  font-size: 10px;
+}
+.bi2026_btn a:hover {
+  opacity: 0.7;
+}
+
+/* ---- 全員に1枚プレゼント ---- */
+/* 絶対配置の基準となるラッパー */
+.bi2026_left-wrap {
+  position: relative;
+}
+
+/* PC：CTAより少し下・左エリア右端に絶対配置 */
+.bi2026_present-img {
+  position: absolute;
+  right: 0;
+  bottom: -30px;   /* マイナス値で下方向に調整。合わなければ変更 */
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+/* SP：PC用画像を非表示 */
+@media screen and (max-width: 768px) {
+  .bi2026_present-img {
+    display: none;
+  }
+}
+
+/* SP専用：商品画像の左上に絶対配置 */
+.bi2026_present-img-sp {
+  display: none;  /* PCでは非表示 */
+}
+@media screen and (max-width: 768px) {
+  .section_bi2024_right {
+    position: relative;
+  }
+  .bi2026_present-img-sp {
+    display: block;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* ============================================================
+   【SP対応 / top_smartphone.css に追記】
+   768px以下：テキスト → 商品画像 の1カラム縦積み
+   ============================================================ */
+@media screen and (max-width: 768px) {
+
+  .section_bi2024_in {
+    display: block;
+    width: 100%;
+    min-height: auto;
+  }
+
+  /* テキストエリア：上 */
+  .section_bi2024_left {
+    width: 100%;
+    display: block;
+    padding: 24px 5% 80px;
+  }
+
+  /* 商品画像エリア：下 */
+  .section_bi2024_right {
+    width: 100%;
+    display: block;
+    padding: 0;
+  }
+
+  /* メインコピーサイズ調整 */
+  .bi2026_tit_main { font-size: 28px; }
+  .bi2026_tit_sub  { font-size: 140%; }
+  .bi2026_date-line { flex-wrap: wrap; }
+
+  /* テキスト・CTA センター揃え */
+  .bi2026_sub       { justify-content: center; }
+  .bi2026_tit_main  { text-align: center; }
+  .bi2026_tit_sub   { text-align: center; }
+  .bi2026_date-line { justify-content: center; }
+  .bi2026_place     { text-align: center; }
+  .bi2026_btn       { display: block; text-align: center; }
+}
+
+
+/* ============================================================
+   以下はプレビュー確認用スタイル（本番には入れない）
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #ddd; }
+.clearfix::after { content: ""; display: table; clear: both; }
+.preview-label {
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  color: #888;
+  background: #e0e0e0;
+  font-family: sans-serif;
+}
+.sp-frame {
+  max-width: 375px;
+  margin: 32px auto 0;
+  border: 2px dashed #bbb;
+}
+/* プレビュー用：ローカルパスで背景上書き */
+.section_bi2024 {
+  background-image: url(images/background-image.png);
+}
+</style>
+</head>
+<body>
+
+<!-- =============================================
+  PC プレビュー（1000px基準）
+============================================== -->
+<div class="preview-label">▼ PC（1000px 基準 / section_bi2024 差し替えイメージ）</div>
+
+<div class="section_bi2024 clearfix">
+  <div class="section_bi2024_in">
+
+    <!-- 左：テキストエリア -->
+    <div class="section_bi2024_left">
+      <div class="bi2026_left-wrap">
+
+        <p class="bi2026_sub">
+          <span class="bi2026_sub_main">創業33年の歴史に、</span><span class="bi2026_sub_accent">新たな一枚。</span>
+        </p>
+
+        <h2>
+          <span class="bi2026_tit_main">肌活 マテラマスク<span class="bi2026_new">NEW</span></span>
+          <span class="bi2026_tit_sub">【特別】新商品発表会</span>
+        </h2>
+
+        <div class="bi2026_event">
+          <p class="bi2026_date-line">
+            <span class="bi2026_date">2026.5.19</span>
+            <span class="bi2026_dow">TUE</span>
+            <span class="bi2026_sep"> | </span>
+            <span class="bi2026_time">13：40-14：30</span>
+          </p>
+          <p class="bi2026_place">BWJ東京　プレゼンテーションルームC</p>
+        </div>
+
+        <div class="bi2026_btn">
+          <a href="#">参加を予約する</a>
+        </div>
+
+        <!-- プレゼント画像：CTAと同高さの右端に絶対配置 -->
+        <img
+          class="bi2026_present-img"
+          src="images/product-icon_200.png"
+          alt="全員に1枚プレゼント"
+        >
+
+      </div>
+    </div>
+
+    <!-- 右：商品画像 -->
+    <div class="section_bi2024_right">
+      <img
+        class="bi2026_product-img"
+        src="images/productt-image02.png"
+        alt="肌活マテラマスク 商品イメージ"
+      >
+      <!-- SP専用：商品画像の左上に配置（PCでは非表示） -->
+      <img
+        class="bi2026_present-img-sp"
+        src="images/product-icon_200.png"
+        alt="全員に1枚プレゼント"
+      >
+    </div>
+
+  </div>
+</div>
+
+<!-- =============================================
+  SP プレビュー（375px想定）
+============================================== -->
+<div class="preview-label" style="margin-top:40px;">▼ SP（375px 基準 / 1カラム縦積み）</div>
+<div class="sp-frame">
+  <div class="preview-label">スマートフォン表示</div>
+
+  <div class="section_bi2024 clearfix">
+    <div class="section_bi2024_in">
+
+      <div class="section_bi2024_left">
+        <div class="bi2026_left-wrap">
+          <p class="bi2026_sub">
+            <span class="bi2026_sub_main">創業33年の歴史に、</span><span class="bi2026_sub_accent">新たな一枚。</span>
+          </p>
+          <h2>
+            <span class="bi2026_tit_main">肌活 マテラマスク<span class="bi2026_new">NEW</span></span>
+            <span class="bi2026_tit_sub">【特別】新商品発表会</span>
+          </h2>
+          <div class="bi2026_event">
+            <p class="bi2026_date-line">
+              <span class="bi2026_date">2026.5.19</span>
+              <span class="bi2026_dow">TUE</span>
+              <span class="bi2026_sep"> | </span>
+              <span class="bi2026_time">13：40-14：30</span>
+            </p>
+            <p class="bi2026_place">BWJ東京　プレゼンテーションルームC</p>
+          </div>
+          <div class="bi2026_btn">
+            <a href="#">参加を予約する</a>
+          </div>
+          <img
+            class="bi2026_present-img"
+            src="images/product-icon_200.png"
+            alt="全員に1枚プレゼント"
+          >
+        </div>
+      </div>
+
+      <div class="section_bi2024_right">
+        <img
+          class="bi2026_product-img"
+          src="images/productt-image02.png"
+          alt="肌活マテラマスク 商品イメージ"
+        >
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+  区切り
+============================================== -->
+<div style="margin-top:60px; border-top:3px solid #aaa; padding-top:0;">
+  <div class="preview-label" style="font-size:14px; background:#c8c8c8; color:#333; padding:14px;">
+    ▼▼ バリエーション：右側画像を product-images.png に変更 ▼▼
+  </div>
+</div>
+
+<!-- =============================================
+  バリエーション PC プレビュー
+============================================== -->
+<div class="preview-label">▼ PC（バリエーション）</div>
+
+<div class="section_bi2024 clearfix">
+  <div class="section_bi2024_in">
+
+    <div class="section_bi2024_left">
+      <div class="bi2026_left-wrap">
+        <p class="bi2026_sub">
+          <span class="bi2026_sub_main">創業33年の歴史に、</span><span class="bi2026_sub_accent">新たな一枚。</span>
+        </p>
+        <h2>
+          <span class="bi2026_tit_main">肌活 マテラマスク<span class="bi2026_new">NEW</span></span>
+          <span class="bi2026_tit_sub">【特別】新商品発表会</span>
+        </h2>
+        <div class="bi2026_event">
+          <p class="bi2026_date-line">
+            <span class="bi2026_date">2026.5.19</span>
+            <span class="bi2026_dow">TUE</span>
+            <span class="bi2026_sep"> | </span>
+            <span class="bi2026_time">13：40-14：30</span>
+          </p>
+          <p class="bi2026_place">BWJ東京　プレゼンテーションルームC</p>
+        </div>
+        <div class="bi2026_btn">
+          <a href="#">参加を予約する</a>
+        </div>
+        <img
+          class="bi2026_present-img"
+          src="images/product-icon_200.png"
+          alt="全員に1枚プレゼント"
+        >
+      </div>
+    </div>
+
+    <div class="section_bi2024_right">
+      <img
+        class="bi2026_product-img"
+        src="images/product-images.png"
+        alt="肌活マテラマスク 商品イメージ"
+      >
+      <img
+        class="bi2026_present-img-sp"
+        src="images/product-icon_200.png"
+        alt="全員に1枚プレゼント"
+      >
+    </div>
+
+  </div>
+</div>
+
+<!-- =============================================
+  バリエーション SP プレビュー
+============================================== -->
+<div class="preview-label" style="margin-top:40px;">▼ SP（バリエーション）</div>
+<div class="sp-frame">
+  <div class="preview-label">スマートフォン表示</div>
+
+  <div class="section_bi2024 clearfix">
+    <div class="section_bi2024_in">
+
+      <div class="section_bi2024_left">
+        <div class="bi2026_left-wrap">
+          <p class="bi2026_sub">
+            <span class="bi2026_sub_main">創業33年の歴史に、</span><span class="bi2026_sub_accent">新たな一枚。</span>
+          </p>
+          <h2>
+            <span class="bi2026_tit_main">肌活 マテラマスク<span class="bi2026_new">NEW</span></span>
+            <span class="bi2026_tit_sub">【特別】新商品発表会</span>
+          </h2>
+          <div class="bi2026_event">
+            <p class="bi2026_date-line">
+              <span class="bi2026_date">2026.5.19</span>
+              <span class="bi2026_dow">TUE</span>
+              <span class="bi2026_sep"> | </span>
+              <span class="bi2026_time">13：40-14：30</span>
+            </p>
+            <p class="bi2026_place">BWJ東京　プレゼンテーションルームC</p>
+          </div>
+          <div class="bi2026_btn">
+            <a href="#">参加を予約する</a>
+          </div>
+          <img
+            class="bi2026_present-img"
+            src="images/product-icon_200.png"
+            alt="全員に1枚プレゼント"
+          >
+        </div>
+      </div>
+
+      <div class="section_bi2024_right">
+        <img
+          class="bi2026_product-img"
+          src="images/product-images.png"
+          alt="肌活マテラマスク 商品イメージ"
+        >
+        <img
+          class="bi2026_present-img-sp"
+          src="images/product-icon_200.png"
+          alt="全員に1枚プレゼント"
+        >
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

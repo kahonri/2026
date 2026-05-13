@@ -1,0 +1,73 @@
+/* screens smaller than 980---------------------------------------------------------- */
+@media only screen and (min-width:691px) and (max-width:1000px) {
+
+
+/*------------------------------------------------------------------------------*/
+	#header_top_in{
+		width:94%; 
+	}
+
+	#header_middle li:nth-child(1){
+		top:0;
+		right:3%;
+		font-size:350%;
+		color:#4c701a;
+		text-shadow:0px 0px 5px #ffffec;
+	}
+
+	#header_middle li:nth-child(1) span {
+		display:block;
+		padding-top:20px;
+		color:#222;
+		font-size:40%;
+		line-height:2;
+	}
+
+
+	#header_middle li:nth-child(2){
+		top:250px;
+		left:20px;
+		color:#4c701a;
+	}
+
+#header_bottom_in{ 
+	width: 94%;
+}
+#globalnav ul{
+	width: 100%;
+	display: table;
+	table-layout: auto;
+}
+
+
+.footnav{
+	padding:0px 5px 30px;
+}
+
+
+#globalnav li{
+	width: auto;
+}
+
+
+.footnav li a{
+	font-size:110%;
+}
+
+
+.footnav li li li a{
+	font-size:80%;
+	width:100%;
+}
+	.footnav li li li a:before{
+		content:"";
+		display:none;
+	}
+
+
+#fb_btn  {
+	width:94%;
+}
+
+/*------------------------------------------------------------------------------*/
+}

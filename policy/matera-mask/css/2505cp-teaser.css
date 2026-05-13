@@ -1,0 +1,153 @@
+#header_top, header, .subtitle02_wrapper, #locator,#contents_right,footer{display:none;}
+
+/* teasersiteの内容を追加 */
+body {
+  margin: 0;
+  font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.teaser-mv {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.teaser-text {
+  font-size: 38px;
+  font-weight: bold;
+  color: #5a5c5d;
+  margin-bottom: 60px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* 応募方法セクション */
+.application-section {
+  background: #ffffff;
+}
+
+.application-info {
+  max-width: 800px;
+  margin: 0px auto;
+  border-radius: 15px;
+}
+
+h2 {
+  font-size: 45px;
+  margin: 30px 0 20px;
+  color: #5a5c5d;
+  font-weight: bold;
+}
+
+.text-block {
+  max-width: 700px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 38px;
+  line-height: 1.8;
+  color: #5a5c5d;
+}
+
+.note-text {
+  font-size: 22px;
+  color: #5a5c5d;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* スマホ改行用 */
+.sp-br {
+  display: inline;
+}
+
+/* フッター */
+.footer-cp {
+  text-align: center;
+  font-size: 14px;
+  padding: 30px 20px;
+  display: block; /* フッターが表示されるように */
+}
+
+/* レスポンシブ対応（タブレット） */
+@media (max-width: 1024px) {
+  .text-block {
+    font-size: 30px;
+  }
+  
+  h2 {
+    font-size: 36px;
+  }
+  
+  .teaser-text {
+    font-size: 30px;
+  }
+  
+  .note-text {
+    font-size: 18px;
+  }
+}
+
+/* レスポンシブ対応（スマホ） */
+@media (max-width: 768px) {
+  /* スマホ改行を有効化 */
+  .sp-br::after {
+    content: "\A";
+    white-space: pre;
+  }
+  
+  .teaser-text {
+    font-size: 24px;
+  }
+  
+  .text-block {
+    max-width: 95%;
+    font-size: 22px;
+  }
+  
+  h2 {
+    font-size: 28px;
+  }
+  
+ /* .application-info {
+    padding: 20px;
+  }*/
+  
+  .note-text {
+    font-size: 16px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .teaser-text {
+    font-size: 20px;
+  }
+  
+  .text-block {
+    font-size: 18px;
+    margin: 30px auto;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+  }
+  
+  .note-text {
+    font-size: 14px;
+  }
+  
+  .application-section {
+    padding: 0px 20px 10px;
+  }
+}

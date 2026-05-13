@@ -1,0 +1,219 @@
+/* screens smaller than 980---------------------------------------------------------- */
+@media only screen and (min-width:691px) and (max-width:1000px) {
+
+#header_top{
+	background-position: left -600px center;
+}
+
+/*section_02*/
+/*------------------------------------------------------------------------------*/
+
+.section_02_box{
+	max-width:1000px;
+	width:94%;
+	margin:0px auto 20px;
+	background: #FFFFFF;
+	display: block;
+	border-radius:10px;
+}
+
+.section_02_box_txt{
+	text-align:left;
+}
+.section_02_box_txt br{
+	display:none;
+}
+
+/*section_03*/
+/*------------------------------------------------------------------------------*/
+.section_03{
+	width:94%;
+	margin:0px auto 0px;
+	padding:30px 0px 50px;
+}
+
+	.section_03_in {
+		background:#FBF6F3;
+		width:100%;
+		padding:30px 0px;
+		text-align:center;
+		font-family: "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "Hiragino Kaku Gothic Pro", Osaka, "MS P Gothic", sans-serif !important;
+	}
+
+
+
+.tab_box{
+	background:url(../image/index_txt01.jpg) no-repeat left top;
+	width:100%;
+	height: auto;
+	padding-top:104px;
+	margin:0px auto;
+	display:block;
+	position:relative;
+	}
+	
+.tab{
+	width:100%;
+	display:table;
+	bottom: auto;
+	right: auto;
+	position: relative;
+	}
+	
+.tab li{
+	background:#95DAE9;
+	color:#FFFFFF;
+	padding:15px 25px;
+	font-size:160%;
+	display:table-cell;
+	text-align:center;
+	border-radius:10px 10px 0px 0px;
+	}
+
+.tab li.select{
+	background:#FBF6F3;
+	color:#4cc2db;
+	}
+
+
+.tab_content{
+	max-width:1000px;
+	width:100%;
+	margin:0px auto;
+	display:block;
+	text-align:center;
+	}
+
+.tab_content .tab_content_box{
+
+	}
+
+.tab_content .tab_content_box.hide {
+	display:none;
+	}
+
+
+.tab_content_txt{
+	padding-bottom:20px;
+	}
+
+
+.tab_content_ul{
+	width:100%;
+	margin:0px auto;
+	display:block;
+	}
+	.tab_content_ul li{
+		width:33.333%;
+		display:block;
+		float:left;
+		position:relative;
+		}
+	.tab_content_ul li img{
+		width:100%;
+		height:auto;
+		}
+
+	.tab_content_ul li a:before{
+		content:"";
+		position:absolute;
+		display:block;
+		background:url(../image/common/arr03.png) no-repeat center center;
+		width:11px;
+		height:13px;
+		bottom:10%;
+		left:50%;
+		-webkit-transition: all .2s ease;
+		transition: all .2s ease;
+		z-index:999;
+		}
+	
+	.tab_content_ul li a:hover:before{
+		left:60%;
+		}
+	
+
+
+.tab_content_table{
+	width:94%;
+	margin:0px auto;
+	display:table;
+	height:auto;
+	}
+	
+	.tab_content_table li{
+		width:50%;
+		padding:2%;
+		position:relative;
+		display:table-cell;
+		
+		}
+	.tab_content_table li img{
+		width:100%;
+		height:auto;
+		}
+
+	.tab_content_table li a:before{
+		content:"";
+		position:absolute;
+		display:block;
+		background:url(../image/common/arr03.png) no-repeat center center;
+		width:11px;
+		height:13px;
+		bottom:10%;
+		left:50%;
+		-webkit-transition: all .2s ease;
+		transition: all .2s ease;
+		z-index:999;
+		}
+	
+
+	.tab_content_table li a:hover:before{
+		left:60%;
+		}
+	
+
+.section_04_box{
+	width:94%;
+}
+
+
+
+
+/*section_07*/
+/*------------------------------------------------------------------------------*/
+.section_07_in {
+    min-height: 330px;
+}
+
+.section_07_tit {
+    padding-top: 40px;
+}
+
+.section_07_box_btn {
+    margin: 30px auto;
+}
+
+
+/*section_08*/
+/*------------------------------------------------------------------------------*/
+.section_08_in {
+    min-height: 330px;
+}
+
+.section_08_tit {
+    padding-top: 40px;
+}
+
+.section_08_box_btn {
+    margin: 30px auto;
+}
+
+.section_08_right {
+    padding: 140px 0px 0;
+}
+
+.section_08_eyeR{
+	display:none;
+}
+}
