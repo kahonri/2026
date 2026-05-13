@@ -6,29 +6,10 @@
 
 @media only screen and (max-width: 690px) {
 
-	/* --- 05: 特徴 3カラム → 1カラム縦積み --- */
-	.mm_feature_center {
-		margin-top: 0;
-	}
-
-
-	/* --- 06: 美容成分 上段 5カラム → 3カラム --- */
-	.mm_component_grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-
-	/* --- 06: 美容成分 下段 名前のみ --- */
+/* --- 06: 美容成分 下段 名前のみ --- */
 	.mm_component_name_list {
 		gap: 6px 8px;
 	}
 
-
-	/* --- 07: お客様の声 2カラム → 1カラム縦積み --- */
-	.bclensing1_img_box_2 {
-		width: 100%;
-		float: none;
-		margin-right: 0;
-	}
 
 }

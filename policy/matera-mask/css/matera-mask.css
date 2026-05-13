@@ -12,84 +12,7 @@
 /* テキスト: .basic_box01_in_txt（既存 width:60%）*/
 
 
-/* --- 04: こんな方におすすめ チェックリスト --- */
-/* 外枠: .bg_04（既存 border:#8b6931）内で使用 */
 
-.mm_checklist {
-	list-style: none;
-	margin: 10px 0;
-}
-
-.mm_checklist li {
-	padding: 8px 0 8px 26px;
-	border-bottom: 1px dashed #e8d9c2;
-	position: relative;
-	font-size: 100%;
-	line-height: 1.6;
-}
-
-.mm_checklist li:last-child {
-	border-bottom: none;
-}
-
-.mm_checklist li::before {
-	content: "✔";
-	position: absolute;
-	left: 0;
-	color: #8b6931;
-}
-
-
-/* --- 05: 特徴 3カラム --- */
-/* 外枠: .box3.clearfix（既存 width:32% float:left）*/
-/* 中央カラムのみ .mm_feature_center を追加クラスとして付与 */
-
-.mm_feature_center {
-	margin-top: 60px;
-}
-
-/* box3内の特徴画像はborderなし・円形 */
-.mm_feature_list li img {
-	border: none;
-	padding: 0;
-	border-radius: 50%;
-	margin-bottom: 10px;
-}
-
-
-/* --- 06: 主な美容成分 上段（画像あり 5成分） --- */
-
-.mm_component_grid {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 16px;
-	margin-bottom: 20px;
-}
-
-.mm_component_grid .grid_item {
-	text-align: center;
-}
-
-.mm_component_grid .grid_item img {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	display: block;
-	margin: 0 auto 6px;
-}
-
-.mm_component_grid .grid_item .item_name {
-	font-size: 90%;
-	font-weight: bold;
-	margin-bottom: 4px;
-	line-height: 1.4;
-}
-
-.mm_component_grid .grid_item .item_desc {
-	font-size: 80%;
-	color: #666;
-	line-height: 1.5;
-}
 
 
 /* --- 06: 主な美容成分 下段（名前のみ 6成分） --- */
@@ -117,19 +40,38 @@
 
 .mm_review_ba {
 	display: flex;
-	gap: 8px;
+	gap: 24px;
+	margin-top: 20px;
 	margin-bottom: 10px;
 }
 
 .mm_review_ba_item {
 	flex: 1;
 	text-align: center;
+	position: relative;
 }
 
-.mm_review_ba_item p {
-	font-size: 80%;
-	color: #999;
-	margin-bottom: 4px;
+.mm_review_ba_item:first-child::after {
+	content: "";
+	position: absolute;
+	right: -18px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 12px solid #8b6931;
+}
+
+.mm_review_ba_item .bclensing2_contents_name {
+	display: block;
+	width: 100% !important;
+	color: #8b6931;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .mm_review_ba_item img {
