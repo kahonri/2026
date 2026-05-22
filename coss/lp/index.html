@@ -138,6 +138,38 @@
             height: 1px;
             overflow: hidden;
         }
+
+        /* LP専用 商品説明文エリア */
+        .coss-lp-wrapper .lp-container .cart-description {
+            max-width: 600px;
+            margin: 0 auto 24px;
+            text-align: center;
+            line-height: 1.9;
+            font-size: 15px;
+            color: #555;
+            letter-spacing: 0.03em;
+        }
+        .coss-lp-wrapper .lp-container .cart-description .cart-desc-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 12px;
+            line-height: 1.6;
+        }
+        .coss-lp-wrapper .lp-container .cart-description p {
+            margin: 0;
+            line-height: 1.9;
+        }
+        @media screen and (max-width: 480px) {
+            .coss-lp-wrapper .lp-container .cart-description {
+                font-size: 14px;
+                padding: 0 10px;
+            }
+            .coss-lp-wrapper .lp-container .cart-description .cart-desc-heading {
+                font-size: 16px;
+            }
+        }
+        
     </style>
 
     <!-- 背景色用ラッパー（LP専用） -->
@@ -159,6 +191,12 @@
 
         <!-- カート1 (01と02の間) -->
         <div class="section cart-section">
+            <div class="cart-description">
+                <p class="cart-desc-heading">運動後の肌に、これ1本。</p>
+                <p>化粧水・乳液・美容液がこれひとつで完了する<br>オールインワンゲルです。</p>
+                <p>汗で流れ出た潤いを補い、紫外線ダメージを整え、<br>毛穴を引き締める。</p>
+                <p>運動する人のために開発した独自処方。<br>シトラスシャワーの香り。</p>
+            </div>
             <div id='product-component-1759825560493'></div>
         </div>
 
@@ -261,6 +299,11 @@
 
         <!-- カート2 (17の下) -->
         <div class="section cart-section">
+            <div class="cart-description">
+                <p class="cart-desc-heading">アクティブな毎日に、<br />手軽な本格スキンケアを。</p>
+                <p>ジム・サウナ・ランニングの後に。<br>忙しい朝や旅行中にも。</p>
+                <p>スキンケア一式を持ち歩かなくても、<br>これ1本でコンプリートケア。</p>
+            </div>
             <div id='product-component-1759825560494'></div>
         </div>
 
@@ -310,9 +353,10 @@
             "@media (min-width: 601px)": {
               "max-width": "100%",
               "margin-left": "0",
-              "margin-bottom": "50px"
+              "margin-bottom": "50px",
+              "text-align": "left"
             },
-            "text-align": "left"
+            "text-align": "center"
           },
           "title": {
             "font-size": "26px"
@@ -490,9 +534,10 @@
             "@media (min-width: 601px)": {
               "max-width": "100%",
               "margin-left": "0",
-              "margin-bottom": "50px"
+              "margin-bottom": "50px",
+              "text-align": "left"
             },
-            "text-align": "left"
+            "text-align": "center"
           },
           "title": {
             "font-size": "26px"

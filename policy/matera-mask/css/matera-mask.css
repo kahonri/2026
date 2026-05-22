@@ -22,16 +22,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px 10px;
-	border-top: 1px solid #e8d9c2;
+	border-top: 1px solid #dadada;
 	padding-top: 14px;
 }
 
 .mm_component_name_list li {
-	font-size: 90%;
-	font-weight: bold;
+	font-size: 18px;
 	padding: 4px 12px;
-	border: 1px solid #c9b89a;
-	color: #8b6931;
+	border: 1px solid #dadada;
+	color: #33517F;
 }
 
 
@@ -67,10 +66,11 @@
 .mm_review_ba_item .bclensing2_contents_name {
 	display: block;
 	width: 100% !important;
+	height: auto;
 	color: #8b6931;
 	font-size: 14px;
 	text-align: center;
-	margin-top: 0;
+	margin-top: 10px;
 	margin-bottom: 0;
 }
 

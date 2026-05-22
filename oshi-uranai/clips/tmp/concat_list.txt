@@ -1,0 +1,2 @@
+file 'C:\Users\kaori_hoshino\Documents\claude\2026\oshi-uranai\clips\tmp\part_0.mp4'
+file 'C:\Users\kaori_hoshino\Documents\claude\2026\oshi-uranai\clips\tmp\endcard_video.mp4'
