@@ -1,2 +1,9 @@
 # Photoshop source files (too large for GitHub)
 *.psd
+
+# 動画・音声ファイル
+*.mp4
+*.mov
+*.avi
+*.wav
+*.mp3
