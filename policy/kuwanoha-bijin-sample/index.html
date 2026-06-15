@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桑の葉美人 | 機能性表示食品 美容青汁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/kuwa2026-sample-style.css">
+</head>
+<body>
+<div id="kuwa2026-lp">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="./images/logo.png" alt="桑の葉美人 Mulberry Leaf" style="height:36px;width:auto;display:block;">
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhNPenfhGBBpTrfC1PARGvI0GSlyY2XVZUbY9dO5tz7Aa9w/viewform?usp=dialog"
+         target="_blank" rel="noopener" class="nav-btn">
+        無料サンプル申込み
+      </a>
+    </div>
+  </nav>
+
+  <!-- SVG clipPath 定義（左辺のゆるいカーブ用） -->
+  <!-- d="M 0.07,0 Q 0,0.5 0.07,1 ..." の 0.07 が曲率。大きいほど深くカーブ -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+    <defs>
+      <clipPath id="hero-clip" clipPathUnits="objectBoundingBox">
+        <!--
+          左辺: ゆるいベジェ曲線 (Q 0,0.5)
+          四隅: 各コーナーをQベジェで丸める
+          0.07 = 左辺のカーブ深さ  /  0.05 = コーナーの丸み
+        -->
+        <path d="
+          M 0.07,0.05
+          Q 0.07,0 0.12,0
+          L 0.94,0
+          Q 1,0 1,0.05
+          L 1,0.95
+          Q 1,1 0.94,1
+          L 0.12,1
+          Q 0.07,1 0.07,0.95
+          Q 0,0.5 0.07,0.05
+          Z
+        "/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- ① HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+
+    <!-- テキストエリア（モバイル: 上・デスクトップ: 左） -->
+    <div class="hero-text">
+      <h1 class="hero-main-copy reveal">
+        1杯に、<br><span class="accent">3つ</span>のケア。
+      </h1>
+      <p class="hero-sub-copy reveal d2">
+        桑の葉美人は、糖質ケア・腸活ケア・美肌ケアの<br>
+        3つの機能をかなえる機能性表示食品。
+      </p>
+      <!-- 3つのケア正円 -->
+      <div class="hero-care-circles reveal d3" style="margin-top: 24px;">
+
+        <div class="care-circle-item">
+          <div class="care-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></svg>
+          </div>
+          <div>
+            <div class="care-circle-label">糖質ケア</div>
+            <span class="care-circle-en">Sugar Care</span>
+          </div>
+        </div>
+
+        <div class="care-circle-item">
+          <div class="care-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 11a2 2 0 1 1-4 0 4 4 0 0 1 8 0 6 6 0 0 1-12 0 8 8 0 0 1 16 0 10 10 0 1 1-20 0 11.93 11.93 0 0 1 2.42-7.22 2 2 0 1 1 3.16 2.44"/></svg>
+          </div>
+          <div>
+            <div class="care-circle-label">腸活ケア</div>
+            <span class="care-circle-en">Gut Care</span>
+          </div>
+        </div>
+
+        <div class="care-circle-item">
+          <div class="care-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.983 21.186a1 1 0 0 1-1.966 0 10 10 0 0 0-8.203-8.203 1 1 0 0 1 0-1.966 10 10 0 0 0 8.203-8.203 1 1 0 0 1 1.966 0 10 10 0 0 0 8.203 8.203 1 1 0 0 1 0 1.966 10 10 0 0 0-8.203 8.203"/></svg>
+          </div>
+          <div>
+            <div class="care-circle-label">美肌ケア</div>
+            <span class="care-circle-en">Skin Care</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- デスクトップのみ表示するCTA -->
+      <div class="hero-cta-pc reveal d3">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhNPenfhGBBpTrfC1PARGvI0GSlyY2XVZUbY9dO5tz7Aa9w/viewform?usp=dialog"
+           target="_blank" rel="noopener" class="btn-main">
+          無料サンプルお申込みはこちら
+        </a>
+      </div>
+    </div>
+
+    <!-- 写真エリア（モバイル: 中央・デスクトップ: 右の曲線長方形） -->
+    <div class="hero-photo">
+      <!-- 画像ラッパー（clip-pathはここに適用） -->
+      <div class="hero-photo-inner">
+        <!--
+          メインビジュアル差し替え: src を変更するだけ
+          推奨サイズ: 横1200px 以上
+        -->
+        <img src="./images/main-visual.jpg" alt="桑の葉美人 メインビジュアル">
+      </div>
+
+    </div>
+
+    <!-- スマホのみ表示するCTA（写真の下） -->
+    <!-- 正円はhero-textのd3で既に表示されるためここでは非表示 -->
+    <div class="hero-cta-sp">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhNPenfhGBBpTrfC1PARGvI0GSlyY2XVZUbY9dO5tz7Aa9w/viewform?usp=dialog"
+         target="_blank" rel="noopener" class="btn-main">
+        無料サンプルお申込みはこちら
+      </a>
+      <p style="font-size:12px;color:var(--text-light)">Googleフォームに移動します</p>
+    </div>
+
+    </div><!-- /.hero-inner -->
+  </section>
+
+  <!-- ② 商品画像・商品名 -->
+  <section class="product-sec">
+    <div class="inner">
+      <div class="product-layout">
+
+        <!-- テキスト上部 -->
+        <div class="product-text-col">
+          <div class="tag-label reveal">Product</div>
+          <h2 class="product-sec-ttl reveal d1">
+            <span class="ttl-sub">美肌×エイジングケア×ボディメイキング</span>
+            美容と健康の<br>美味しい青汁
+          </h2>
+          <p class="sec-sub reveal d2">
+            『桑の葉美人』は美味しくのみやすい粉末タイプの青汁です。<br>
+            フラボノイドを豊富に含む桑の葉のほか、大豆イソフラボン、抹茶、乳酸菌、さらにプラセンタエキスを配合。糖質ケア・腸活ケア・美肌ケアの3つの機能をかなえる機能性表示食品です。
+          </p>
+        </div>
+
+        <!-- 画像 -->
+        <div class="product-img-col reveal d2">
+          <div class="product-img-wrap">
+            <div class="product-img-main">
+              <img src="./images/product-box.jpg" alt="桑の葉美人">
+            </div>
+          </div>
+        </div>
+
+        <!-- 商品情報 -->
+        <div class="product-info reveal d3">
+          <div class="no1-chip">エステティック市場販売シェア No.1 美容青汁</div>
+          <div class="product-name-row">
+            <div class="product-name">桑の葉美人</div>
+            <div class="pill">機能性表示食品</div>
+          </div>
+          <dl class="product-spec">
+            <dt>内容量</dt><dd>3g × 50包</dd>
+            <dt>価格</dt><dd>5,508円<span>（税抜5,100円）</span></dd>
+          </dl>
+          <p class="product-note">※2023年8月エステティックジャーナル調べ</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ サンプル申込み（1回目） -->
+  <section class="cta-sec">
+    <div class="tag-label reveal">Free Sample</div>
+    <div class="cta-ttl reveal d1">まずは無料サンプルで<br>体感してみてください！</div>
+    <br>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhNPenfhGBBpTrfC1PARGvI0GSlyY2XVZUbY9dO5tz7Aa9w/viewform?usp=dialog"
+       target="_blank" rel="noopener"
+       class="btn-main reveal d2">
+      サンプルのお申込みはこちら →
+    </a>
+    <p class="cta-note reveal d3">Googleフォームに移動します</p>
+  </section>
+
+  <!-- ④ 取り扱い店舗 -->
+  <section class="store-sec">
+    <div class="inner">
+      <div class="tag-label reveal">Store</div>
+      <h2 class="sec-title reveal d1">取り扱い店舗</h2>
+
+      <div class="store-card reveal d2">
+        <div class="store-notice">
+          サロン限定での販売です。<br>
+          お近くの取り扱いサロンをご案内します。
+        </div>
+        <a href="https://kuwanohabijin.com/shoplist/"
+           target="_blank" rel="noopener"
+           class="btn-sub">
+          お取り扱いエステサロン一覧を見る →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ おすすめの飲み方・アレンジレシピ -->
+  <section class="recipe-sec">
+    <div class="inner">
+      <div class="tag-label reveal">How to Drink</div>
+      <h2 class="sec-title reveal d1">おすすめの飲み方・<br>アレンジレシピ</h2>
+      <p class="sec-sub reveal d2">あなたのライフスタイルに合わせて、おいしく続けられる飲み方をご提案します。</p>
+
+      <div class="recipe-cards">
+        <div class="recipe-card reveal">
+          <div class="recipe-emoji">💧</div>
+          <div class="recipe-body">
+            <div class="recipe-for">シンプルに飲みたい方</div>
+            <div class="recipe-name">水 200ml ＋ 桑の葉美人</div>
+            <div class="recipe-desc">1包を水に溶かすだけ。毎日手軽に続けられます。</div>
+          </div>
+          <!--
+            レシピ画像（任意）
+            <div class="recipe-img">
+              <img src="./images/recipe-water.jpg" alt="">
+            </div>
+          -->
+        </div>
+
+        <div class="recipe-card reveal d1">
+          <div class="recipe-emoji">🥛</div>
+          <div class="recipe-body">
+            <div class="recipe-for">腸内環境をしっかり整えたい方</div>
+            <div class="recipe-name">ヨーグルト ＋ 桑の葉美人</div>
+            <div class="recipe-desc">善玉菌をダブルで補給。腸活を強力サポート。</div>
+          </div>
+        </div>
+
+        <div class="recipe-card reveal d1">
+          <div class="recipe-emoji">🫘</div>
+          <div class="recipe-body">
+            <div class="recipe-for">美容と健康をしっかりサポートしたい方</div>
+            <div class="recipe-name">豆乳 ＋ 桑の葉美人</div>
+            <div class="recipe-desc">大豆イソフラボンと組み合わせ、美容ケアを強化。</div>
+          </div>
+        </div>
+
+        <div class="recipe-card reveal d2">
+          <div class="recipe-emoji">🍶</div>
+          <div class="recipe-body">
+            <div class="recipe-for">美肌・腸活・元気をトータルでサポートしたい方</div>
+            <div class="recipe-name">甘酒 ＋ 桑の葉美人</div>
+            <div class="recipe-desc">発酵食品との組み合わせで内側から輝くケアを。</div>
+          </div>
+        </div>
+
+        <div class="recipe-card reveal d2">
+          <div class="recipe-emoji">🌾</div>
+          <div class="recipe-body">
+            <div class="recipe-for">美容とヘルシーを両立したい方</div>
+            <div class="recipe-name">アーモンドミルク ＋ 桑の葉美人</div>
+            <div class="recipe-desc">ビタミンEをプラスして、エイジングケアをWサポート。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 商品の特徴 -->
+  <section class="features-sec">
+    <div class="inner">
+      <div class="tag-label reveal">Features</div>
+      <h2 class="sec-title reveal d1">桑の葉美人の<br>3つの機能</h2>
+
+      <div class="feature-cards">
+        <div class="feature-card reveal d1">
+          <div class="feature-top">
+            <div class="feature-num">
+              <span class="feature-num-label">Point</span>
+              <span class="feature-num-val">1</span>
+            </div>
+            <div class="feature-ttl">糖の吸収を緩やかにし<br>食後血糖値の上昇を抑える</div>
+          </div>
+          <div class="feature-ingredient-tag">機能性関与成分：モラノリン</div>
+          <div class="feature-desc">
+            桑葉由来の天然成分「モラノリン」が糖の分解酵素を穏やかに抑制。食後の血糖値の急上昇を防ぎ、肌の糖化（＝くすみ・シワの原因）もケアします。
+          </div>
+        </div>
+
+        <div class="feature-card reveal d1">
+          <div class="feature-top">
+            <div class="feature-num">
+              <span class="feature-num-label">Point</span>
+              <span class="feature-num-val">2</span>
+            </div>
+            <div class="feature-ttl">肌の潤いを維持する</div>
+          </div>
+          <div class="feature-ingredient-tag">機能性関与成分：K-1乳酸菌（モイスト乳酸菌®）</div>
+          <div class="feature-desc">
+            K-1乳酸菌は肌の水分の喪失量を抑え、肌の潤いを維持します。肌のバリア機能が正常化し、キメが整った肌へと導きます。
+          </div>
+        </div>
+
+        <div class="feature-card reveal d2">
+          <div class="feature-top">
+            <div class="feature-num">
+              <span class="feature-num-label">Point</span>
+              <span class="feature-num-val">3</span>
+            </div>
+            <div class="feature-ttl">お通じを改善する</div>
+          </div>
+          <div class="feature-ingredient-tag">機能性関与成分：K-1乳酸菌（モイスト乳酸菌®）</div>
+          <div class="feature-desc">
+            K-1乳酸菌（お米由来のモイスト乳酸菌®）を1,000億個配合（1日摂取目安量2袋あたり）。腸内環境をケアして、スッキリした毎日をサポートします。
+          </div>
+          <div class="feature-stat-row">
+            <div class="feature-stat">
+              <div class="feature-stat-val">1,000億</div>
+              <div class="feature-stat-label">個のK-1乳酸菌配合<br>（1日2袋あたり）</div>
+            </div>
+            <div class="feature-stat">
+              <div class="feature-stat-val">2.8→4.7</div>
+              <div class="feature-stat-label">回/週の排便回数<br>（摂取前→摂取後）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 追加4つの特徴 -->
+      <div class="extras-grid">
+        <div class="extra-card reveal">
+          <div class="extra-icon">🌿</div>
+          <div class="extra-title">無農薬国産</div>
+          <div class="extra-desc">自然肥料だけで育てた国産桑葉。安全・安心な素材にこだわりました。</div>
+        </div>
+        <div class="extra-card reveal d1">
+          <div class="extra-icon">🏭</div>
+          <div class="extra-title">GMP工場製造</div>
+          <div class="extra-desc">原料受入れから出荷まで全工程で厳正な品質管理を徹底。</div>
+        </div>
+        <div class="extra-card reveal d2">
+          <div class="extra-icon">✨</div>
+          <div class="extra-title">プラセンタエキス</div>
+          <div class="extra-desc">SPF豚プラセンタをフリーズドライ製法で高品質を保ちながら配合。</div>
+        </div>
+        <div class="extra-card reveal d3">
+          <div class="extra-icon">🌸</div>
+          <div class="extra-title">大豆イソフラボン</div>
+          <div class="extra-desc">年齢とともに変化する肌と体を若々しくサポート。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ こんな方におすすめ -->
+  <section class="forwho-sec">
+    <div class="inner">
+      <p class="forwho-lead reveal">こんな方に、</p>
+      <h2 class="forwho-ttl reveal d1">桑の葉美人</h2>
+
+      <div class="forwho-grid">
+
+        <div class="forwho-case fc1 reveal d1">
+          <div class="forwho-case-inner">
+            <span class="forwho-case-num">case 1</span>
+            <p class="forwho-case-text">糖質の摂取が<br>気になる方</p>
+          </div>
+        </div>
+
+        <div class="forwho-case fc2 reveal d2">
+          <div class="forwho-case-inner">
+            <span class="forwho-case-num">case 2</span>
+            <p class="forwho-case-text">腸活ケアを<br>したい方</p>
+          </div>
+        </div>
+
+        <div class="forwho-product reveal">
+          <img src="./images/product-box.jpg" alt="桑の葉美人">
+        </div>
+
+        <div class="forwho-case fc3 reveal d1">
+          <div class="forwho-case-inner">
+            <span class="forwho-case-num">case 3</span>
+            <p class="forwho-case-text">内側からキレイを<br>目指している方</p>
+          </div>
+        </div>
+
+        <div class="forwho-case fc4 reveal d2">
+          <div class="forwho-case-inner">
+            <span class="forwho-case-num">case 4</span>
+            <p class="forwho-case-text">健康的な毎日を<br>維持したい方</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ 商品詳細 + CTA -->
+  <section class="detail-sec">
+    <div class="inner">
+      <div class="tag-label reveal">Product Detail</div>
+      <h2 class="sec-title reveal d1">商品詳細</h2>
+
+      <div class="detail-card reveal d2">
+        <!--
+          商品メイン画像差し替えエリア
+          <img src="./images/product-main.jpg" alt="桑の葉美人">
+          を .detail-img-box の中に入れてください
+        -->
+        <div class="detail-img-box">
+          <span style="line-height:1.7;text-align:center;font-size:10px">商品画像<br>（差し替え用）<br><small>images/product-main.jpg</small></span>
+        </div>
+
+        <div class="detail-info">
+          <div class="detail-pname">桑の葉美人</div>
+          <div class="detail-pen">Mulberry Leaf</div>
+          <table class="detail-table">
+            <tr>
+              <th>内容量</th>
+              <td>3g × 50包</td>
+            </tr>
+            <tr>
+              <th>価格</th>
+              <td>5,508円（税抜5,100円）</td>
+            </tr>
+          </table>
+          <div class="detail-btns">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhNPenfhGBBpTrfC1PARGvI0GSlyY2XVZUbY9dO5tz7Aa9w/viewform?usp=dialog"
+               target="_blank" rel="noopener"
+               class="btn-main">
+              サンプル申し込みはこちら
+            </a>
+            <a href="https://kuwanohabijin.com/shoplist/"
+               target="_blank" rel="noopener"
+               class="btn-sub">
+              取り扱いサロンはこちら
+            </a>
+          </div>
+          <p class="salon-note" style="margin-top:14px">
+            サロン限定での販売です。<br>お近くの取り扱いサロンをご案内します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑨ 業務用VEGAN -->
+  <section class="vegan-sec">
+    <div class="vegan-inner">
+      <div class="vegan-tag reveal">Business Use</div>
+      <h2 class="vegan-ttl reveal d1">業務用 VEGAN 桑の葉美人</h2>
+      <p class="vegan-desc reveal d2">飲食店営業許可証をお持ちの方向けの<br>業務用商品も展開中！</p>
+      <!--
+        VEGAN商品画像差し替えエリア
+        <img src="./images/product-vegan.jpg" alt="業務用VEGAN桑の葉美人">
+        を .vegan-img-box の中に入れてください
+      -->
+      <div class="vegan-img-box reveal d2">
+        <span style="text-align:center">VEGAN商品画像<br>（差し替え用）</span>
+      </div>
+      <a href="https://kuwanohabijin.com/vegan/" target="_blank" rel="noopener" class="btn-vegan reveal d3">
+        詳しくはこちら →
+      </a>
+    </div>
+  </section>
+
+  <!-- ⑩ Instagram -->
+  <section class="insta-sec">
+    <div class="inner">
+      <div class="insta-icon reveal">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="white"/>
+        </svg>
+      </div>
+      <div class="tag-label reveal d1">Instagram</div>
+      <h2 class="sec-title reveal d1" style="font-size:20px">最新情報はInstagramで</h2>
+      <div class="insta-handle reveal d2">@kuwanohabijin</div>
+      <a href="https://www.instagram.com/kuwanohabijin/"
+         target="_blank" rel="noopener"
+         class="btn-insta reveal d3">
+        Instagramをフォローする
+      </a>
+    </div>
+  </section>
+
+  <!-- 法定表示 -->
+  <div class="legal">
+    <p>
+      ※本品は機能性表示食品であり、疾病の診断、治療、予防を目的としたものではありません。<br>
+      ※食生活は、主食・主菜・副菜を基本に、食事のバランスを。<br>
+      ※本品は事業者の責任において特定の保健の目的が期待できる旨を表示するものとして、消費者庁長官に届出されたものです。ただし、特定保健用食品と異なり、消費者庁長官による個別審査を受けたものではありません。<br>
+      ※2023年8月エステティックジャーナル調べ
+    </p>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    <div class="footer-logo">桑の葉美人</div>
+    <div class="footer-company">Nihon Beauty Co., Ltd.</div>
+    <div class="footer-links">
+      <a href="https://kuwanohabijin.com/vegan/" target="_blank" rel="noopener">業務用VEGAN桑の葉美人</a>
+      <a href="https://kuwanohabijin.com/shoplist/" target="_blank" rel="noopener">取り扱い店舗</a>
+      <a href="https://www.instagram.com/kuwanohabijin/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copy">Copyright &copy; NIHON BEAUTY CO., LTD. ALL RIGHTS RESERVED</div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</div><!-- /#kuwa2026-lp -->
+</body>
+</html>
