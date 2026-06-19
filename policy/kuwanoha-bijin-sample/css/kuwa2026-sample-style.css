@@ -790,7 +790,8 @@ html { scroll-behavior: smooth; }
 #kuwa2026-lp .re-divider { order: 3; }
 #kuwa2026-lp .re-name  { order: 4; }
 #kuwa2026-lp .re-for   { order: 5; }
-#kuwa2026-lp .re-desc  { order: 6; }
+#kuwa2026-lp .re-combo { order: 6; }
+#kuwa2026-lp .re-desc  { order: 7; }
 
 /* How to */
 #kuwa2026-lp .re-howto {
@@ -835,11 +836,39 @@ html { scroll-behavior: smooth; }
   display: inline-block;
   background: var(--green-mist);
   color: var(--green-dark);
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
   padding: 4px 14px;
   letter-spacing: 0.04em;
   margin-bottom: 16px;
+}
+
+/* イラスト＋商品 横並び */
+#kuwa2026-lp .re-combo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+#kuwa2026-lp .re-combo img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+#kuwa2026-lp .re-combo-plus {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 /* 説明文 */
@@ -1251,11 +1280,11 @@ html { scroll-behavior: smooth; }
 
 /* ===== FOOTER ===== */
 #kuwa2026-lp footer {
-  background: #222;
+  background: #0b1807;
   padding: 36px 20px;
   text-align: center;
 }
-#kuwa2026-lp .footer-logo { font-size: 16px; font-weight: 900; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+#kuwa2026-lp .footer-logo { font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
 #kuwa2026-lp .footer-company { font-family: var(--font-en); font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; margin-bottom: 20px; }
 #kuwa2026-lp .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
 #kuwa2026-lp .footer-links a { font-size: 12px; color: rgba(255,255,255,0.45); transition: color 0.2s; }
