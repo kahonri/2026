@@ -156,7 +156,7 @@ body { overflow-x: hidden; }
 /* ===== HERO ===== */
 #kuwa2026-lp .hero {
   background: var(--white);
-  padding-top: 80px;
+  padding-top: 100px;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
