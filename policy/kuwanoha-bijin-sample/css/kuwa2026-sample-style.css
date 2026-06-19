@@ -22,9 +22,9 @@
   --r-lg:         32px;
   --r-xl:         50px;
 }
-html { scroll-behavior: smooth; }
-body { overflow-x: hidden; }
+html, body { scroll-behavior: smooth; overflow-x: hidden; }
 #kuwa2026-lp {
+  overflow-x: hidden;
   font-family: var(--font-main);
   background: var(--cream);
   color: var(--text);
