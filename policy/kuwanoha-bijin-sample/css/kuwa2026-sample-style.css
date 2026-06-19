@@ -613,6 +613,8 @@ body { overflow-x: hidden; }
       "sample"
       "store";
   }
+  #kuwa2026-lp .product-sec-ttl { font-size: 24px; }
+  #kuwa2026-lp .product-sec-ttl .ttl-sub { font-size: 0.7em; }
 }
 
 /* ===== SECTION: CTA ===== */
