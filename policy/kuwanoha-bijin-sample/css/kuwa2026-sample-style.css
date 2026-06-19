@@ -615,6 +615,7 @@ body { overflow-x: hidden; }
   }
   #kuwa2026-lp .product-sec-ttl { font-size: 24px; }
   #kuwa2026-lp .product-sec-ttl .ttl-sub { font-size: 0.7em; }
+  #kuwa2026-lp .btn-store-inner { display: block; text-align: center; line-height: 1.6; }
 }
 
 /* ===== SECTION: CTA ===== */
