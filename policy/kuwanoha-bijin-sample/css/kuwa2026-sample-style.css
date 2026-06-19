@@ -24,7 +24,6 @@
 }
 html, body { scroll-behavior: smooth; overflow-x: hidden; }
 #kuwa2026-lp {
-  overflow-x: hidden;
   font-family: var(--font-main);
   background: var(--cream);
   color: var(--text);
@@ -177,6 +176,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   padding: 0;
   text-align: center;
   z-index: 2;
+  overflow-x: clip; /* ::after の width:150% が右にはみ出すのを防ぐ */
 }
 #kuwa2026-lp .hero-text::after {
   content: '';
@@ -724,7 +724,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   background: var(--white);
   padding: 0;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* セクションヘッダー */
