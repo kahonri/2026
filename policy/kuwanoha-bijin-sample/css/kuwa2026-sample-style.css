@@ -23,6 +23,7 @@
   --r-xl:         50px;
 }
 html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
 #kuwa2026-lp {
   font-family: var(--font-main);
   background: var(--cream);
@@ -147,7 +148,7 @@ html { scroll-behavior: smooth; }
 /* ===== HERO ===== */
 #kuwa2026-lp .hero {
   background: var(--white);
-  padding-top: 56px;
+  padding-top: 80px;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -295,7 +296,7 @@ html { scroll-behavior: smooth; }
 /* ── デスクトップ: 横並び ── */
 @media (min-width: 640px) {
   #kuwa2026-lp .hero {
-    padding: 56px 20px 20px;
+    padding: 80px 20px 20px;
   }
   #kuwa2026-lp .hero-inner {
     flex-direction: row;
@@ -1056,6 +1057,7 @@ html { scroll-behavior: smooth; }
   flex: 1;
   overflow: hidden;
   min-width: 0;
+  touch-action: pan-y;
 }
 #kuwa2026-lp .forwho-track {
   display: flex;
