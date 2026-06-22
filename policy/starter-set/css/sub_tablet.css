@@ -1,0 +1,423 @@
+/* screens smaller than 980---------------------------------------------------------- */
+@media only screen and (min-width:691px) and (max-width:1000px) {
+
+/*layout*/
+/*------------------------------------------------------------------------------*/
+#contents_in{
+	width:94%;
+	margin: 0px auto 0px;
+	padding: 0;
+	text-align: left;
+}
+
+#contents_left{
+	float: none;
+	width: 100%;
+}
+#contents_right{
+	float: none;
+	width: 100%;
+	margin-bottom:30px;
+}
+
+
+#locator_in{
+	max-width:1000px;
+	width:94%;
+	margin:0px auto;
+}
+
+/*locator*/
+/*--------------------------------------------------------------------------------*/
+
+
+.box4 li{
+  width: 49%;
+}
+
+	.box4 li:nth-child(2n){
+	  margin-right: 0%;
+	}
+	
+/*
+#sidebanner li{ width:49%; float:left;
+margin-right:2%;
+margin-bottom: 10px;}
+#sidebanner li:nth-child(2n){ margin-right:0%;}
+
+#sidebanner li:last-child{margin-bottom: 0;}
+#sidebanner li img{
+	width: 100%;
+	height: auto;
+}
+
+
+/*contact*/
+/*------------------------------------------------------------------------------*/
+
+#contact_box{
+	padding-right:300px;
+	margin-top:30px;
+}
+#contact_box_in{
+	margin:0 auto;
+	margin-top:20px;
+}
+#tel_title{
+	display:block;
+	padding:0 0 15px;
+	border-right:none;
+	border-bottom:1px solid #4CC2DB;
+}
+#tel_num{
+	display:block;
+	padding:15px 10px 0;
+}
+
+.common_box3 {
+    width: 500px;
+    margin: 0px auto;
+}
+
+
+/*basic_cleansing*/
+/*------------------------------------------------------------------------------*/
+
+.bclensing4_img_box_bg {
+    background: none;
+    height: auto;
+}
+
+.bclensing1_text_box_in .text{
+	margin-bottom: 20px;
+}
+
+.box4s .box4s_tex{
+	text-align: left;
+}
+
+.bclensing2_contents_name {
+    font-size: 110%!important;
+}
+
+
+
+
+/*ABOUT*/
+/*-------------------------------------------------------*/
+.about_box01_in {
+    width: 94% !important;
+}
+
+.about_box01_in_txt .subtitle03 br{
+	display: none;
+}
+	/*.abbox .numarea .sub {width: 20%;}*/
+	.abbox .titlarea .tit {width: 80%;}
+
+.about_box01_in_tit { top: 5% !important;}
+
+
+/*.about_box02_2_in{
+		padding:40px 10px 40px 10px;
+}
+
+.about_box02_2_setumei_l{
+	padding-left: 2%;
+}
+
+.about_box02_3_title_1{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+
+.about_box02_3_title_2{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+
+.about_box02_3_title_3{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+
+.about_box02_3_title_4{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+}
+
+.about_box02_3_title_4 span{
+	font-size: 15px;
+}
+
+.about_box02_3_title_5{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+
+.about_box02_3_title_6{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+}
+
+.about_box02_3_title_7{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+
+.about_box02_3_title_8{
+	background-size: 25%;
+    margin-left: 0;
+    font-size: 25px;
+
+}
+.about_box02_2_setumei_r{
+	width: 45%;
+    margin-left: 2%;
+}
+
+.about_box02_3_txt{
+	clear: both;
+    text-align: left;
+}
+*/
+
+
+/* about */
+/* PCタブレットのみ適応 */
+
+#about_conts{
+	background: url(../image/common/about_bg_2.jpg)no-repeat;
+	background-size:cover;
+	width: 100%;
+	background-position: 50% 0;
+	margin: 30px auto 0;
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+
+.abbox {
+	    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+	
+}
+
+.abbox_2 {
+   margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_3 {
+    margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_4 {
+    margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_5 {
+    margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_6 {
+    margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_7 {
+    margin: 110px auto 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.abbox_8 {
+    margin: 110px auto 163px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.abbox_box,
+.abbox_box_2,
+.abbox_box_3,
+.abbox_box_4,
+.abbox_box_6,
+.abbox_box_7,
+.abbox_box_8 {
+    border: 1px solid #948a54;
+    padding: 0 2%;
+    width: auto;
+    margin: 10px;
+    height: auto;
+}
+
+.abbox_box_5 {
+    border: 1px solid #948a54;
+    padding: 0 2%;
+    width: auto;
+    margin: 10px;
+    height: auto;
+}
+
+.abbox .titlarea,
+.abbox_2 .titlarea,
+.abbox_3 .titlarea,
+.abbox_4 .titlarea,
+.abbox_6 .titlarea,
+.abbox_7 .titlarea,
+.abbox_8 .titlarea {
+    width: 68%;
+}
+
+
+.abbox .titlarea .tit,
+.abbox_2 .titlarea .tit,
+.abbox_3 .titlarea .tit,
+.abbox_6 .titlarea .tit,
+.abbox_7 .titlarea .tit,
+.abbox_8 .titlarea .tit {
+	font-size: 40px;
+    padding-left: 6%;
+    width: 83%;
+    padding-top: 36px;
+}
+
+.abbox_4 .titlarea .tit {
+	font-size: 40px;
+    padding-left: 6%;
+    width: 84%;
+    padding-top: 37px;
+}
+
+
+.abbox_5 .titlarea .tit {
+	font-size: 38px;
+	padding-left: 14%;
+    width: 100%;
+    font-weight: bold;
+    padding-top: 35px;
+}
+
+
+.abbox_5 .titlarea dd {
+    width: 80%;
+}
+
+.abbox_5 .foto{
+	padding: 0 12%;
+	padding-bottom: 110px;
+}
+
+
+.abbox_5 .foto img {
+	   width: auto;
+	   max-width: 80%;
+	}
+
+.abbox .titlarea dt,
+.abbox_2 .titlarea dt,
+.abbox_3 .titlarea dt,
+.abbox_4 .titlarea dt,
+.abbox_6 .titlarea dt,
+.abbox_7 .titlarea dt,
+.abbox_8 .titlarea dt {
+    margin-bottom: 0;
+}
+
+.abbox .titlarea dd,
+.abbox_2 .titlarea dd,
+.abbox_3 .titlarea dd,
+.abbox_4 .titlarea dd,
+.abbox_6 .titlarea dd,
+.abbox_7 .titlarea dd,
+.abbox_8 .titlarea dd{
+	padding-left: 21%;
+	margin-top: 20px;
+}
+
+.abbox_7 .titlarea dd,
+.abbox_8 .titlarea dd{
+	padding-left: 22%;
+}
+
+.abbox_8 .titlarea dd{
+	width: 100%;	
+}
+
+.abbox .numarea .sub,
+.abbox_2 .numarea .sub,
+.abbox_3 .numarea .sub,
+.abbox_4 .numarea .sub,
+.abbox_5 .numarea .sub,
+.abbox_6 .numarea .sub,
+.abbox_7 .numarea .sub,
+.abbox_8 .numarea .sub{
+		font-size: 14px;
+		margin-left: 2%;
+		width: 12%;
+	}
+
+	
+	.abbox .numarea .num,
+	.abbox_2 .numarea .num,
+	.abbox_3 .numarea .num,
+	.abbox_4 .numarea .num,
+	.abbox_6 .numarea .num,
+	.abbox_7 .numarea .num,
+	.abbox_8 .numarea .num {
+	    font-size: 40px;
+	}
+
+	.abbox_5 .numarea .num{
+		font-size: 40px;
+	}
+
+	.abbox_8 .foto .txt {
+		width: 200px;
+		bottom: 5%;
+		    font-size: 11PX
+	}
+
+	
+.foto .foto_l{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.foto .foto_r{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+
+/*------------------------------------------------------------------------------*/
+}

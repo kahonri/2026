@@ -1,0 +1,479 @@
+#header_top, header, .subtitle02_wrapper, #locator,#contents_right,footer{display:none;}
+
+body {
+  margin: 0;
+  font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+.section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.button {
+  margin: 30px auto;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  text-decoration: none;
+}
+
+.text-block {
+  max-width: 700px;
+  margin: 50px auto;
+  text-align: center;
+  font-size: 38px;
+  line-height: 1.8;
+  color: #5a5c5d;
+}
+
+h2 {
+  font-size: 45px;
+  margin: 30px 0 20px;
+  color: #5a5c5d;
+  font-weight: bold;
+}
+
+/* スマホ改行用 */
+.sp-br {
+  display: inline;
+}
+
+/* ヘッダーセクション */
+.header-section {
+  padding: 0px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ddd" opacity="0.3"/><circle cx="80" cy="80" r="2" fill="%23ddd" opacity="0.3"/><circle cx="60" cy="30" r="1.5" fill="%23ddd" opacity="0.3"/></svg>');
+  background-size: 50px 50px;
+}
+
+/* タイトルセクション */
+.title-section {
+  padding: 20px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-section .button,
+.title-section img,
+.title-section .text-block {
+  display: block;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+.title-section .button {
+  margin-bottom: 100px;
+  text-decoration: none;
+}
+
+/* 特長セクション */
+.features-section {
+  padding: 80px 20px 0px;
+}
+
+.features-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-container img {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.features-container img:hover {
+  transform: translateY(-5px);
+}
+
+/* サービス説明セクション */
+.service-section {
+  background: #fff;
+  padding: 80px 20px;
+}
+
+/* セクション番号デザイン */
+.section-number {
+  position: relative;
+  margin: 40px 0;
+}
+
+.section-number::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, #ff8c00, #ffa500);
+  border-radius: 1px;
+}
+
+/* 肌悩み解決法セクション */
+.solution-section {
+  padding: 80px 20px;
+}
+
+/* 分析の流れセクション */
+.flow-section {
+  padding: 80px 20px;
+}
+
+.flow-section h2 {
+  margin-bottom: 10px; /* 見出しと最初のSTEPの間を詰める */
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* STEPとSTEPの間を詰める */
+  margin-top: 20px; /* コンテナ上部のマージンを減らす */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+}
+
+.step {
+  flex: 1;
+  min-width: 350px;
+  max-width: 380px;
+  padding: 30px 20px;
+  position: relative;
+  transition: none; /* ホバーエフェクトを無効化 */
+}
+
+/* 画像注釈 */
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin: 15px 0;
+}
+
+.image-container img {
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+.image-note {
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #666;
+}
+
+.step h3 {
+  font-size: 28px;
+  color: #ed8f17;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.step img {
+  margin: 15px 0;
+  /*border-radius: 8px;*/
+  width: 100%;
+  /*max-width: 200px;*/
+  height: auto;
+}
+
+.step p {
+  font-size: 28px;
+  color: #5a5c5d;
+  line-height: 1.6;
+}
+
+.step-subtitle {
+  font-size: 32px;
+  color: #5a5c5d;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 応募ボタンセクション */
+.cta-section {
+  background: #fffaf5;
+  padding: 60px 20px;
+}
+
+/* 応募方法セクション */
+.application-section {
+  background: #f6ddbe;
+  padding: 80px 20px;
+}
+
+.application-info {
+  max-width: 800px;
+  margin: 30px auto;
+  border-radius: 15px;
+}
+
+.application-info strong {
+  color: #ff8c00;
+  font-size: 32px;
+}
+
+.note-text {
+  font-size: 22px;
+  color: #5a5c5d;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* フッター */
+.footer-cp {
+  text-align: center;
+  font-size: 14px;
+  padding: 30px 20px;
+  display: block; /* フッターが表示されるように */
+}
+
+/* レスポンシブ対応（タブレット） */
+@media (max-width: 1024px) {
+  .header-section {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .text-block {
+    font-size: 17px;
+  }
+  
+  h2 {
+    font-size: 26px;
+  }
+  
+  .step h3 {
+    font-size: 19px;
+  }
+  
+  .step-subtitle {
+    font-size: 22px;
+  }
+  
+  .step p {
+    font-size: 15px;
+  }
+  
+  .note-text {
+    font-size: 16px;
+  }
+}
+
+/* レスポンシブ対応（スマホ） */
+@media (max-width: 768px) {
+  /* スマホ改行を有効化 */
+  .sp-br::after {
+    content: "\A";
+    white-space: pre;
+  }
+  
+  .header-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* タイトルセクションのボタンサイズを下部に合わせる */
+  .title-section .button img {
+    max-width: 200px; /* ボタンサイズを調整 */
+  }
+  
+  /* タイトル画像に余白を持たせる */
+  .title-section img:not([alt="応募するボタン"]) {
+    max-width: calc(100% - 40px); /* 左右20pxずつ余白 */
+    width: auto;
+  }
+  
+  /* セクション間の余白調整 */
+  .service-section, .solution-section, .flow-section {
+    padding: 30px 20px; /* 上下の余白を減らす */
+  }
+  
+  .features-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .features-container img {
+    width: 90%; /* 90%サイズに縮小 */
+    max-width: 270px; /* 90%相当に調整 (300px×0.9) */
+    margin-bottom: 20px;
+  }
+  
+  .steps-container {
+    grid-template-columns: 1fr;
+    gap: 10px; /* スマホでさらに間隔を詰める */
+    margin-top: 0px;
+  }
+  
+  .step {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 10px; /* 下マージン減らす */
+    min-width: auto;
+    padding: 20px 15px; /* パディング減らす */
+  }
+  
+  .text-block {
+    max-width: 95%;
+    font-size: 16px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  .step h3 {
+    font-size: 18px;
+  }
+  
+  .step-subtitle {
+    font-size: 20px;
+  }
+  
+  .step p {
+    font-size: 17px;
+  }
+  
+  .application-info strong {
+    font-size: 18px;
+  }
+  
+  .note-text {
+    font-size: 14px;
+  }
+  
+  /* 応募方法の上部パディングを追加 */
+  .application-section {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-section {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .title-section {
+    padding: 0px 20px 0px;
+  }
+
+  .title-section .button {
+    margin: 10px auto 50px;
+  }
+
+  /* タイトル画像に余白を持たせる */
+  .title-section img:not([alt="応募するボタン"]) {
+    max-width: calc(100% - 40px); /* 左右20pxずつ余白 */
+    width: auto;
+  }
+  
+  /* ボタンサイズをさらに調整 */
+  .title-section .button img {
+    max-width: 300px;
+  }
+
+  .section img {
+    margin: 0px auto 15px;
+  }
+  
+  /* セクション間の余白をさらに減らす */
+  .service-section, .solution-section, .flow-section {
+    padding: 20px 20px 10px; /* 上下の余白をさらに減らす */
+  }
+  
+  /* セクション内の画像と見出しの間隔調整 */
+  .service-section img, .solution-section img, .flow-section img {
+    margin-bottom: 5px;
+  }
+
+  .features-section {
+    padding: 30px 20px 0px;
+  }
+  
+  .features-container img {
+    width: 90%; /* 90%サイズに縮小 */
+    max-width: 252px; /* 90%相当に調整 (280px×0.9) */
+  }
+
+  .text-block {
+    font-size: 20px;
+    margin: 30px auto;
+  }
+  
+  h2 {
+    font-size: 23px;
+    margin: 0px 0 10px; /* 見出しの下マージンを追加 */
+  }
+  
+  .step h3 {
+    font-size: 18px;
+    margin-bottom: 10px; /* STEPタイトルの下マージンを減らす */
+  }
+  
+  .step-subtitle {
+    font-size: 22px;
+    margin-bottom: 10px; /* サブタイトルの下マージンを減らす */
+  }
+  
+  .step p {
+    font-size: 18px;
+  }
+  
+  .step {
+    max-width: 280px;
+    padding: 15px 10px; /* パディングさらに減らす */
+  }
+  
+  .application-info strong {
+    font-size: 18px;
+  }
+  
+  .note-text {
+    font-size: 13px;
+  }
+  
+  /* 応募方法の上部パディングを追加 */
+  .application-section {
+    padding-top: 50px;
+  }
+}

@@ -1,0 +1,80 @@
+/* =============================================
+   マテラマスク ページ固有CSS
+   対応HTML: 00title.html 〜 07customer.html
+   流用元: skin.css / sub.css
+   ブレイクポイント: matera-mask_sp.css（690px）
+   ============================================= */
+
+
+/* --- 00: MV テキストエリア（.bg_mm内） --- */
+/* 外枠: .bg_mm.clearfix + style="background-image:url(...)" */
+/* 内枠: .basic_box01_in.clearfix（既存） */
+/* テキスト: .basic_box01_in_txt（既存 width:60%）*/
+
+
+
+
+
+/* --- 06: 主な美容成分 下段（名前のみ 6成分） --- */
+
+.mm_component_name_list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 10px;
+	border-top: 1px solid #dadada;
+	padding-top: 14px;
+}
+
+.mm_component_name_list li {
+	font-size: 18px;
+	padding: 4px 12px;
+	border: 1px solid #dadada;
+	color: #33517F;
+}
+
+
+/* --- 07: お客様の声 Before/After画像エリア --- */
+/* 外枠: .bclensing1_img_box_2（既存 49% float:left）*/
+
+.mm_review_ba {
+	display: flex;
+	gap: 24px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.mm_review_ba_item {
+	flex: 1;
+	text-align: center;
+	position: relative;
+}
+
+.mm_review_ba_item:first-child::after {
+	content: "";
+	position: absolute;
+	right: -18px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 12px solid #8b6931;
+}
+
+.mm_review_ba_item .bclensing2_contents_name {
+	display: block;
+	width: 100% !important;
+	height: auto;
+	color: #8b6931;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.mm_review_ba_item img {
+	width: 100%;
+	height: auto;
+}

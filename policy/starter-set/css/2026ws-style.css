@@ -1,0 +1,1157 @@
+/* =============================================
+   S01: Hero + TopCTA
+   ============================================= */
+
+/* --- メインビジュアル --- */
+#ws2026 .hero__mv {
+  width: 100%;
+}
+
+#ws2026 .hero__mv-container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  /* padding: 0 var(--space-24); */
+}
+
+#ws2026 .hero__mv-image {
+  width: 100%;
+  height: auto;
+}
+
+/* --- TopCTA エリア --- */
+#ws2026 .hero__cta {
+  width: 100%;
+}
+
+#ws2026 .hero__cta-container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 発売日テキスト + ＼／装飾 */
+#ws2026 .hero__cta-date {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+#ws2026 .hero__cta-date-deco {
+  color: var(--color-line);
+}
+
+/* 見出し */
+#ws2026 .hero__cta-heading {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-h2);
+}
+
+/* 商品画像 */
+#ws2026 .hero__cta-product {
+  margin-top: var(--space-32);
+  width: 100%;
+  /* max-width: 560px; */
+}
+
+#ws2026 .hero__cta-product-image {
+  width: 100%;
+  height: auto;
+}
+
+/* 説明文 */
+#ws2026 .hero__cta-description {
+  margin-top: var(--space-24);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* CTAボタン（塗りオレンジ） */
+#ws2026 .hero__cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-top: var(--space-32);
+  /* width: 100%; */
+  max-width: var(--width-container);
+  padding: 48px 80px;
+  background-color: var(--color-bg-cta);
+  color: var(--color-text-cta);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+  transition: opacity 0.3s ease;
+}
+
+#ws2026 .hero__cta-button:hover {
+  opacity: 0.85;
+}
+
+#ws2026 .hero__cta-button-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+}
+
+#ws2026 .hero__cta-button-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 注釈 */
+#ws2026 .hero__cta-note {
+  margin-top: var(--space-16);
+  font-size: var(--font-size-note);
+  color: var(--color-line);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .hero__mv-container {
+    padding: 0 var(--space-16);
+  }
+
+  #ws2026 .hero__cta-container {
+    padding: var(--space-32) var(--space-16);
+  }
+
+  #ws2026 .hero__cta-button {
+    max-width: 100%;
+    padding: var(--space-16);
+    white-space: normal;
+    border-radius: var(--radius-md);
+  }
+
+  #ws2026 .hero__cta-button-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+}
+
+
+/* =============================================
+   S02: Empathy
+   ============================================= */
+
+#ws2026 .empathy {
+  padding: var(--space-80) 0;
+  background-color: var(--color-bg-empathy);
+}
+
+#ws2026 .empathy__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+}
+
+/* CHECK + 見出し */
+#ws2026 .empathy__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+/* バッジ（CHECK！/ 原因は） */
+#ws2026 .empathy__badge {
+  display: inline-block;
+  padding: var(--space-8) var(--space-48);
+  background-color: var(--color-bg-eyecatch);
+  color: var(--color-text-eyecatch);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h3);
+  border-radius: var(--radius-full);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* 見出し */
+#ws2026 .empathy__title {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-h3);
+}
+
+/* 画像ブロック（image01 + image02 隙間なし） */
+#ws2026 .empathy__images {
+  margin-top: 35px;
+  width: 100%;
+}
+
+#ws2026 .empathy__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 原因は〜下部エリア */
+#ws2026 .empathy__detail {
+  padding: 55px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  text-align: center;
+}
+
+/* リードテキスト */
+#ws2026 .empathy__lead {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* 説明文 */
+#ws2026 .empathy__description {
+  align-self: flex-start;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+}
+
+/* 注釈 */
+#ws2026 .empathy__note {
+  font-size: var(--font-size-note);
+  color: var(--color-line);
+  align-self: flex-end;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .empathy {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .empathy__container {
+    padding: 0 var(--space-16);
+  }
+
+  #ws2026 .empathy__detail {
+    padding: var(--space-32) 0;
+    gap: 24px;
+  }
+}
+
+/* =============================================
+   S03: Education
+   ============================================= */
+
+#ws2026 .education {
+  padding: var(--space-80) 0;
+}
+
+#ws2026 .education__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+/* 見出し */
+#ws2026 .education__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+#ws2026 .education__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* メイン画像 */
+#ws2026 .education__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* だから〜下部エリア */
+#ws2026 .education__block {
+  padding: 55px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  text-align: center;
+}
+
+/* バッジ（だから） */
+#ws2026 .education__badge {
+  display: inline-block;
+  padding: var(--space-8) var(--space-48);
+  background-color: var(--color-bg-eyecatch);
+  color: var(--color-text-eyecatch);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h3);
+  border-radius: var(--radius-full);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* 小見出し */
+#ws2026 .education__heading {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* チャート画像 */
+#ws2026 .education__chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .education {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .education__container {
+    padding: var(--space-16) var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .education__block {
+    padding: var(--space-32) 0;
+    gap: 24px;
+  }
+}
+
+/* =============================================
+   S04: Product Steps
+   ============================================= */
+
+#ws2026 .product-steps {
+  padding: var(--space-80) 0;
+}
+
+#ws2026 .product-steps__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+/* --- 見出しエリア --- */
+#ws2026 .product-steps__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .product-steps__en {
+  font-family: 'Metrophobic', sans-serif;
+  font-size: 64px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 80px;
+  letter-spacing: 0.03em;
+}
+
+#ws2026 .product-steps__line {
+  display: block;
+  width: 248px;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+#ws2026 .product-steps__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+  padding-bottom: 35px;
+}
+
+/* --- STEPラベル --- */
+#ws2026 .product-steps__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .product-steps__step-label {
+  font-family: 'Megrim', cursive;
+  font-size: 64px;
+  font-weight: 500;
+  color: var(--color-line);
+  line-height: auto;
+  letter-spacing: 0;
+}
+
+#ws2026 .product-steps__step-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+#ws2026 .product-steps__step-sub {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+#ws2026 .product-steps__step-name {
+  font-size: var(--font-size-h2-sub);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* --- 商品詳細ブロック --- */
+#ws2026 .product-steps__block {
+  padding: 55px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .product-steps__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#ws2026 .product-steps__heading {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+#ws2026 .product-steps__description {
+  align-self: flex-start;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+}
+
+#ws2026 .product-steps__note {
+  align-self: flex-end;
+  font-size: var(--font-size-note);
+  color: var(--color-line);
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: right;
+}
+
+#ws2026 .product-steps__product-name {
+  align-self: flex-start;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: left;
+}
+
+#ws2026 .product-steps__price {
+  align-self: flex-start;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+}
+
+#ws2026 .product-steps__chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .product-steps {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .product-steps__container {
+    padding: 0 var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .product-steps__content {
+    gap: 24px;
+  }
+
+  #ws2026 .product-steps__en {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #ws2026 .product-steps__line {
+    width: 120px;
+  }
+
+  #ws2026 .product-steps__title {
+    padding-bottom: 24px;
+  }
+
+  #ws2026 .product-steps__step-label {
+    font-size: 32px;
+  }
+
+  #ws2026 .product-steps__step {
+    gap: var(--space-32);
+  }
+
+  #ws2026 .product-steps__block {
+    padding: var(--space-32) 0;
+    gap: var(--space-32);
+  }
+}
+
+/* =============================================
+   S05: Brand Trust
+   ============================================= */
+
+#ws2026 .brand-trust {
+  padding: var(--space-80) 0;
+  background-color: var(--color-bg-company);
+}
+
+#ws2026 .brand-trust__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+/* --- 見出しエリア --- */
+#ws2026 .brand-trust__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .brand-trust__en {
+  font-family: 'Metrophobic', sans-serif;
+  font-size: 64px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 80px;
+  letter-spacing: 0.03em;
+}
+
+#ws2026 .brand-trust__line {
+  display: block;
+  width: 248px;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+#ws2026 .brand-trust__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* --- 画像（角丸30px） --- */
+#ws2026 .brand-trust__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+}
+
+/* --- テキストエリア --- */
+#ws2026 .brand-trust__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+#ws2026 .brand-trust__heading {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+}
+
+#ws2026 .brand-trust__description {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .brand-trust {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .brand-trust__container {
+    padding: 0 var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .brand-trust__content {
+    gap: 24px;
+  }
+
+  #ws2026 .brand-trust__en {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #ws2026 .brand-trust__line {
+    width: 120px;
+  }
+
+  #ws2026 .brand-trust__image {
+    border-radius: var(--radius-md);
+  }
+}
+
+/* =============================================
+   S06: Data Proof
+   ============================================= */
+
+#ws2026 .data-proof {
+  padding: var(--space-80) 0;
+}
+
+#ws2026 .data-proof__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+/* --- 見出しエリア --- */
+#ws2026 .data-proof__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .data-proof__en {
+  font-family: 'Metrophobic', sans-serif;
+  font-size: 64px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 80px;
+  letter-spacing: 0.03em;
+}
+
+#ws2026 .data-proof__line {
+  display: block;
+  width: 248px;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+#ws2026 .data-proof__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* サブ見出し */
+#ws2026 .data-proof__subtitle {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+}
+
+/* --- データブロック --- */
+#ws2026 .data-proof__block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+}
+
+/* ラベル（美肌項目診断 / 特殊カメラ撮影） */
+#ws2026 .data-proof__label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: var(--color-bg-datatitle);
+  border-radius: 10px;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+#ws2026 .data-proof__label-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+}
+
+/* データ数値テキスト */
+#ws2026 .data-proof__data {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+}
+
+#ws2026 .data-proof__data--01 {
+  color: var(--color-text-data01);
+}
+
+#ws2026 .data-proof__data--02 {
+  color: var(--color-text-data02);
+}
+
+/* 画像 */
+#ws2026 .data-proof__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 説明文 */
+#ws2026 .data-proof__description {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+  align-self: flex-start;
+}
+
+/* 注釈 */
+#ws2026 .data-proof__note {
+  font-size: var(--font-size-note);
+  color: var(--color-line);
+  letter-spacing: var(--letter-spacing-normal);
+  align-self: flex-end;
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .data-proof {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .data-proof__container {
+    padding: 0 var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .data-proof__content {
+    gap: 24px;
+  }
+
+  #ws2026 .data-proof__en {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #ws2026 .data-proof__line {
+    width: 120px;
+  }
+
+  #ws2026 .data-proof__subtitle {
+    font-size: var(--font-size-body);
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  #ws2026 .data-proof__block {
+    gap: 24px;
+  }
+
+  #ws2026 .data-proof__label-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* =============================================
+   S07: FAQ
+   ============================================= */
+
+#ws2026 .faq {
+  padding: var(--space-80) 0;
+  background-color: var(--color-bg-faq);
+}
+
+#ws2026 .faq__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+/* --- 見出しエリア --- */
+#ws2026 .faq__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .faq__en {
+  font-family: 'Metrophobic', sans-serif;
+  font-size: 64px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 80px;
+  letter-spacing: 0.03em;
+}
+
+#ws2026 .faq__line {
+  display: block;
+  width: 248px;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+#ws2026 .faq__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* --- FAQ一覧 --- */
+#ws2026 .faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+#ws2026 .faq__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+#ws2026 .faq__question {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+#ws2026 .faq__answer {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .faq {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .faq__container {
+    padding: 0 var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .faq__content {
+    gap: 24px;
+  }
+
+  #ws2026 .faq__en {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #ws2026 .faq__line {
+    width: 120px;
+  }
+
+  #ws2026 .faq__question {
+    font-size: var(--font-size-body);
+  }
+}
+
+/* =============================================
+   S08: CTA
+   ============================================= */
+
+#ws2026 .cta {
+  padding: var(--space-80) 0;
+  background-color: var(--color-bg-cta2);
+}
+
+#ws2026 .cta__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+/* --- 見出しエリア --- */
+#ws2026 .cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+  text-align: center;
+}
+
+#ws2026 .cta__en {
+  font-family: 'Metrophobic', sans-serif;
+  font-size: 64px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 80px;
+  letter-spacing: 0.03em;
+}
+
+#ws2026 .cta__line {
+  display: block;
+  width: 248px;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+#ws2026 .cta__title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* 説明文 */
+#ws2026 .cta__description {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: left;
+  align-self: flex-start;
+}
+
+/* CTAボタン（塗りオレンジ） */
+#ws2026 .cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 100%;
+  max-width: var(--width-container);
+  padding: 48px 80px;
+  background-color: var(--color-bg-cta);
+  color: var(--color-text-cta);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+  transition: opacity 0.3s ease;
+}
+
+#ws2026 .cta__button:hover {
+  opacity: 0.85;
+}
+
+#ws2026 .cta__button-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+}
+
+#ws2026 .cta__button-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .cta {
+    padding: var(--space-48) 0;
+  }
+
+  #ws2026 .cta__container {
+    padding: 0 var(--space-16);
+    gap: var(--space-24);
+  }
+
+  #ws2026 .cta__content {
+    gap: 24px;
+  }
+
+  #ws2026 .cta__en {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #ws2026 .cta__line {
+    width: 120px;
+  }
+
+  #ws2026 .cta__button {
+    max-width: 100%;
+    padding: var(--space-16);
+    white-space: normal;
+    border-radius: var(--radius-md);
+  }
+
+  #ws2026 .cta__button-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* =============================================
+   S09: Footer
+   ============================================= */
+
+#ws2026 .footer {
+  padding: var(--space-48) 0;
+}
+
+#ws2026 .footer__container {
+  max-width: var(--width-container);
+  margin: 0 auto;
+  text-align: center;
+}
+
+#ws2026 .footer__copyright {
+  font-size: var(--font-size-note);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-line);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ----- SP ----- */
+@media (max-width: 768px) {
+  #ws2026 .footer {
+    padding: var(--space-32) var(--space-16);
+  }
+}
+
+/* =============================================
+   Animations
+   ============================================= */
+
+/* --- フェードイン（画像用） --- */
+#ws2026 .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#ws2026 .fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- ズームイン（CTAボタン用） --- */
+#ws2026 .zoom-in {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#ws2026 .zoom-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ズームイン後の注目パルス */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+#ws2026 .zoom-in.is-visible {
+  animation: pulse 2s ease-in-out 0.8s infinite;
+}
