@@ -1,4 +1,13 @@
 /* ===== RESET & VARIABLES ===== */
+/* 既存のヘッダー・フッターを非表示 */
+#header_top, header, .subtitle02_wrapper, #locator, #contents_right, footer {
+    display: none;
+}
+
+/* このページのfooterは表示 */
+#kuwa2026-lp footer {
+    display: block;
+}
 #kuwa2026-lp *, #kuwa2026-lp *::before, #kuwa2026-lp *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --green:        #5cb848;
@@ -24,6 +33,9 @@
 }
 html, body { scroll-behavior: smooth; overflow-x: hidden; }
 #kuwa2026-lp {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   font-family: var(--font-main);
   background: var(--cream);
   color: var(--text);
@@ -43,8 +55,21 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
 }
 
 /* ===== SCROLL REVEAL ===== */
-#kuwa2026-lp .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-#kuwa2026-lp .reveal.visible { opacity: 1; transform: translateY(0); }
+/* JSが動かない環境でも本文が消えないよう、通常時は表示。
+   DOM読み込み後にJSが #kuwa2026-lp へ .is-reveal-ready を付与した場合のみアニメーション待機にする。 */
+#kuwa2026-lp .reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+#kuwa2026-lp.is-reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+#kuwa2026-lp.is-reveal-ready .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 #kuwa2026-lp .d1 { transition-delay: 0.08s; }
 #kuwa2026-lp .d2 { transition-delay: 0.16s; }
 #kuwa2026-lp .d3 { transition-delay: 0.24s; }
@@ -151,6 +176,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   gap: 6px;
 }
 #kuwa2026-lp .nav-btn:hover { background: var(--green-dark); }
+#kuwa2026-lp .icon-arrow { width: 14px; height: 14px; flex-shrink: 0; }
 
 /* ===== HERO ===== */
 #kuwa2026-lp .hero {
@@ -269,7 +295,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   align-items: center;
   justify-content: center;
 }
-#kuwa2026-lp .care-circle svg { display: block; color: var(--white); }
+#kuwa2026-lp .care-circle img.icon-care { display: block; width: 36px; height: 36px; }
 #kuwa2026-lp .care-circle-label {
   font-size: 16px;
   font-weight: 700;
@@ -333,7 +359,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
     margin-right: -20px;
   }
   #kuwa2026-lp .hero-photo-inner {
-    clip-path: url(#hero-clip);
+    border-radius: 80px 0 0 80px;
   }
   #kuwa2026-lp .hero-care-bar {
     bottom: 28px;
@@ -512,6 +538,12 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   text-align: center;
   align-self: end;
 }
+#kuwa2026-lp .product-cta-headline .cta-emphasis {
+  color: #e8740c;
+  font-size: 1.35em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
 #kuwa2026-lp .product-cta-store-wrap {
   grid-area: store;
   display: flex;
@@ -532,9 +564,11 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   width: 100%;
   transition: background 0.2s, transform 0.2s;
 }
-#kuwa2026-lp .btn-store-cta svg {
+#kuwa2026-lp .btn-store-cta .icon-arrow {
   position: absolute;
   right: 18px;
+  width: 18px;
+  height: 18px;
 }
 #kuwa2026-lp .btn-store-cta:hover {
   background: var(--green-mist);
@@ -563,9 +597,11 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   box-shadow: 0 6px 20px rgba(92,184,72,0.35);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-#kuwa2026-lp .btn-sample-cta svg {
+#kuwa2026-lp .btn-sample-cta .icon-arrow {
   position: absolute;
   right: 20px;
+  width: 20px;
+  height: 20px;
 }
 #kuwa2026-lp .btn-sample-cta:hover {
   background: var(--green-dark);
@@ -1134,6 +1170,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   z-index: 2;
   margin: 0 16px;
 }
+#kuwa2026-lp .forwho-arrow img { display: block; width: 20px; height: 20px; }
 #kuwa2026-lp .forwho-arrow:hover {
   background: var(--green-dark);
   transform: scale(1.08);
@@ -1214,7 +1251,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/vegan-background.jpg');
+  background-image: url('/dcms_media/image/vegan-background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1257,6 +1294,7 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 12px;
 }
+#kuwa2026-lp .insta-icon img { display: block; width: 30px; height: 30px; }
 #kuwa2026-lp .insta-handle {
   font-family: var(--font-en);
   font-size: 16px;
