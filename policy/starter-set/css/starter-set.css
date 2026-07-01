@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* ===================================================================
+   スターターセット共通スタイル（W洗顔／整潤美容）
+   2026-08-01追加 / 売切次第このファイル読み込みを外す
+   背景はセクションのクラスで出し分け：
+     .pss-section.pss-cleansing … W洗顔スターターセット
+     .pss-section.pss-beauty    … 整潤美容シリーズセット
+   =================================================================== */
+
+.pss-starter-wrapper{width:92%;max-width:1000px;margin:40px auto;}
+.pss-section{position:relative;box-sizing:border-box;width:100%;max-width:1000px;background-color:#fff;padding:56px 40px;margin:0 auto 40px;overflow:hidden;}
+.pss-section:last-child{margin-bottom:0;}
+.pss-section.pss-cleansing{border:#ddd8cc 1px solid;}
+.pss-section.pss-beauty{border:#ddd8cc 1px solid;}
+/* 背景イラストを擬似要素で敷き、不透明度77%に */
+.pss-section::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:.55;pointer-events:none;z-index:0;}
+.pss-section.pss-cleansing::before{background-image:url('/dcms_media/image/starter-set-bg-illust.png');}
+.pss-section.pss-beauty::before{background-image:url('/dcms_media/image/starter-set-bg-illust02.png');}
+.pss-section-inner{position:relative;z-index:1;margin:0 auto;}
+.pss-hd{text-align:center;margin-bottom:32px;}
+.pss-ttl{font-size:21px;color:#4a3a18;font-family:"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro",serif;letter-spacing:.18em;line-height:1.4;margin:0 0 8px;}
+.pss-ttl-en{display:block;font-size:11px;color:#9b8050;letter-spacing:.28em;font-family:Georgia,serif;margin-bottom:18px;}
+.pss-hd-rule{width:36px;border:none;border-top:1px solid #c9b98a;margin:0 auto;}
+.pss-body{display:flex;align-items:flex-start;margin-top:28px;}
+.pss-img-col{width:60%;flex-shrink:0;}
+.pss-img-col img{width:100%;display:block;}
+.pss-text-col{flex:1;min-width:0;}
+.pss-lead{font-size:13px;color:#4a3a18;line-height:2.0;margin-bottom:20px;}
+.pss-sub-ttl{font-size:12px;color:#7a6030;font-family:"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro",serif;letter-spacing:.1em;margin:0 0 8px;}
+.pss-item-list{padding:0;margin:0 0 16px;}
+.pss-item-list li{padding:6px 0;border-bottom:1px solid #ddd8cc;font-size:13px;color:#444;}
+.pss-item-cat{font-size:11px;color:#888;margin-left:3px;}
+.pss-item-size{display:inline-block;background:#ede8dc;color:#7a6030;font-size:11px;font-weight:bold;padding:1px 6px;border-radius:2px;margin-left:5px;}
+.pss-price{font-size:19px;color:#524b01;font-family:"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro",serif;margin:14px 0 16px;}
+.pss-price-sub{font-size:12px;color:#888;font-weight:normal;font-family:"メイリオ",Meiryo,sans-serif;}
+.pss-features{padding:0;margin:0 0 16px;}
+.pss-features li{position:relative;padding-left:17px;font-size:13px;color:#555;line-height:2.1;}
+.pss-features li::before{content:"✓";position:absolute;left:0;color:#8b6931;font-weight:bold;}
+.pss-meta{font-size:12px;line-height:2.4;}
+.pss-meta-limited{color:#c44a32;font-weight:bold;}
+.pss-meta-date{color:#7a6030;}
+
+/* ── SP ── */
+@media (max-width:690px){
+  .pss-section{padding:40px 20px;}
+  .pss-section.pss-cleansing::before{background-image:url('/dcms_media/image/starter-set-bg-illust-sp.png');}
+  .pss-section.pss-beauty::before{background-image:url('/dcms_media/image/starter-set-bg-illust02-sp.png');}
+  .pss-body{flex-direction:column;gap:24px;}
+  .pss-img-col{width:88%;margin:0 auto;}
+}
