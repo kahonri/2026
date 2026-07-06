@@ -272,6 +272,23 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   object-position: center top;
 }
 
+/* ── メインビジュアル左上のバッジ ── */
+#kuwa2026-lp .hero-badges {
+  position: absolute;
+  top: 35px;
+  left: 20px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#kuwa2026-lp .hero-badges img {
+  width: 85px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
+
 /* ── 3つのケア正円 ── */
 #kuwa2026-lp .hero-care-circles {
   display: flex;
@@ -360,6 +377,15 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
   }
   #kuwa2026-lp .hero-photo-inner {
     border-radius: 80px 0 0 80px;
+  }
+  #kuwa2026-lp .hero-badges {
+    top: 20px;
+    left: 20px;
+    flex-direction: row;
+    gap: 10px;
+  }
+  #kuwa2026-lp .hero-badges img {
+    width: 120px;
   }
   #kuwa2026-lp .hero-care-bar {
     bottom: 28px;
@@ -1150,7 +1176,6 @@ html, body { scroll-behavior: smooth; overflow-x: hidden; }
 }
 #kuwa2026-lp .forwho-slide.is-active .forwho-slide-text {
   color: var(--green-deep);
-  font-size: 15px;
 }
 
 /* --- Arrows --- */
