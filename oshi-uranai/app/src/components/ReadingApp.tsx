@@ -26,6 +26,67 @@ function loadSaved(): SavedBirth | null {
   }
 }
 
+const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
+const YEARS: number[] = [];
+for (let y = new Date().getFullYear(); y >= 1900; y--) YEARS.push(y);
+
+function daysInMonth(year: number, month: number): number {
+  return new Date(year, month, 0).getDate();
+}
+
+function BirthdatePicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const now = new Date();
+  const [y0, m0, d0] = value ? value.split("-").map(Number) : [null, null, null];
+  const [year, setYear] = useState(y0 ?? now.getFullYear() - 30);
+  const [month, setMonth] = useState(m0 ?? 1);
+
+  useEffect(() => {
+    if (!value) return;
+    const [y, m] = value.split("-").map(Number);
+    setYear(y);
+    setMonth(m);
+  }, [value]);
+
+  const total = daysInMonth(year, month);
+  const firstDow = new Date(year, month - 1, 1).getDay();
+  const cells: (number | null)[] = [
+    ...Array.from({ length: firstDow }, () => null),
+    ...Array.from({ length: total }, (_, i) => i + 1),
+  ];
+  const selectedDay = y0 === year && m0 === month ? d0 : null;
+
+  function pick(day: number) {
+    onChange(`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
+  }
+
+  return (
+    <div class="birthdate-picker">
+      <div class="ym-row">
+        <select aria-label="年" value={year} onChange={(e) => setYear(Number((e.currentTarget as HTMLSelectElement).value))}>
+          {YEARS.map((y) => <option value={y} key={y}>{y}年</option>)}
+        </select>
+        <select aria-label="月" value={month} onChange={(e) => setMonth(Number((e.currentTarget as HTMLSelectElement).value))}>
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+            <option value={m} key={m}>{m}月</option>
+          ))}
+        </select>
+        <span class="picked-date">{value ? `${y0}/${String(m0).padStart(2, "0")}/${String(d0).padStart(2, "0")}` : "日付を選んでください"}</span>
+      </div>
+      <div class="cal-grid" role="grid">
+        {WEEKDAYS.map((w) => <span class="dow" key={w}>{w}</span>)}
+        {cells.map((d, i) =>
+          d === null
+            ? <span key={`e${i}`} />
+            : (
+              <button type="button" key={d} class={d === selectedDay ? "day selected" : "day"}
+                onClick={() => pick(d)}>{d}</button>
+            ),
+        )}
+      </div>
+    </div>
+  );
+}
+
 function EventCard({ ev, kind, periodLabel }: { ev: ScoredEvent; kind: "main" | "sub"; periodLabel: string }) {
   const composed = composeText(ev, periodLabel);
   return (
@@ -74,6 +135,7 @@ export default function ReadingApp() {
   const formRef = useRef<HTMLFormElement>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [tab, setTab] = useState<"weekly" | "monthly">("weekly");
+  const [birthdate, setBirthdate] = useState("");
 
   // localStorageからの復元はマウント後に行う。SSR時はlocalStorageが無く、
   // Preactのハイドレーションはサーバ描画済みのvalueを上書きしないため。
@@ -81,11 +143,10 @@ export default function ReadingApp() {
     const saved = loadSaved();
     const form = formRef.current;
     if (!saved || !form) return;
-    const date = form.elements.namedItem("birthdate") as HTMLInputElement | null;
     const time = form.elements.namedItem("birthtime") as HTMLInputElement | null;
     const unknown = form.elements.namedItem("timeUnknown") as HTMLInputElement | null;
     const place = form.elements.namedItem("place") as HTMLSelectElement | null;
-    if (date) date.value = saved.birthdate ?? "";
+    setBirthdate(saved.birthdate ?? "");
     if (time) time.value = saved.birthtime ?? "";
     if (unknown) unknown.checked = saved.timeUnknown ?? false;
     if (place) place.value = saved.place ?? "";
@@ -115,8 +176,9 @@ export default function ReadingApp() {
   function onSubmit(e: Event) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget as HTMLFormElement);
+    if (!birthdate) return;
     const input: SavedBirth = {
-      birthdate: (fd.get("birthdate") as string) ?? "",
+      birthdate,
       birthtime: (fd.get("birthtime") as string) ?? "",
       timeUnknown: fd.get("timeUnknown") === "on",
       place: (fd.get("place") as string) ?? "",
@@ -130,9 +192,10 @@ export default function ReadingApp() {
   return (
     <div class="reading-app">
       <form ref={formRef} onSubmit={onSubmit}>
-        <label>生年月日
-          <input type="date" name="birthdate" required min="1900-01-01" max="2026-12-31" />
-        </label>
+        <div class="field">
+          <span class="field-label">生年月日</span>
+          <BirthdatePicker value={birthdate} onChange={setBirthdate} />
+        </div>
         <label>出生時刻
           <input type="time" name="birthtime" />
         </label>
@@ -142,10 +205,18 @@ export default function ReadingApp() {
         <label>出生地
           <select name="place" required>
             <option value="">選択してください</option>
-            {geo.map((g) => (
-              <option value={g.id} key={g.id}>{g.label}</option>
-            ))}
+            <optgroup label="日本">
+              {geo.filter((g) => !("region" in g)).map((g) => (
+                <option value={g.id} key={g.id}>{g.label}</option>
+              ))}
+            </optgroup>
+            <optgroup label="海外">
+              {geo.filter((g) => "region" in g).map((g) => (
+                <option value={g.id} key={g.id}>{g.label}</option>
+              ))}
+            </optgroup>
           </select>
+          <span class="note">※海外はサマータイム（夏時間）を考慮しない標準時で計算します</span>
         </label>
         <button type="submit">占う</button>
       </form>

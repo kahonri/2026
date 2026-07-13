@@ -16,7 +16,7 @@ import ReadingApp from "../components/ReadingApp";
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://2026-cfh.pages.dev/reading/" />
     <meta name="twitter:card" content="summary" />
-    <style>
+    <style is:global>
       :root { --accent: #7c5cbf; --ink: #3a3245; }
       * { box-sizing: border-box; }
       body {
@@ -32,6 +32,17 @@ import ReadingApp from "../components/ReadingApp";
       label { display: grid; gap: 0.3rem; font-size: 0.9rem; }
       label.inline { display: flex; align-items: center; gap: 0.4rem; }
       input, select { padding: 0.5rem; font-size: 1rem; border: 1px solid #d6cce8; border-radius: 6px; }
+      .field { display: grid; gap: 0.3rem; font-size: 0.9rem; }
+      .birthdate-picker { background: #fff; border: 1px solid #d6cce8; border-radius: 8px; padding: 0.7rem; }
+      .ym-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+      .ym-row select { padding: 0.35rem 0.4rem; }
+      .picked-date { margin-left: auto; font-size: 0.85rem; color: var(--accent); }
+      .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+      .cal-grid .dow { font-size: 0.72rem; color: #907fb0; padding: 0.15rem 0; }
+      .cal-grid .day { padding: 0.35rem 0; font-size: 0.85rem; font-family: inherit;
+        background: #f7f4fc; color: var(--ink); border: none; border-radius: 6px; cursor: pointer; }
+      .cal-grid .day:hover { background: #e9e0f7; }
+      .cal-grid .day.selected { background: var(--accent); color: #fff; }
       button[type=submit] { padding: 0.8rem; font-size: 1rem; background: var(--accent);
         color: #fff; border: none; border-radius: 8px; cursor: pointer; }
       .chart-section { text-align: center; margin: 1.5rem 0; }
