@@ -1,0 +1,58 @@
+---
+import ReadingApp from "../components/ReadingApp";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>あなたの星を読む | 推しの占い子</title>
+    <meta name="description" content="生年月日・出生時刻・出生地から、いまのあなたに巡ってくる星の動きを読む。週報・月報スタイルのパーソナル占い。" />
+    <style>
+      :root { --accent: #7c5cbf; --ink: #3a3245; }
+      * { box-sizing: border-box; }
+      body {
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        max-width: 620px; margin: 0 auto; padding: 1.25rem;
+        line-height: 1.9; color: var(--ink); background: #fdfcff;
+      }
+      h1 { font-size: 1.4rem; text-align: center; font-weight: normal; letter-spacing: 0.08em; }
+      nav { text-align: center; margin-bottom: 1rem; }
+      nav a { color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+      form { display: grid; gap: 0.8rem; margin: 1.5rem 0; padding: 1.2rem;
+        background: #f7f4fc; border-radius: 12px; }
+      label { display: grid; gap: 0.3rem; font-size: 0.9rem; }
+      label.inline { display: flex; align-items: center; gap: 0.4rem; }
+      input, select { padding: 0.5rem; font-size: 1rem; border: 1px solid #d6cce8; border-radius: 6px; }
+      button[type=submit] { padding: 0.8rem; font-size: 1rem; background: var(--accent);
+        color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+      .chart-section { text-align: center; margin: 1.5rem 0; }
+      .chart-summary { font-size: 0.95rem; }
+      .note { font-size: 0.8rem; color: #907fb0; }
+      .tabs { display: flex; gap: 0.5rem; margin: 1.5rem 0 1rem; }
+      .tabs button { flex: 1; padding: 0.6rem; font-size: 0.95rem; font-family: inherit;
+        background: #f0eafa; color: var(--accent); border: none; border-radius: 8px 8px 0 0; cursor: pointer; }
+      .tabs button.active { background: var(--accent); color: #fff; }
+      .period-label { text-align: center; font-size: 0.85rem; color: #907fb0; margin: 0 0 1rem; }
+      .card { border: 1px solid #e5ddf2; border-radius: 10px; padding: 1.1rem 1.2rem; margin: 0.9rem 0; background: #fff; }
+      .card.main { border-color: var(--accent); box-shadow: 0 2px 12px rgba(124,92,191,0.08); }
+      .card h4 { margin: 0 0 0.6rem; font-size: 1.05rem; color: var(--accent); font-weight: normal; }
+      .card.sub h4 { font-size: 0.9rem; color: #a595c2; }
+      .fortune { white-space: pre-wrap; margin: 0; }
+      .sub-text { font-size: 0.95rem; }
+      .placeholder { color: #b0a030; font-size: 0.9rem; }
+      .basis-details { margin-top: 1.2rem; font-size: 0.82rem; color: #8a7ca8; }
+      .basis-details summary { cursor: pointer; color: var(--accent); }
+      .basis-details ul { padding-left: 1.2rem; }
+    </style>
+  </head>
+  <body>
+    <nav><a href="/">← 推しの占い子トップ</a>　<a href="/about">この占いについて</a></nav>
+    <main>
+      <h1>あなたの星を読む</h1>
+      <ReadingApp client:load />
+    </main>
+  </body>
+</html>

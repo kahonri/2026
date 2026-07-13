@@ -1,0 +1,41 @@
+---
+const title = "推しの占い子｜あなたの星を読む";
+const description = "生年月日と出生地から、いまのあなたに巡ってくる星の動きを読む。石井ゆかり風の週報・月報スタイルのパーソナル占い。";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <style>
+      body { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; margin: 0;
+        color: #3a3245; background: linear-gradient(160deg, #f7f4fc, #efe9fa); min-height: 100vh; }
+      main { max-width: 620px; margin: 0 auto; padding: 3rem 1.5rem; text-align: center; }
+      h1 { font-size: 1.8rem; font-weight: normal; letter-spacing: 0.1em; line-height: 1.6; }
+      .lead { font-size: 1rem; line-height: 2; color: #5a4f6e; margin: 1.5rem 0 2.5rem; }
+      .cta { display: inline-block; padding: 0.9rem 2.4rem; background: #7c5cbf; color: #fff;
+        border-radius: 999px; text-decoration: none; font-size: 1.05rem; letter-spacing: 0.05em; }
+      .sub { margin-top: 1.5rem; font-size: 0.85rem; }
+      .sub a { color: #7c5cbf; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>推しの占い子<br />あなたの星を読む</h1>
+      <p class="lead">
+        生まれた日、生まれた時間、生まれた場所。<br />
+        その瞬間の星の配置から、<br />
+        いまのあなたに巡ってくる流れを読みます。
+      </p>
+      <a class="cta" href="/reading">星を読んでもらう</a>
+      <p class="sub"><a href="/about">この占いについて</a></p>
+    </main>
+  </body>
+</html>
