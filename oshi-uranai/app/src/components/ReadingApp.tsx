@@ -5,7 +5,8 @@ import { composeText } from "../lib/compose-text";
 import { computeNatal, type BirthData } from "../lib/natal";
 import { selectReading, type Reading, type ScoredEvent } from "../lib/scoring";
 import { weeklyTransits, monthlyTransits, type Period } from "../lib/transits";
-import { cardTitle, basisText } from "../lib/themes";
+import { cardTitle, cardMeta, keyPoint, basisText } from "../lib/themes";
+import { dailyConditions, pickDaysByType, DAY_TYPE_LABELS, type DayCondition } from "../lib/daily";
 import { SIGNS, type NatalChart } from "../lib/types";
 
 const STORAGE_KEY = "oshi-uranai-birth";
@@ -87,10 +88,15 @@ function BirthdatePicker({ value, onChange }: { value: string; onChange: (v: str
   );
 }
 
-function EventCard({ ev, kind, periodLabel }: { ev: ScoredEvent; kind: "main" | "sub"; periodLabel: string }) {
+function EventCard({ ev, kind, periodLabel, kicker }: {
+  ev: ScoredEvent; kind: "main" | "sub"; periodLabel: string; kicker?: string;
+}) {
   const composed = composeText(ev, periodLabel);
+  const meta = cardMeta(ev);
   return (
     <div class={`card ${kind}`}>
+      {kicker && <p class="card-kicker">{kicker}</p>}
+      {meta && <p class="card-meta">{meta}</p>}
       <h4>{cardTitle(ev)}</h4>
       {kind === "main" ? (
         composed.available
@@ -105,11 +111,122 @@ function EventCard({ ev, kind, periodLabel }: { ev: ScoredEvent; kind: "main" | 
   );
 }
 
-function ReadingResult({ reading, period }: { reading: Reading; period: Period }) {
+function fmtDay(d: DayCondition): string {
+  return `${d.month}/${d.day}（${WEEKDAYS[d.weekday]}）`;
+}
+
+const DAY_TYPE_COLORS = { attack: "#7c5cbf", arrange: "#a58fd0", rest: "#c9c2da" } as const;
+
+/** Catmull-Rom スプラインで滑らかな曲線パスを作る（yはチャート領域内にクランプ） */
+function smoothPath(pts: { x: number; y: number }[], yMin: number, yMax: number): string {
+  if (pts.length < 3) return pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ");
+  const clamp = (y: number) => Math.min(Math.max(y, yMin), yMax);
+  let d = `M${pts[0].x},${pts[0].y}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] ?? pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] ?? p2;
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = clamp(p1.y + (p2.y - p0.y) / 6);
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = clamp(p2.y - (p3.y - p1.y) / 6);
+    d += ` C${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`;
+  }
+  return d;
+}
+
+function RhythmChart({ days, dense }: { days: DayCondition[]; dense?: boolean }) {
+  const W = 560;
+  const H = 150;
+  const padL = 20;
+  const padR = dense ? 20 : 34;
+  const padT = 18;
+  const padB = 30;
+  const levelY = { attack: padT, arrange: (padT + H - padB) / 2, rest: H - padB } as const;
+  const step = (W - padL - padR) / Math.max(days.length - 1, 1);
+  const pts = days.map((d, i) => ({ x: padL + i * step, y: levelY[d.type], d }));
+  const path = smoothPath(pts, padT, H - padB);
+  return (
+    <svg class="rhythm-chart" viewBox={`0 0 ${W} ${H}`} role="img"
+      aria-label="日ごとのバイオリズム（上にあるほど運勢がいい日、下にあるほど低迷の日）">
+      <defs>
+        <linearGradient id="rhythm-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7c5cbf" stop-opacity="0.14" />
+          <stop offset="0.55" stop-color="#7c5cbf" stop-opacity="0.03" />
+          <stop offset="1" stop-color="#8a8496" stop-opacity="0.1" />
+        </linearGradient>
+      </defs>
+      <rect x={padL - 12} y={padT - 10} width={W - padL - padR + 24} height={H - padT - padB + 20}
+        rx="10" fill="url(#rhythm-bg)" />
+      <path d={path} fill="none" stroke="#9d84cc" stroke-width="2.5"
+        stroke-linejoin="round" stroke-linecap="round" />
+      {pts.map((p) => (
+        <circle key={`${p.d.month}-${p.d.day}`} cx={p.x} cy={p.y}
+          r={dense ? 3 : 4.5} fill={DAY_TYPE_COLORS[p.d.type]} />
+      ))}
+      {pts.map((p, i) => {
+        if (dense && p.d.day % 5 !== 0 && i !== 0) return null;
+        return (
+          <text key={`l${p.d.month}-${p.d.day}`} x={p.x} y={H - padB + 18}
+            text-anchor="middle" font-size="10" fill="#a99cc4">
+            {dense ? `${p.d.month}/${p.d.day}` : `${p.d.month}/${p.d.day}(${WEEKDAYS[p.d.weekday]})`}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
+const RHYTHM_NOTE =
+  "攻める日＝動く・話す・決めるのに向く日／整える日＝段取り・見直し・判断の保留に向く日／休む日＝無理をしない日";
+
+function WeeklyRhythm({ days }: { days: DayCondition[] }) {
+  return (
+    <div class="rhythm">
+      <p class="block-label">今週のバイオリズム</p>
+      <RhythmChart days={days} />
+    </div>
+  );
+}
+
+function MonthlyRhythm({ days }: { days: DayCondition[] }) {
+  const types = ["attack", "arrange", "rest"] as const;
+  return (
+    <div class="rhythm">
+      <p class="block-label">今月のバイオリズム</p>
+      <RhythmChart days={days} dense />
+      <ul class="rhythm-rows">
+        {types.map((type) => {
+          const picked = pickDaysByType(days, type, 4);
+          return (
+            <li key={type}>
+              <span class={`day-chip ${type}`}><span class="chip-type">{DAY_TYPE_LABELS[type]}</span></span>
+              <span class="rhythm-dates">
+                {picked.length > 0 ? picked.map(fmtDay).join("・") : "今月は特になし"}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <p class="rhythm-note">{RHYTHM_NOTE}</p>
+    </div>
+  );
+}
+
+function ReadingResult({ reading, period, kind, days }: {
+  reading: Reading; period: Period; kind: "weekly" | "monthly"; days: DayCondition[];
+}) {
   return (
     <div>
       <p class="period-label">{period.label}</p>
-      <EventCard ev={reading.main} kind="main" periodLabel={period.label} />
+      <EventCard ev={reading.main} kind="main" periodLabel={period.label}
+        kicker={kind === "weekly" ? "今週の運勢" : "今月の運勢"} />
+      <div class="keypoint">
+        <p class="block-label">{kind === "weekly" ? "今週" : "今月"}いちばん大切にしてほしいこと</p>
+        <p class="kp-text">{keyPoint(reading.main)}</p>
+      </div>
+      {kind === "weekly" ? <WeeklyRhythm days={days} /> : <MonthlyRhythm days={days} />}
       {reading.subs.map((ev) => (
         <EventCard ev={ev} kind="sub" key={ev.patternId} periodLabel={period.label} />
       ))}
@@ -127,8 +244,8 @@ function ReadingResult({ reading, period }: { reading: Reading; period: Period }
 
 type Result = {
   chart: NatalChart;
-  weekly: { reading: Reading; period: Period };
-  monthly: { reading: Reading; period: Period };
+  weekly: { reading: Reading; period: Period; days: DayCondition[] };
+  monthly: { reading: Reading; period: Period; days: DayCondition[] };
 };
 
 export default function ReadingApp() {
@@ -168,8 +285,16 @@ export default function ReadingApp() {
     const mo = monthlyTransits(chart, now);
     return {
       chart,
-      weekly: { reading: selectReading(w.events, chart, "weekly", w.period.label), period: w.period },
-      monthly: { reading: selectReading(mo.events, chart, "monthly", mo.period.label), period: mo.period },
+      weekly: {
+        reading: selectReading(w.events, chart, "weekly", w.period.label),
+        period: w.period,
+        days: dailyConditions(chart, w.period),
+      },
+      monthly: {
+        reading: selectReading(mo.events, chart, "monthly", mo.period.label),
+        period: mo.period,
+        days: dailyConditions(chart, mo.period),
+      },
     };
   }
 
@@ -246,8 +371,8 @@ export default function ReadingApp() {
           </div>
 
           {tab === "weekly"
-            ? <ReadingResult {...result.weekly} />
-            : <ReadingResult {...result.monthly} />}
+            ? <ReadingResult {...result.weekly} kind="weekly" />
+            : <ReadingResult {...result.monthly} kind="monthly" />}
         </div>
       )}
     </div>
