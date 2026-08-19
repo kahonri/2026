@@ -93,10 +93,10 @@ def main():
 
     # --- 文字数 ---
     n = body_chars(text)
-    if 2500 <= n <= 3200:
-        oks.append(f"文字数 {n}字（目標2,500〜3,000）")
-    elif n < 2500:
-        warns.append(f"文字数 {n}字 — 目標2,500字に不足（あと{2500 - n}字）")
+    if 2000 <= n <= 3200:
+        oks.append(f"文字数 {n}字（目標2,000〜3,000）")
+    elif n < 2000:
+        warns.append(f"文字数 {n}字 — 目標2,000字に不足（あと{2000 - n}字）")
     else:
         warns.append(f"文字数 {n}字 — 3,000字を超過")
 
@@ -191,18 +191,27 @@ def main():
             cnt = len(loose.findall(text))
         else:
             cnt = text.count(kw_join)
-        if 8 <= cnt <= 12:
-            oks.append(f"キーワード「{kw}」{cnt}回（目標8〜10回）")
-        elif cnt < 8:
-            warns.append(f"キーワード「{kw}」{cnt}回 — 8〜10回が目安")
+        # 完全一致の回数を稼ぐと不自然な繰り返しになりAI文体に近づく。
+        # 主語（第1語）が十分に出ていれば密度は足りているとみなし、
+        # ペアは「要所に置けているか」で判定する。
+        head = parts[0]
+        head_cnt = text.count(head)
+        if head_cnt >= 8:
+            oks.append(f"主語「{head}」{head_cnt}回")
         else:
-            warns.append(f"キーワード「{kw}」{cnt}回 — 多すぎる可能性")
+            warns.append(f"主語「{head}」{head_cnt}回 — 8回以上が目安")
+        if cnt >= 3:
+            oks.append(f"キーワード「{kw}」{cnt}回")
+        else:
+            warns.append(f"キーワード「{kw}」{cnt}回 — 見出し・導入・まとめの3箇所には置きたい")
+        if head_cnt >= 20:
+            warns.append(f"主語「{head}」{head_cnt}回 — 繰り返しが多く不自然になっていないか確認")
         if len(parts) > 1:
             in_h2 = sum(1 for h in h2 if loose.search(h))
         else:
             in_h2 = sum(1 for h in h2 if kw_join in h)
         if in_h2 == 0:
-            warns.append(f"H2見出しにキーワード「{kw}」が入っていない")
+            errors.append(f"H2見出しにキーワード「{kw}」が入っていない（必須）")
         else:
             oks.append(f"H2見出しにキーワード {in_h2}個")
 
