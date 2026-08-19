@@ -1,8 +1,10 @@
 # COSSブログ AIヒューマナイザー
 
-出典: `coss/blog/ai_humanize_rules.md`
-2026年3月「ヨガの効果はいつから？」記事のリライト作業から抽出した実地ルール。
-ベースは Wikipedia "Signs of AI Writing" の日本語記事への適用。
+2026年3月に公開した「ヨガの効果はいつから？」記事のリライト作業から抽出した実地ルール。
+ベースは Humanizer スキル（Wikipedia "Signs of AI Writing" 準拠）の日本語記事への適用。
+
+もとは `coss/blog/ai_humanize_rules.md` にあったものをこのファイルに一本化した
+（2026-08-19）。旧ファイルの内容は git 履歴に残っている。
 
 **このファイルのルールが最優先。** 構成が正しくてもここを外すと差し戻しになる。
 
