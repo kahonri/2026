@@ -1,0 +1,442 @@
+{
+  "weeks": [
+    {
+      "week": "2024-W14",
+      "start_utc": "2024-03-31T15:00:00Z",
+      "end_utc": "2024-04-07T15:00:00Z",
+      "ingresses": [
+        {
+          "utc": "2024-04-01T04:05:23Z",
+          "sign": 9,
+          "voc_start_utc": "2024-04-01T00:15:56Z"
+        },
+        {
+          "utc": "2024-04-03T09:07:44Z",
+          "sign": 10,
+          "voc_start_utc": "2024-04-03T05:40:18Z"
+        },
+        {
+          "utc": "2024-04-05T11:12:25Z",
+          "sign": 11,
+          "voc_start_utc": "2024-04-05T05:39:22Z"
+        },
+        {
+          "utc": "2024-04-07T11:24:36Z",
+          "sign": 0,
+          "voc_start_utc": "2024-04-06T21:10:46Z"
+        }
+      ],
+      "phases": [
+        {
+          "utc": "2024-04-02T03:14:45Z",
+          "angle": 270
+        }
+      ],
+      "retro_changes": [
+        {
+          "utc": "2024-04-02T03:00:00Z",
+          "planet": "mercury",
+          "startsRetro": true
+        }
+      ],
+      "aspects_start": [
+        {
+          "a": "jupiter",
+          "b": "uranus",
+          "angle": 0,
+          "orb": 3.49
+        },
+        {
+          "a": "venus",
+          "b": "neptune",
+          "angle": 0,
+          "orb": 3.51
+        },
+        {
+          "a": "venus",
+          "b": "uranus",
+          "angle": 60,
+          "orb": 3.62
+        },
+        {
+          "a": "jupiter",
+          "b": "saturn",
+          "angle": 60,
+          "orb": 3.72
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 3.97
+        },
+        {
+          "a": "mercury",
+          "b": "pluto",
+          "angle": 90,
+          "orb": 4.74
+        }
+      ],
+      "aspects_end": [
+        {
+          "a": "venus",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 1.08
+        },
+        {
+          "a": "mars",
+          "b": "saturn",
+          "angle": 0,
+          "orb": 2.17
+        },
+        {
+          "a": "jupiter",
+          "b": "uranus",
+          "angle": 0,
+          "orb": 2.32
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 3.81
+        },
+        {
+          "a": "jupiter",
+          "b": "saturn",
+          "angle": 60,
+          "orb": 4.46
+        },
+        {
+          "a": "venus",
+          "b": "neptune",
+          "angle": 0,
+          "orb": 4.89
+        }
+      ]
+    },
+    {
+      "week": "2025-W02",
+      "start_utc": "2025-01-05T15:00:00Z",
+      "end_utc": "2025-01-12T15:00:00Z",
+      "ingresses": [
+        {
+          "utc": "2025-01-05T19:00:42Z",
+          "sign": 0,
+          "voc_start_utc": "2025-01-05T11:57:11Z"
+        },
+        {
+          "utc": "2025-01-07T22:11:29Z",
+          "sign": 1,
+          "voc_start_utc": "2025-01-07T21:15:56Z"
+        },
+        {
+          "utc": "2025-01-10T01:06:47Z",
+          "sign": 2,
+          "voc_start_utc": "2025-01-09T22:50:09Z"
+        },
+        {
+          "utc": "2025-01-12T04:24:08Z",
+          "sign": 3,
+          "voc_start_utc": "2025-01-12T00:03:16Z"
+        }
+      ],
+      "phases": [
+        {
+          "utc": "2025-01-06T23:56:29Z",
+          "angle": 90
+        }
+      ],
+      "retro_changes": [],
+      "aspects_start": [
+        {
+          "a": "sun",
+          "b": "saturn",
+          "angle": 60,
+          "orb": 0.64
+        },
+        {
+          "a": "mars",
+          "b": "pluto",
+          "angle": 180,
+          "orb": 0.9
+        },
+        {
+          "a": "mercury",
+          "b": "neptune",
+          "angle": 90,
+          "orb": 1.31
+        },
+        {
+          "a": "jupiter",
+          "b": "saturn",
+          "angle": 90,
+          "orb": 2.14
+        },
+        {
+          "a": "mars",
+          "b": "neptune",
+          "angle": 120,
+          "orb": 2.94
+        },
+        {
+          "a": "uranus",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 3.84
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 3.84
+        }
+      ],
+      "aspects_end": [
+        {
+          "a": "mars",
+          "b": "neptune",
+          "angle": 120,
+          "orb": 0.11
+        },
+        {
+          "a": "sun",
+          "b": "uranus",
+          "angle": 120,
+          "orb": 0.74
+        },
+        {
+          "a": "venus",
+          "b": "jupiter",
+          "angle": 90,
+          "orb": 2.34
+        },
+        {
+          "a": "jupiter",
+          "b": "saturn",
+          "angle": 90,
+          "orb": 3.34
+        },
+        {
+          "a": "mercury",
+          "b": "venus",
+          "angle": 60,
+          "orb": 3.75
+        },
+        {
+          "a": "mars",
+          "b": "pluto",
+          "angle": 180,
+          "orb": 3.83
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 3.94
+        },
+        {
+          "a": "uranus",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 4.09
+        },
+        {
+          "a": "mars",
+          "b": "uranus",
+          "angle": 60,
+          "orb": 4.2
+        },
+        {
+          "a": "sun",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 4.83
+        },
+        {
+          "a": "sun",
+          "b": "mars",
+          "angle": 180,
+          "orb": 4.94
+        },
+        {
+          "a": "venus",
+          "b": "saturn",
+          "angle": 0,
+          "orb": 5.68
+        }
+      ]
+    },
+    {
+      "week": "2026-W29",
+      "start_utc": "2026-07-12T15:00:00Z",
+      "end_utc": "2026-07-19T15:00:00Z",
+      "ingresses": [
+        {
+          "utc": "2026-07-12T22:46:38Z",
+          "sign": 3,
+          "voc_start_utc": "2026-07-11T22:11:15Z"
+        },
+        {
+          "utc": "2026-07-14T22:35:23Z",
+          "sign": 4,
+          "voc_start_utc": "2026-07-13T21:57:39Z"
+        },
+        {
+          "utc": "2026-07-17T00:07:15Z",
+          "sign": 5,
+          "voc_start_utc": "2026-07-15T22:26:43Z"
+        },
+        {
+          "utc": "2026-07-19T04:56:29Z",
+          "sign": 6,
+          "voc_start_utc": "2026-07-18T22:13:07Z"
+        }
+      ],
+      "phases": [
+        {
+          "utc": "2026-07-14T09:43:49Z",
+          "angle": 0
+        }
+      ],
+      "retro_changes": [],
+      "aspects_start": [
+        {
+          "a": "uranus",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 0.15
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 0.21
+        },
+        {
+          "a": "uranus",
+          "b": "pluto",
+          "angle": 120,
+          "orb": 0.37
+        },
+        {
+          "a": "sun",
+          "b": "mercury",
+          "angle": 0,
+          "orb": 0.69
+        },
+        {
+          "a": "venus",
+          "b": "uranus",
+          "angle": 90,
+          "orb": 1.04
+        },
+        {
+          "a": "jupiter",
+          "b": "uranus",
+          "angle": 60,
+          "orb": 1.58
+        },
+        {
+          "a": "jupiter",
+          "b": "neptune",
+          "angle": 120,
+          "orb": 1.73
+        },
+        {
+          "a": "jupiter",
+          "b": "pluto",
+          "angle": 180,
+          "orb": 1.94
+        },
+        {
+          "a": "mars",
+          "b": "saturn",
+          "angle": 60,
+          "orb": 4.82
+        },
+        {
+          "a": "mars",
+          "b": "pluto",
+          "angle": 120,
+          "orb": 5.13
+        },
+        {
+          "a": "mars",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 5.34
+        },
+        {
+          "a": "mars",
+          "b": "uranus",
+          "angle": 0,
+          "orb": 5.5
+        },
+        {
+          "a": "sun",
+          "b": "saturn",
+          "angle": 90,
+          "orb": 5.71
+        }
+      ],
+      "aspects_end": [
+        {
+          "a": "mars",
+          "b": "saturn",
+          "angle": 60,
+          "orb": 0.09
+        },
+        {
+          "a": "uranus",
+          "b": "pluto",
+          "angle": 120,
+          "orb": 0.09
+        },
+        {
+          "a": "neptune",
+          "b": "pluto",
+          "angle": 60,
+          "orb": 0.09
+        },
+        {
+          "a": "jupiter",
+          "b": "neptune",
+          "angle": 120,
+          "orb": 0.16
+        },
+        {
+          "a": "uranus",
+          "b": "neptune",
+          "angle": 60,
+          "orb": 0.18
+        },
+        {
+          "a": "jupiter",
+          "b": "pluto",
+          "angle": 180,
+          "orb": 0.24
+        },
+        {
+          "a": "jupiter",
+          "b": "uranus",
+          "angle": 60,
+          "orb": 0.33
+        },
+        {
+          "a": "mercury",
+          "b": "saturn",
+          "angle": 90,
+          "orb": 2.44
+        },
+        {
+          "a": "venus",
+          "b": "mars",
+          "angle": 90,
+          "orb": 3.72
+        }
+      ]
+    }
+  ]
+}
