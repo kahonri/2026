@@ -24,13 +24,25 @@ export interface ChartPoint {
   retro?: boolean;
 }
 
+/** ドラゴンヘッド／テイル。NatalPoint とは別枠（トランジット判定の対象外） */
+export type NodePoint = "northNode" | "southNode";
+
+export const NODE_LABELS: Record<NodePoint, string> = {
+  northNode: "ドラゴンヘッド",
+  southNode: "ドラゴンテイル",
+};
+
 export interface NatalChart {
   points: Partial<Record<NatalPoint, ChartPoint>>;
+  /** 月の交点（平均交点）。逆行は常時のため retro は持たない */
+  nodes?: Record<NodePoint, ChartPoint>;
   birthTimeKnown: boolean;
   /** 時刻不明時、月がサイン境界±7度以内なら true */
   moonUncertain?: boolean;
   /** ASCサイン番号（時刻既知のみ）。ホールサインハウス計算の基点 */
   ascSign?: number;
+  /** プラシーダスの12カスプ（度、[0]=1室）。時刻既知かつ計算可能なときのみ */
+  cusps?: number[];
 }
 
 export function signOf(lon: number): number {

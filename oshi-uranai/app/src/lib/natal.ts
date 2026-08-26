@@ -1,5 +1,6 @@
 import { eclipticLon, isRetrograde } from "./ephemeris";
-import { ascMc } from "./houses";
+import { ascMc, placidusCusps } from "./houses";
+import { meanNorthNode, meanSouthNode } from "./nodes";
 import { PLANETS, signOf, degInSign, type ChartPoint, type NatalChart } from "./types";
 
 export interface BirthData {
@@ -32,11 +33,17 @@ export function computeNatal(b: BirthData): NatalChart {
     chart.points[p] = point(eclipticLon(p, dt), isRetrograde(p, dt));
   }
 
+  chart.nodes = {
+    northNode: point(meanNorthNode(dt)),
+    southNode: point(meanSouthNode(dt)),
+  };
+
   if (birthTimeKnown) {
     const { asc, mc } = ascMc(dt, b.lat, b.lon);
     chart.points.asc = point(asc);
     chart.points.mc = point(mc);
     chart.ascSign = signOf(asc);
+    chart.cusps = placidusCusps(dt, b.lat, b.lon) ?? undefined;
   } else {
     // 正午計算では月は最大±7度ずれる。サイン境界に近ければ「不確か」扱い
     const moonDeg = chart.points.moon!.degInSign;
