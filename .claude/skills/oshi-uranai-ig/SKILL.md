@@ -40,6 +40,7 @@ python .claude/skills/oshi-uranai-weekly/scripts/fetch_astro.py --week YYYY-Wnn
 - 対象週を間違えない。ユーザーが日付を言ったらその週に `--week` で合わせる。
 - **astro.com等のWebFetch読み取りは禁止**（星座記号を誤読するため）。データ源は本スクリプトかユーザー提供の2択。
 - ユーザーが手元データを持っていれば、そちらで上書きする。
+- **曜日を設計書の表から読まない。必ず実測する**（`python -c "import datetime;print(datetime.date(Y,M,D).weekday())"` または fetch_astro の見出し行）。過去に設計書のカレンダーが1日ずれていた。
 
 ### 2. 「人間の感情」を1つに絞る
 
