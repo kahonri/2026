@@ -1,7 +1,19 @@
 # Shopify用HTML変換ルール
 
 出典: `coss/blog/backup/HTML変換用プロンプト_v2.md`
-構造の実例: `coss/blog/pilates-shopify.html`（既存16記事のいずれでも可）
+構造の実例: `coss/blog/11-pilates-shopify.html`（既存16記事のいずれでも可）
+ファイル名の先頭2桁はキーワード管理表A列のNo。新規記事にも必ず付ける。
+
+---
+
+## 記事の並び順
+
+```
+導入 → 本文H2 × 3〜5 → 運動後のスキンケア → よくある質問 → まとめ
+→ 参考資料＋免責注記 → 記事末尾CTA
+```
+
+参考資料と免責は必須。抜けたまま公開しない。
 
 ---
 
@@ -65,28 +77,54 @@ Markdownの `[詳しく見る →](/products/coss-the-gel-45g)` は:
 
 ---
 
-## 5. 記事末尾CTA（まとめセクションの後）
+## 5. 固定パーツ（毎回書き起こさない）
+
+参考資料・免責注記・記事末尾CTAは**全記事で同一**にする。
+記事ごとに書き起こすと文言がぶれる（実例：05と08のCTAだけ「1本で完結」のまま残っていた）。
+以下をそのままコピーして使う。変えるのは参考資料の `<li>` の中身だけ。
+
+### 5-1. 参考資料＋免責注記（まとめの後、CTAの前）★必須
+
+```html
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
+
+<h2>参考資料</h2>
+<ul>
+<li>※1 {国内の発行機関「資料名」発行年}</li>
+<li>※2 {機関名フルネーム（略称）「資料名（原語）」}</li>
+</ul>
+<p style="font-size: 13px; color: #777;">※本記事で紹介している運動時間や頻度などは一般的な目安です。適切な運動量は年齢、体力、健康状態、運動経験などによって異なります。体調に不安がある場合や運動中に痛み・強い不調を感じた場合は、無理をせず医療機関などの専門家に相談してください。</p>
+```
+
+### 5-2. 記事末尾CTA
 
 ```html
 <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
 
 <div style="background: #f9f9f9; padding: 30px; border-radius: 10px; margin: 40px 0; text-align: center;">
-  <h3 style="color: #333; margin-top: 0;">運動×美容を両立したいあなたへ</h3>
-  <p style="color: #666; line-height: 1.8;">
-    運動後の肌は毛穴が開き、乾燥しやすい状態。<br>
-    でも、忙しい中でスキンケアの時間は取れない。
-  </p>
-  <p style="font-weight: bold; font-size: 20px; color: #ff6b35; margin: 25px 0;">
-    運動後のスキンケア、1本で完結
-  </p>
-  <div style="margin: 25px 0;">
-    <a href="/products/coss-the-gel-45g" style="display: inline-block; background: #ff6b35; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold;">
-      COSS THE GELを見てみる →
-    </a>
-  </div>
-  <p style="font-size: 14px; color: #999; margin-bottom: 0;">¥1,980 / 約1ヶ月分</p>
+<h3 style="color: #333; margin-top: 0;">運動×美容を両立したいあなたへ</h3>
+<p style="color: #666; line-height: 1.8;">運動後は汗や皮脂が肌に残りやすく、シャワー後は乾燥が気になることも。<br>忙しいときは、できるだけ手軽にスキンケアを済ませたいものです。</p>
+<p style="font-weight: bold; font-size: 20px; color: #ff6b35; margin: 25px 0;">運動後のスキンケアを、シンプルに</p>
+<div style="margin: 25px 0;"><a href="/products/coss-the-gel-45g" style="display: inline-block; background: #ff6b35; color: white; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold;"> COSS THE GELを見てみる → </a></div>
+<p style="font-size: 14px; color: #999; margin-bottom: 0;">¥1,980 / 約1ヶ月分</p>
 </div>
 ```
+
+旧版からの変更点（2026年9月）:
+
+- 「運動後の肌は**毛穴が開き**、乾燥しやすい状態」→ `yakkihou.md` の禁止表現だったので差し替え
+- 「運動後のスキンケア、1本で完結」→「運動後のスキンケアを、シンプルに」（効果の断定を回避）
+- ボタンの `transition: background 0.3s;` は削除（04にだけ残っていた）
+
+### 5-3. 商品紹介の本文（スキンケアセクション内）
+
+```html
+<p>そういう場面で使いやすいように開発したのが、<a href="/products/coss-the-gel-45g" style="color: #ff6b35; font-weight: bold;">COSS THE GEL（コスザゲル）</a>です。洗顔後のスキンケアを1本で済ませられるオールインワンゲルで、¥1,980（約1ヶ月分）。運動後の保湿を手軽に済ませたいときにも使いやすいアイテムです。</p>
+<p><a href="/products/coss-the-gel-45g" style="color: #ff6b35; font-weight: bold; text-decoration: none;">詳しく見る →</a></p>
+```
+
+「乾いた肌にそのままつけられる1本完結の」「洗顔後に1本で保湿が完了するので、支度の時間が
+短くなります」は旧版の表現。効果と時短を断定しているので使わない。
 
 ---
 
