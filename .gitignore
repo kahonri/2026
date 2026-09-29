@@ -7,3 +7,20 @@
 *.avi
 *.wav
 *.mp3
+
+# 口座情報を含む運用ファイル（公開リポジトリのため除外）
+oshi-uranai/docs/archive/relaunch-copy.md
+
+# 個人鑑定の納品物・フォーム回答（出生情報＋相談内容＝個人情報。公開リポジトリのため除外）
+oshi-uranai/kantei/
+oshi-uranai/ig-photos/
+
+# 名簿シートのID・GAS（個人情報の入り口。公開リポジトリのため除外）
+oshi-uranai/docs/links.md
+oshi-uranai/gas/
+oshi-uranai/mail/out/
+
+# 旧STATEのスナップショット（鑑定の依頼者名を含む。公開リポジトリのため除外）
+oshi-uranai/docs/archive/STATE_*.md
+# 実在の方の鑑定文
+oshi-uranai/samples/reading-natal-*.md
