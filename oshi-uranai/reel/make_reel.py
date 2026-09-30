@@ -195,11 +195,17 @@ class Scene:
 class TitleScene(Scene):
     """日付＋出来事の名前＋月（新月・満月・今の星の表紙）"""
 
-    def __init__(self, text, kicker="", sub="", moon=None, sec=3.2):
+    def __init__(self, text, kicker="", sub="", moon=None, sec=3.2, image=None):
         self.text, self.kicker, self.sub, self.moon, self.sec = text, kicker, sub, moon, sec
         self.moon_img = moon_layer(moon) if moon else None
+        # 任意：表紙にイラストを敷く（文字は真ん中に載るので、絵の中央は空けておく）
+        self.bg = ImageScene(image, sec=sec) if image else None
+        if self.bg:
+            self.stars = False
 
     def render(self, canvas, t):
+        if self.bg:
+            self.bg.render(canvas, t)
         if self.moon_img:
             p = ease(t / 1.0)
             canvas.alpha_composite(with_alpha(self.moon_img, p))
@@ -357,7 +363,8 @@ class EndScene(Scene):
 
 def t_moon(s):
     """新月・満月：表紙（月相）→ メッセージ → 3つの問い → 締め"""
-    out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase", "full"))]
+    out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase", "full"),
+                      image=s.get("cover_image") and resolve(s["cover_image"]))]
     if s.get("message"):
         out.append(TextScene(s["message"]))
     if s.get("questions"):
@@ -369,7 +376,8 @@ def t_moon(s):
 
 def t_sky(s):
     """今の星：表紙 →「人にどう思われる？」が消えて「私は、どうしたい？」→ メッセージ"""
-    out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase"))]
+    out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase"),
+                      image=s.get("cover_image") and resolve(s["cover_image"]))]
     if s.get("swap"):
         out.append(SwapScene(*s["swap"]))
     if s.get("message"):
@@ -389,6 +397,10 @@ def t_tarot(s):
     closing = s.get("closing", DEFAULT_CLOSING_TAROT)
     out.append(scene_from(closing) if isinstance(closing, dict) else TextScene(closing, size=70))
     return out
+
+
+def resolve(path):
+    return path if Path(path).is_absolute() else str(ROOT / path)
 
 
 def scene_from(item):
@@ -427,7 +439,9 @@ TEMPLATES = {"moon": t_moon, "sky": t_sky, "tarot": t_tarot, "know": t_know,
 def build_scenes(spec):
     scenes = TEMPLATES[spec["template"]](spec)
     # 任意：場面ごとにイラストを差し込む（{"at": 1, "image": "...", "text": "...", "ypos": 0.2}）
-    for ins in sorted(spec.get("images", []), key=lambda d: d["at"], reverse=True):
+    # 同じ at が複数あっても、JSONに書いた順で並ぶよう後ろから差し込む
+    images = list(enumerate(spec.get("images", [])))
+    for _, ins in sorted(images, key=lambda p: (p[1]["at"], p[0]), reverse=True):
         path = ins["image"] if Path(ins["image"]).is_absolute() else str(ROOT / ins["image"])
         scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec")))
     # 尺の指定があれば、エンドカード以外を等倍で伸び縮みさせる
