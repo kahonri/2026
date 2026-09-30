@@ -1,0 +1,13 @@
+{
+  "template": "tarot",
+  "question": "今、決められないこと\nがありますか？",
+  "card": {
+    "face": "assets/tarot/major-14-temperance.png",
+    "name": "節制",
+    "reversed": false
+  },
+  "meaning": [
+    "混ぜ合わせる、\nちょうどいい配分を探すカード。",
+    "白黒つける前に、\n両方を少しずつ試してみる。"
+  ]
+}
