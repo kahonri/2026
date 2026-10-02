@@ -82,7 +82,7 @@ npx vitest run tests/unit/personal-reading.probe.test.ts --disable-console-inter
 モヤモヤ欄は切り口の参考にとどめ、本文で引用しない。
 参考にする過去鑑定：`oshi-uranai/samples/sample-natal-19661203.md`・`sample-natal-19650507.md`・`reading-natal-19840814.md`
 
-⚠️ **文体の最新基準は `oshi-uranai/kantei/20260902_かえ.md`**（2026-09-02）。
+⚠️ **文体の最新基準は、`oshi-uranai/kantei/` にある 2026-09-02 作成の鑑定**（星野さんリライト版。冒頭メタの備考に「文体規範は」とあるもの＝`grep -l 文体規範は oshi-uranai/kantei/*` で1件に絞れる。ファイル名はリポジトリに書かない）。
 ハウスは「意味＋番号」表記、アスペクトは角度が主、サインは一般論→当てはめの二段、
 内心の声はセリフ改行、行動提案は対句、締めは許可から入る。詳細は設計書 5-1・6章・7-1。
 上の3本は**この表記に更新される前**の鑑定なので、構成の参考にとどめ、表記はまねしない。
