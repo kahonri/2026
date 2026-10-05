@@ -19,7 +19,7 @@ python oshi-uranai/reel/make_reel.py <spec.json> --still 2.0   # 2秒目の1コ�
 |---|---|---|---|
 | `moon` | 新月・満月 | 表紙（月相の線画）→ メッセージ → 問いを1つずつ → 締め | `date` `theme` `phase`（new/full/waxing/waning/crescent）`sub` `message` `questions_title` `questions`[] `closing` |
 | `sky` | 今の星 | 表紙 → 言葉が消えて別の言葉へ → メッセージ → 締め | `date` `theme` `phase`（任意）`swap`["前","後"] `message` `closing` |
-| `tarot` | タロット1枚引き | 伏せたカード＋問い → 返る → カード名 → 意味 → 締め | `question` `card`{`face` `name` `reversed`} `meaning`[] `closing`（省略時「答えを決めるためじゃなく、今の自分を知るために。」）。`meaning` と `closing` は `{"text","image","ypos"}` にすると、イラストを全面に敷いて札に字幕を載せる場面になる（例：`specs/2026-10-05_タロット_女教皇.json`） |
+| `tarot` | タロット1枚引き | 伏せたカード＋問い → 返る → カード名 → 意味 → 締め | `question` `card`{`face` `name` `reversed`} `meaning`[] `closing`（省略時「答えを決めるためじゃなく、今の自分を知るために。」）。`meaning` と `closing` は `{"text","image","ypos"}` にすると、イラストを全面に敷いて札に字幕を載せる場面になる（例：`specs/2026-10-05_タロット_女教皇.json`）。**台本の型は「見た人の今週の1枚」→ 解説 → カード再表示 → 「パッと頭に浮かんだことが、今週のあなたへのヒント」（2026-10-05確定・見本＝`specs/2026-10-05_タロット_女教皇_新構成テスト.json`）** |
 | `know` | 自分を知る | 表紙 → 項目を1つずつ → 問い | `kicker` `theme` `sub` `items_title` `items`[] `numbered` `question` |
 | `decide` | 自分で決める | 短い言葉を1場面ずつ → 締め | `lines`[] `closing`（`versus` も使える） |
 | `essay` | 自分を推す | 昔の私（グレー）→ 今の私（墨）→ 言葉 → 締め | `versus`{`before`[] `after`[]} `lines`[] `closing` |
