@@ -372,7 +372,8 @@ def t_moon(s):
     if s.get("questions"):
         out.append(ListScene(s["questions"], s.get("questions_title", "")))
     if s.get("closing"):
-        out.append(TextScene(s["closing"], size=72))
+        c = s["closing"]
+        out.append(scene_from(c) if isinstance(c, dict) else TextScene(c, size=72))
     return out
 
 
