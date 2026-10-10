@@ -365,8 +365,10 @@ def t_moon(s):
     """新月・満月：表紙（月相）→ メッセージ → 3つの問い → 締め"""
     out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase", "full"),
                       image=s.get("cover_image") and resolve(s["cover_image"]))]
-    if s.get("message"):
-        out.append(TextScene(s["message"]))
+    # message は文字列なら1場面、リストなら1要素1場面（オリジナルのひとことを数場面で語るとき）
+    msg = s.get("message")
+    for line in (msg if isinstance(msg, list) else [msg] if msg else []):
+        out.append(scene_from(line))
     if s.get("questions"):
         out.append(ListScene(s["questions"], s.get("questions_title", "")))
     if s.get("closing"):
@@ -438,6 +440,9 @@ TEMPLATES = {"moon": t_moon, "sky": t_sky, "tarot": t_tarot, "know": t_know,
 
 def build_scenes(spec):
     scenes = TEMPLATES[spec["template"]](spec)
+    # 任意：締めのあと・エンドカードの前に案内の場面（エンドカード自体には文字を載せない）
+    if spec.get("cta"):
+        scenes.append(TextScene(spec["cta"], size=56))
     # 任意：場面ごとにイラストを差し込む（{"at": 1, "image": "...", "text": "...", "ypos": 0.2}）
     # 同じ at が複数あっても、JSONに書いた順で並ぶよう後ろから差し込む
     images = list(enumerate(spec.get("images", [])))

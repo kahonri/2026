@@ -17,7 +17,7 @@ python oshi-uranai/reel/make_reel.py <spec.json> --still 2.0   # 2秒目の1コ�
 
 | 値 | 系統 | 流れ | 使う項目 |
 |---|---|---|---|
-| `moon` | 新月・満月 | 表紙（月相の線画）→ メッセージ → 問いを1つずつ → 締め | `date` `theme` `phase`（new/full/waxing/waning/crescent）`sub` `message` `questions_title` `questions`[] `closing` |
+| `moon` | 新月・満月 | 表紙（月相の線画）→ メッセージ → 問いを1つずつ → 締め | `date` `theme` `phase`（new/full/waxing/waning/crescent）`sub` `message`（リストにすると1要素1場面。オリジナルのひとことを数場面で語るとき。例：`specs/2026-10-11_天秤座新月.json`）`questions_title` `questions`[] `closing` |
 | `sky` | 今の星 | 表紙 → 言葉が消えて別の言葉へ → メッセージ → 締め | `date` `theme` `phase`（任意）`swap`["前","後"] `message` `closing` |
 | `tarot` | タロット1枚引き | 伏せたカード＋問い → 返る → カード名 → 意味 → 締め | `question` `card`{`face` `name` `reversed`} `meaning`[] `closing`（省略時「答えを決めるためじゃなく、今の自分を知るために。」）。`meaning` と `closing` は `{"text","image","ypos"}` にすると、イラストを全面に敷いて札に字幕を載せる場面になる（例：`specs/2026-10-05_タロット_女教皇.json`）。**台本の型は「見た人の今週の1枚」→ 解説 → カード再表示 → 「パッと頭に浮かんだことが、今週のあなたへのヒント」（2026-10-05確定・見本＝`specs/2026-10-05_タロット_女教皇_新構成テスト.json`）** |
 | `know` | 自分を知る | 表紙 → 項目を1つずつ → 問い | `kicker` `theme` `sub` `items_title` `items`[] `numbered` `question` |
@@ -26,6 +26,7 @@ python oshi-uranai/reel/make_reel.py <spec.json> --still 2.0   # 2秒目の1コ�
 
 共通の任意項目：
 - `cover_image`（moon・sky）：表紙にイラストを敷く。文字は中央に載るので、絵の中央は空けておく（例：`specs/2026-10-03_金星逆行はじまり.json`）
+- `cta`：締めのあと・エンドカードの直前に案内の場面を1つ入れる（エンドカード自体には文字を載せない）。節目リールでは自分解説書の案内を入れる（例：`specs/2026-10-11_天秤座新月.json`）
 - `duration`：秒数を指定すると、エンドカード以外を等倍で伸び縮み（1場面の最短1.5秒）。省略時は文字量から自動
 - `images`：イラスト・写真を場面として差し込む。`[{"at": 1, "image": "clips/…/03.jpg", "text": "字幕", "ypos": 0.2}]`（`at`＝元の場面の何番目の前に入れるか。同じ `at` を並べるとJSONに書いた順に入る。字幕は生成りの札に載る。例：`specs/2026-10-03_金星逆行はじまり.json`）
 - パスは `oshi-uranai/` からの相対でも絶対でもよい
