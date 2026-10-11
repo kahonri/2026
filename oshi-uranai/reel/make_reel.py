@@ -210,9 +210,11 @@ class TitleScene(Scene):
             p = ease(t / 1.0)
             canvas.alpha_composite(with_alpha(self.moon_img, p))
         base = int(H * 0.60) if self.moon_img else int(H * 0.42)
-        draw_text(canvas, self.kicker, t, base - 110, size=44, color=GRAY)
+        # 表紙の言葉が複数行（冒頭の問いなど）でも、上の小見出し・下の補足が重ならないよう高さを測る
+        half = (int(92 * 1.7) * self.text.count("\n") + 92) // 2
+        draw_text(canvas, self.kicker, t, base - half - 70, size=44, color=GRAY)
         draw_text(canvas, self.text, t, base, size=92, start=0.25)
-        draw_text(canvas, self.sub, t, base + 150, size=44, color=GRAY, start=0.6)
+        draw_text(canvas, self.sub, t, base + half + 60, size=44, color=GRAY, start=0.6)
 
 
 class TextScene(Scene):

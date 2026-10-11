@@ -1,0 +1,27 @@
+{
+  "template": "moon",
+  "date": "10/16（金）冥王星 順行へ",
+  "theme": "この半年で、\n変わったこと、\nありますか？",
+  "phase": null,
+  "cover_image": "clips/2026-10-14_reel/00_cover.png",
+  "message": [
+    {
+      "text": "冥王星は、\n根っこから変わる星。\n毎年5か月ほど逆行して、\n内側で変化を育てます。",
+      "image": "clips/2026-10-14_reel/01.png",
+      "ypos": 0.14
+    },
+    {
+      "text": "5月から育っていたものが、\n10/16から少しずつ\n表に出てくる頃。",
+      "image": "clips/2026-10-14_reel/02.png",
+      "ypos": 0.16
+    }
+  ],
+  "closing": {
+    "text": "前の自分なら、\n選ばなかったものは？",
+    "image": "clips/2026-10-14_reel/03.png",
+    "ypos": 0.2,
+    "sec": 3.5
+  },
+  "cta": "自分を知るところから、\n始めたい方へ。\n\n「自分解説書」受付中\nプロフィールのリンクから",
+  "duration": 20
+}
