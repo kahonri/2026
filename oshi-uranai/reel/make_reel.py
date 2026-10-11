@@ -14,6 +14,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 HERE = Path(__file__).parent
@@ -318,11 +319,74 @@ class CardScene(Scene):
             draw_text(canvas, self.name, t - self.flip_at - 0.7, int(H * 0.52) + self.ch // 2 + 90, 52)
 
 
+class GrowingLines:
+    """絵の中の暗い線（地中の根など）だけを抜き出し、根元から線に沿った距離の順に描き足していく。
+    線を消した下地は、明るい側に寄せるフィルタで線だけ消して作る（土の色・点々の質感は残る）"""
+
+    def __init__(self, img, opt):
+        opt = opt if isinstance(opt, dict) else {}
+        rgb = img.convert("RGB")
+        lum = np.asarray(rgb.convert("L"), dtype=np.float32)
+        # 線を探す範囲の上端：指定がなければ、行の明るさがいちばん大きく落ちるところ（地面の線）を探す
+        if "top" in opt:
+            top = int(H * opt["top"])
+        else:
+            rows = lum.mean(axis=1)
+            sm = np.convolve(rows, np.ones(9) / 9, mode="same")
+            drop = sm[:-20] - sm[20:]
+            top = int(np.argmax(drop[int(H * 0.3):int(H * 0.9)]) + H * 0.3 + 20)
+        plate = rgb.filter(ImageFilter.MaxFilter(9))          # 細い暗い線を消した下地
+        base_lum = np.asarray(plate.convert("L"), dtype=np.float32)
+        alpha = np.clip((base_lum - lum - 18) / 50, 0, 1)     # 下地より暗いぶんだけ線とみなす
+        alpha[:top] = 0
+        mask = alpha > 0.35
+        # 根元＝範囲の上端のすぐ下にある線。そこから8方向にたどって、線に沿った距離を測る
+        dist = np.full(mask.shape, np.inf, dtype=np.float32)
+        front = np.zeros_like(mask)
+        front[top:top + 14] = mask[top:top + 14]
+        visited = front.copy()
+        dist[front] = 0
+        step = 0
+        while front.any() and step < 4000:
+            step += 1
+            grown = front.copy()
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    if dy or dx:
+                        grown |= np.roll(np.roll(front, dy, 0), dx, 1)
+            front = grown & mask & ~visited
+            visited |= front
+            dist[front] = step
+        far = dist[np.isfinite(dist)].max() if np.isfinite(dist).any() else 1
+        # つながっていない細かい線は、上からの深さで出す
+        lost = alpha > 0
+        lost &= ~np.isfinite(dist)
+        ys = np.arange(H, dtype=np.float32)[:, None].repeat(W, 1)
+        dist[lost] = (ys[lost] - top) / max(H - top, 1) * far
+        self.dist, self.far, self.alpha = dist / max(far, 1), far, alpha
+        # 下地は線の範囲（top より下）だけ差し替える。上の人物や猫の線はそのまま残す
+        keep = rgb.copy()
+        keep.paste(plate.crop((0, top, W, H)), (0, top))
+        self.plate = keep.convert("RGBA")
+        self.lines = np.asarray(rgb, dtype=np.uint8)
+        self.span = (opt.get("start", 0.05), opt.get("end", 0.9))   # 場面の何割目から何割目で伸びきるか
+
+    def frame(self, p):
+        a, b = self.span
+        x = min(max((p - a) / (b - a), 0), 1)
+        g = x * x * (3 - 2 * x) * 1.06                      # ゆっくり始まり、場面のあいだずっと伸び続ける
+        reveal = np.clip((g - self.dist) / 0.05, 0, 1)       # 伸びる先端は少しぼかす
+        layer = np.dstack([self.lines, (self.alpha * reveal * 255).astype(np.uint8)])
+        out = self.plate.copy()
+        out.alpha_composite(Image.fromarray(layer, "RGBA"))
+        return out
+
+
 class ImageScene(Scene):
     """イラスト・写真を全面に敷き、札に字幕を載せる（初リールと同じ見せ方）"""
     stars = False
 
-    def __init__(self, image, text="", ypos=0.2, sec=None):
+    def __init__(self, image, text="", ypos=0.2, sec=None, grow=None):
         img = Image.open(image).convert("RGB")
         scale = max(W / img.width, H / img.height)
         img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
@@ -330,10 +394,13 @@ class ImageScene(Scene):
                              (img.width - W) // 2 + W, (img.height - H) // 2 + H)).convert("RGBA")
         self.text, self.ypos = text, ypos
         self.sec = sec or (min(max(1.6 + len(text) * 0.1, 2.5), 5.5) if text else 3.0)
+        # 任意：線画（根っこ・枝・つたなど）を、根元から線に沿って伸ばす（"grow": true か {"top": 0.54}）
+        self.grow = GrowingLines(self.img, grow) if grow else None
 
     def render(self, canvas, t):
         z = 1 + 0.04 * t / self.sec
-        big = self.img.resize((int(W * z), int(H * z)), Image.BILINEAR)
+        frame = self.grow.frame(t / self.sec) if self.grow else self.img
+        big = frame.resize((int(W * z), int(H * z)), Image.BILINEAR)
         canvas.alpha_composite(big.crop(((big.width - W) // 2, (big.height - H) // 2,
                                          (big.width - W) // 2 + W, (big.height - H) // 2 + H)))
         if not self.text:
@@ -418,7 +485,7 @@ def scene_from(item):
     if not isinstance(item, dict):
         return TextScene(item)
     path = item["image"] if Path(item["image"]).is_absolute() else str(ROOT / item["image"])
-    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"))
+    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"), item.get("grow"))
 
 
 def t_know(s):
@@ -456,7 +523,7 @@ def build_scenes(spec):
     images = list(enumerate(spec.get("images", [])))
     for _, ins in sorted(images, key=lambda p: (p[1]["at"], p[0]), reverse=True):
         path = ins["image"] if Path(ins["image"]).is_absolute() else str(ROOT / ins["image"])
-        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec")))
+        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec"), ins.get("grow")))
     # 尺の指定があれば、エンドカード以外を等倍で伸び縮みさせる
     if spec.get("duration"):
         body = sum(sc.sec for sc in scenes)
