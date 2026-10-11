@@ -365,9 +365,17 @@ class GrowingLines:
         dist[lost] = (ys[lost] - top) / max(H - top, 1) * far
         self.dist, self.far, self.alpha = dist / max(far, 1), far, alpha
         # 下地は線の範囲（top より下）だけ差し替える。上の人物や猫の線はそのまま残す
-        keep = rgb.copy()
-        keep.paste(plate.crop((0, top, W, H)), (0, top))
-        self.plate = keep.convert("RGBA")
+        # 線のまわり（少し太らせた範囲）だけ下地に差し替え、それ以外は元の絵（土の点々など）をそのまま使う
+        near = Image.fromarray((alpha > 0.05).astype(np.uint8) * 255).filter(ImageFilter.MaxFilter(5))
+        near = np.asarray(near) > 0
+        # 線の上は、線を除いたまわりの平均色で埋める（明るい点を拾って白く浮かないように）
+        src = np.asarray(rgb, dtype=np.float32)
+        w = (~near).astype(np.float32)
+        blur = lambda a: np.asarray(Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(8)), dtype=np.float32)
+        den = blur(w * 255) / 255
+        fill = np.dstack([blur(src[..., c] * w) / np.maximum(den, 1e-3) for c in range(3)])
+        keep = np.where(near[..., None], np.clip(fill, 0, 255).astype(np.uint8), np.asarray(rgb, dtype=np.uint8))
+        self.plate = Image.fromarray(keep).convert("RGBA")
         self.lines = np.asarray(rgb, dtype=np.uint8)
         self.span = (opt.get("start", 0.05), opt.get("end", 0.9))   # 場面の何割目から何割目で伸びきるか
 
@@ -382,11 +390,38 @@ class GrowingLines:
         return out
 
 
+class Sprout:
+    """絵の中の小さなもの（芽・花など）を、地面を支点に小さい状態から伸び上がらせる。
+    box＝そのものを囲む四角（画像の px。下辺が地面）。四角の中は左隣の紙の色で埋めてから、拡大しながら重ねる"""
+
+    def __init__(self, img, opt):
+        x0, y0, x1, y1 = opt["box"]
+        self.box = (x0, y0, x1, y1)
+        rgb = np.asarray(img.convert("RGB"), dtype=np.uint8)
+        self.patch = Image.fromarray(rgb[y0:y1, x0:x1].copy())
+        fill = rgb[y0:y1, x0 - 6:x0 - 2].mean(axis=1, keepdims=True).astype(np.uint8)  # 行ごとの紙の色
+        self.blank = Image.fromarray(np.repeat(fill, x1 - x0, axis=1))
+        self.span = (opt.get("start", 0.1), opt.get("end", 0.7))
+
+    def apply(self, frame, p):
+        a, b = self.span
+        x = min(max((p - a) / (b - a), 0), 1)
+        k = 1 + 0.08 * math.sin(x * math.pi) if x < 1 else 1      # 伸びきる手前で少しだけ行き過ぎて戻る
+        s = max(x * x * (3 - 2 * x) * k, 0.001)
+        x0, y0, x1, y1 = self.box
+        out = frame.copy()
+        out.paste(self.blank, (x0, y0))
+        w, h = max(int((x1 - x0) * s), 1), max(int((y1 - y0) * s), 1)
+        sp = self.patch.resize((w, h), Image.LANCZOS)
+        out.paste(sp, ((x0 + x1 - w) // 2, y1 - h))
+        return out
+
+
 class ImageScene(Scene):
     """イラスト・写真を全面に敷き、札に字幕を載せる（初リールと同じ見せ方）"""
     stars = False
 
-    def __init__(self, image, text="", ypos=0.2, sec=None, grow=None):
+    def __init__(self, image, text="", ypos=0.2, sec=None, grow=None, sprout=None):
         img = Image.open(image).convert("RGB")
         scale = max(W / img.width, H / img.height)
         img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
@@ -396,10 +431,14 @@ class ImageScene(Scene):
         self.sec = sec or (min(max(1.6 + len(text) * 0.1, 2.5), 5.5) if text else 3.0)
         # 任意：線画（根っこ・枝・つたなど）を、根元から線に沿って伸ばす（"grow": true か {"top": 0.54}）
         self.grow = GrowingLines(self.img, grow) if grow else None
+        # 任意：芽などを地面から伸び上がらせる（"sprout": {"box": [x0, y0, x1, y1]}）
+        self.sprout = Sprout(self.img, sprout) if sprout else None
 
     def render(self, canvas, t):
         z = 1 + 0.04 * t / self.sec
         frame = self.grow.frame(t / self.sec) if self.grow else self.img
+        if self.sprout:
+            frame = self.sprout.apply(frame.convert("RGB"), t / self.sec).convert("RGBA")
         big = frame.resize((int(W * z), int(H * z)), Image.BILINEAR)
         canvas.alpha_composite(big.crop(((big.width - W) // 2, (big.height - H) // 2,
                                          (big.width - W) // 2 + W, (big.height - H) // 2 + H)))
@@ -485,7 +524,7 @@ def scene_from(item):
     if not isinstance(item, dict):
         return TextScene(item)
     path = item["image"] if Path(item["image"]).is_absolute() else str(ROOT / item["image"])
-    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"), item.get("grow"))
+    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"), item.get("grow"), item.get("sprout"))
 
 
 def t_know(s):
@@ -523,7 +562,7 @@ def build_scenes(spec):
     images = list(enumerate(spec.get("images", [])))
     for _, ins in sorted(images, key=lambda p: (p[1]["at"], p[0]), reverse=True):
         path = ins["image"] if Path(ins["image"]).is_absolute() else str(ROOT / ins["image"])
-        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec"), ins.get("grow")))
+        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec"), ins.get("grow"), ins.get("sprout")))
     # 尺の指定があれば、エンドカード以外を等倍で伸び縮みさせる
     if spec.get("duration"):
         body = sum(sc.sec for sc in scenes)
