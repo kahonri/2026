@@ -252,13 +252,18 @@ class ListScene(Scene):
 
     def render(self, canvas, t):
         marks = "①②③④⑤⑥"
-        top = int(H * 0.30)
+        size, line_gap, item_gap = 60, int(60 * 1.7), 170
+        labels = [f"{marks[i]} {item}" if self.numbered else item for i, item in enumerate(self.items)]
+        # 項目の行数に合わせて高さを測り、項目と項目の間を item_gap ずつ空ける（2行の問いでも詰まらない）
+        heights = [line_gap * label.count("\n") + size for label in labels]
+        total = sum(heights) + item_gap * (len(labels) - 1)
+        y = int(H * 0.42) - total // 2
         if self.title:
-            draw_text(canvas, self.title, t, top - 130, 46, GRAY)
+            draw_text(canvas, self.title, t, y - 110, 46, GRAY)
         step = 1.9
-        for i, item in enumerate(self.items):
-            label = f"{marks[i]} {item}" if self.numbered else item
-            draw_text(canvas, label, t, top + i * 210, 60, start=0.4 + i * step, stagger=0.2)
+        for i, (label, h) in enumerate(zip(labels, heights)):
+            draw_text(canvas, label, t, y + h // 2, size, start=0.4 + i * step, stagger=0.2)
+            y += h + item_gap
 
 
 class VersusScene(Scene):
