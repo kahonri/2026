@@ -28,7 +28,7 @@ NG_PHRASES = [
     (r"見ていきましょう", "読む前に予告するAIの癖", 0),
     (r"解説していきます", "読む前に予告するAIの癖", 0),
     (r"そんなときに便利なのが", "AI商品紹介の定番導入", 0),
-    (r"はずです", "根拠のない断言。「〜ことが多い」に置き換える", 0),
+    (r"はずです", "根拠のない断言。「〜こともあります」「〜人もいます」に置き換える", 0),
     (r"内側と外側の両方", "バランス感が作られすぎ", 0),
     (r"多角的に|多面的に", "曖昧なAI修飾語", 0),
     (r"——|――", "ダッシュ。読点か句点で切る", 0),
@@ -47,7 +47,7 @@ RISK_PHRASES = [
     # --- 状態変化の断定 ---
     # 「改善しない場合は医療機関へ」のような否定形は正当な表現なので除外する
     (r"改善(され|する|でき|に直結)(?!ない|ず|なけれ)|改善し(?!ない|ず|なけれ)",
-     "状態変化の断定。「〜と感じる人が多い」等に", 0),
+     "状態変化の断定。「〜と感じる人もいます」等に", 0),
     (r"治(り|る|す|せ)ま|完治", "医薬品的表現。化粧品では言えない", 0),
     (r"解消(され|する|し|でき)", "状態変化の断定。「〜が整いやすくなる」等に", 0),
     (r"(くすみ|シミ|しみ|たるみ|シワ|しわ)[がはを][^。]{0,10}"
@@ -55,7 +55,7 @@ RISK_PHRASES = [
     (r"毛穴が(小さく|目立たなく|引き締ま)", "見た目の改善の断定", 0),
     (r"肌質が変わ", "状態変化の断定。「肌の調子の傾向が変わってきたと感じる」等に", 0),
     (r"(疲れ|むくみ|こり|肩こり|腰痛)[がはを][^。]{0,8}(取れ|消え|なくな)",
-     "身体症状の改善の断定。「〜と感じる人が多い」等に", 0),
+     "身体症状の改善の断定。「〜と感じる人もいます」等に", 0),
     (r"ハリが(出|戻|生ま)", "状態変化の断定。「ハリのある印象を保ちやすい」等に", 0),
     # --- 因果の直結 ---
     (r"血行[^。]{0,25}(肌|くすみ|美肌|ハリ|ツヤ|美容)", "身体機能と美容効果の因果直結", 0),
@@ -83,6 +83,13 @@ ASSERT_NG = [
      "馴れ馴れしい口語。丁寧語を崩さない"),
     (r"想像以上", "不安を煽る表現。使わない"),
 ]
+
+# 頻度・比較の主張（references/evidence-rules.md 原則6）。裏づけがあれば使ってよいので警告にとどめる
+FREQ_CLAIMS = (r"よく聞く|よく見かけ|よくある(?!質問)|多くの人が|同じくらい多い|珍しくない|"
+               r"(人|方|こと)が多いです|(ほう|方)が確実|(ほう|方)が効く")
+
+# 論文の比喩を一般向け記事に持ち込まない（references/yakkihou.md）
+PAPER_IDIOMS = r"諸刃の剣|両刃の剣|もろ刃の剣"
 
 # 病名・診断名（references/evidence-rules.md）
 DISEASE = (r"腸脛靭帯炎|膝蓋骨軟骨症|ランナーズニー|シンスプリント|足底腱膜炎|"
@@ -266,13 +273,30 @@ def main():
     else:
         errors.append("参考資料セクションがない — まとめの後、記事末尾CTAの前に必須")
 
-    if "本記事で紹介している" in text and "医療機関" in text:
-        oks.append("免責注記あり")
-    else:
-        errors.append("免責注記がない — evidence-rules.md の定型文を入れる")
-
     # 参考資料より前を「本文」とみなす（出典の重複・数値チェックの対象）
     body_only = text.split("参考資料")[0]
+
+    # 免責注記は記事の内容に必要なものだけ入れる（2026-10 変更。一律挿入は廃止）
+    exercise_note = "運動時間や頻度" in text  # 運動用・目安ありの文面
+    has_amount = re.search(r"\d+\s*(分|回|日|週間|ヶ月|か月)|週\s*\d|頻度|運動時間", body_only)
+    if "本記事で紹介している" in text and "医療機関" in text:
+        oks.append("免責注記あり")
+        if exercise_note and not has_amount:
+            warns.append("「運動時間や頻度」の免責注記があるが、本文に運動時間・頻度の記載が見当たらない — "
+                         "運動用・目安なしの文面にする（evidence-rules.md「免責注記」）")
+    else:
+        errors.append("免責注記がない — 記事のジャンルに合う注記を入れる（evidence-rules.md「免責注記」）")
+
+    # 参考資料にURLを載せない（リンク切れ対策。references/evidence-rules.md）
+    ref_raw = re.split(r"<h2[^>]*>\s*参考資料|(?:^|\n)##\s*参考資料", raw)
+    if len(ref_raw) > 1:
+        ref_part = re.split(r"</ul>|<hr", ref_raw[-1], maxsplit=1)[0]
+        if re.search(r"href=|https?://", ref_part):
+            warns.append("参考資料にURL・リンクがある — URLは載せない（リンク切れ対策）")
+
+    # 画像のプレースホルダーが残っていないか
+    if re.search(r'src="\[画像', raw):
+        warns.append("画像srcがプレースホルダーのまま — 公開前にCDNのURLへ差し替える")
 
     # --- 本文に機関名が残っていないか（注番号方式） ---
     named = [org for org in SOURCE_ORGS if org in body_only]
@@ -356,6 +380,18 @@ def main():
                 f"        …{sentence_of(text, mm)[:70]}…"
             )
 
+    # --- 頻度・比較の主張（裏づけ確認） ---
+    for mm in re.finditer(FREQ_CLAIMS, body_only):
+        warns.append(
+            f"[頻度] 「{mm.group()}」 — 裏づけがあるか確認。なければ「〜こともあります」「〜人もいます」に\n"
+            f"        …{sentence_of(body_only, mm)[:70]}…"
+        )
+
+    # --- 論文の比喩 ---
+    mm = re.search(PAPER_IDIOMS, text)
+    if mm:
+        errors.append(f"「{mm.group()}」 — 論文の比喩。何がどう起こりうるかを具体的に書く")
+
     # --- 病名・診断名 ---
     mm = re.search(DISEASE, text)
     if mm:
@@ -380,7 +416,7 @@ def main():
         cut = re.search(r"(?:^|\n)##\s|<h2[^>]*>", summary)
         if cut:
             summary = summary[:cut.start()]
-        if re.search(r"^\s*[-*・✓]", summary, re.M) or re.search(r"<li", summary, re.I):
+        if re.search(r"^\s*(?:[-*]\s|・|✓)", summary, re.M) or re.search(r"<li", summary, re.I):
             errors.append("まとめが箇条書きになっている — 2〜3文の文章にする")
         else:
             oks.append("まとめは文章形式")
