@@ -1,6 +1,15 @@
 {
   "template": "moon",
   "date": "10/16（金）冥王星 順行へ",
+  "date_style": {
+    "size": 54,
+    "color": [
+      92,
+      86,
+      78
+    ],
+    "gap": 130
+  },
   "theme": "この半年で、\n変わったこと、\nありますか？",
   "phase": null,
   "cover_image": "clips/2026-10-14_reel/00_cover.png",
@@ -9,21 +18,64 @@
       "text": "冥王星は、\n根っこから変わる星。\n毎年5か月ほど逆行して、\n内側で変化を育てます。",
       "image": "clips/2026-10-14_reel/01.png",
       "ypos": 0.14,
-      "grow": true
+      "plant": {
+        "roots": {
+          "origin": [
+            515,
+            1044
+          ],
+          "depth": 820,
+          "branches": 8,
+          "width": 7,
+          "twigs": [
+            0.4,
+            0.75
+          ]
+        },
+        "roots_span": [
+          0.03,
+          0.85
+        ]
+      }
     },
     {
       "text": "5月から育っていたものが、\n10/16から少しずつ\n表に出てくる頃。",
       "image": "clips/2026-10-14_reel/02.png",
       "ypos": 0.16,
-      "grow": {
-        "top": 0.8307
-      },
-      "sprout": {
-        "box": [
-          512,
-          1440,
-          612,
-          1594
+      "plant": {
+        "erase_top": 0.8307,
+        "roots": {
+          "origin": [
+            562,
+            1594
+          ],
+          "depth": 150,
+          "branches": 4,
+          "width": 5,
+          "spread": 1.2
+        },
+        "roots_span": [
+          0.1,
+          0.75
+        ],
+        "sprout": {
+          "origin": [
+            562,
+            1594
+          ],
+          "height": 115,
+          "leaf": 50,
+          "width": 5,
+          "box": [
+            512,
+            1440,
+            612,
+            1594
+          ]
+        },
+        "sprout_span": [
+          0.1,
+          0.55
         ]
       }
     }
@@ -35,5 +87,25 @@
     "sec": 3.5
   },
   "cta": "自分を知るところから、\n始めたい方へ。\n\n「自分解説書」受付中\nプロフィールのリンクから",
-  "duration": 20
+  "duration": 20,
+  "cover_hold": 2.0,
+  "cta_pet": {
+    "image": "clips/2026-10-14_reel/01.png",
+    "box": [
+      608,
+      815,
+      826,
+      1036
+    ],
+    "y": 0.8,
+    "scale": 1.4,
+    "say": {
+      "text": "にゃー",
+      "at": [
+        20,
+        40
+      ],
+      "size": 60
+    }
+  }
 }

@@ -196,8 +196,17 @@ class Scene:
 class TitleScene(Scene):
     """日付＋出来事の名前＋月（新月・満月・今の星の表紙）"""
 
-    def __init__(self, text, kicker="", sub="", moon=None, sec=3.2, image=None):
+    def __init__(self, text, kicker="", sub="", moon=None, sec=3.2, image=None, kicker_style=None, hold=None):
         self.text, self.kicker, self.sub, self.moon, self.sec = text, kicker, sub, moon, sec
+        # 任意：文字が出そろってから hold 秒止める（尺合わせの伸び縮みからも外す）
+        if hold is not None:
+            shown = max(0.25 + 0.35 * text.count("\n"),
+                        0.6 + 0.35 * sub.count("\n") if sub else 0) + FADE_IN
+            self.sec, self.fixed = shown + hold + FADE_OUT, True
+        # 任意：上の小見出し（日付＋出来事）を目立たせたいとき {"size", "color", "gap"}
+        ks = kicker_style or {}
+        self.k_size, self.k_gap = ks.get("size", 44), ks.get("gap", 70)
+        self.k_color = tuple(ks["color"]) if "color" in ks else GRAY
         self.moon_img = moon_layer(moon) if moon else None
         # 任意：表紙にイラストを敷く（文字は真ん中に載るので、絵の中央は空けておく）
         self.bg = ImageScene(image, sec=sec) if image else None
@@ -213,7 +222,7 @@ class TitleScene(Scene):
         base = int(H * 0.60) if self.moon_img else int(H * 0.42)
         # 表紙の言葉が複数行（冒頭の問いなど）でも、上の小見出し・下の補足が重ならないよう高さを測る
         half = (int(92 * 1.7) * self.text.count("\n") + 92) // 2
-        draw_text(canvas, self.kicker, t, base - half - 70, size=44, color=GRAY)
+        draw_text(canvas, self.kicker, t, base - half - self.k_gap, size=self.k_size, color=self.k_color)
         draw_text(canvas, self.text, t, base, size=92, start=0.25)
         draw_text(canvas, self.sub, t, base + half + 60, size=44, color=GRAY, start=0.6)
 
@@ -226,6 +235,48 @@ class TextScene(Scene):
 
     def render(self, canvas, t):
         draw_text(canvas, self.text, t, self.cy, self.size)
+
+
+class CtaScene(TextScene):
+    """案内の場面：言葉の下に、絵から切り抜いた小さなもの（黒猫など）を添える。
+    pet＝{"image": 絵, "box": [x0, y0, x1, y1] 切り抜く四角, "y": 置く高さ（下端・割合）, "scale": 倍率}"""
+
+    def __init__(self, text, pet, size=56):
+        super().__init__(text, size=size)
+        src = Image.open(resolve(pet["image"])).convert("RGB")
+        x0, y0, x1, y1 = pet["box"]
+        crop = src.crop((x0, y0, x1, y1))
+        lum = np.asarray(crop.convert("L"), dtype=np.float32)
+        paper = np.percentile(lum, 95)                       # 紙の明るさ。これより暗いぶんだけ残す
+        alpha = np.clip((paper - lum - 12) / 60, 0, 1)
+        img = Image.fromarray(np.dstack([np.asarray(crop), (alpha * 255).astype(np.uint8)]), "RGBA")
+        k = pet.get("scale", 1.0)
+        self.pet = img.resize((int(img.width * k), int(img.height * k)), Image.LANCZOS)
+        self.pet_y = int(H * pet.get("y", 0.78))
+        self.pet_scale = k
+        # 任意：鳴き声 {"text": "にゃー", "at": [x, y]（切り抜いた絵の中の口元・px）, "size": 52}
+        say = pet.get("say") or {}
+        self.say, self.say_at, self.say_size = say.get("text"), say.get("at", (0, 0)), say.get("size", 52)
+
+    def render(self, canvas, t):
+        super().render(canvas, t)
+        p = ease((t - 0.9) / FADE_IN)                         # 言葉のあとに、ふわっと
+        if p > 0:
+            x = (W - self.pet.width) // 2
+            y = self.pet_y - self.pet.height + int(RISE * (1 - p))
+            canvas.alpha_composite(with_alpha(self.pet, p), (x, y))
+            if self.say:
+                self._say(canvas, t - 1.6, x, y)
+
+    def _say(self, canvas, t, px, py):
+        """鳴き声（「にゃー」）を頭のそばに、ぽんっと出す（少し傾けて、一瞬ふくらむ）"""
+        if t <= 0:
+            return
+        q = ease(t / 0.35)
+        k = 1 + 0.25 * math.sin(min(t / 0.35, 1) * math.pi)
+        img = text_block(self.say, int(self.say_size * k), INK)[0][0].rotate(8, expand=True, resample=Image.BICUBIC)
+        hx, hy = px + int(self.say_at[0] * self.pet_scale), py + int(self.say_at[1] * self.pet_scale)
+        canvas.alpha_composite(with_alpha(img, q), (hx - img.width, hy - img.height))
 
 
 class SwapScene(Scene):
@@ -417,11 +468,148 @@ class Sprout:
         return out
 
 
+class Plant:
+    """絵に描かれた根・芽を消して、単純な線で描き直し、にょきにょき伸ばす。
+    roots＝{"origin": [x, y], "depth": px, "branches": 本数, "spread": 横根の長さ倍率, "width": 太さ}
+    sprout＝{"origin": [x, y], "height": px, "leaf": 葉の長さ, "box": 元の芽を消す四角}
+    erase_top＝この高さ（割合）より下の暗い線（元の根）を消す"""
+    COLOR = (52, 46, 40, 255)
+    LEAF = (198, 188, 174, 255)
+
+    def __init__(self, img, opt):
+        plate = GrowingLines(img, {"top": opt["erase_top"]} if "erase_top" in opt else {}).plate.convert("RGB")
+        sp = opt.get("sprout")
+        if sp and sp.get("box"):
+            x0, y0, x1, y1 = sp["box"]
+            rgb = np.asarray(plate, dtype=np.uint8)
+            fill = rgb[y0:y1, x0 - 6:x0 - 2].mean(axis=1, keepdims=True).astype(np.uint8)
+            plate.paste(Image.fromarray(np.repeat(fill, x1 - x0, axis=1)), (x0, y0))
+        self.plate = plate.convert("RGBA")
+        self.paths = []                                     # (点列, 太さ, 伸び始め, 伸びきり)
+        r = opt.get("roots")
+        if r:
+            self._roots(r, opt.get("roots_span", (0.05, 0.85)))
+        self.sprout = sp
+        self.sprout_span = opt.get("sprout_span", (0.1, 0.5))
+
+    def _roots(self, r, span):
+        ox, oy = r["origin"]
+        depth, n = r["depth"], r.get("branches", 6)
+        wmain = r.get("width", 7)
+        spread = r.get("spread", 1.0)
+        ys = np.linspace(0, depth, 80)
+        main = [(ox + 8 * math.sin(y / 140), oy + y) for y in ys]   # 少しだけ揺れる主根
+        a, b = span
+        speed = (b - a) / depth                                  # 1px あたりの時間（主根と横根で同じ速さ）
+        self.paths.append((main, wmain, a, b))
+        for i in range(n):
+            f = 0.1 + 0.7 * i / max(n - 1, 1)                    # 主根のどこから出るか
+            side = -1 if i % 2 == 0 else 1
+            length = depth * spread * (0.40 - 0.12 * i / max(n - 1, 1))
+            th = math.radians(58 - 18 * i / max(n - 1, 1))       # 下ほど垂直に近い
+            x, y = main[int(f * (len(main) - 1))]
+            pts = [(x, y)]
+            steps = 30
+            for k in range(steps):
+                u = k / steps
+                ang = th * (1 - 0.55 * u)                        # 先へいくほど下へ曲がる
+                x += side * math.sin(ang) * length / steps
+                y += math.cos(ang) * length / steps
+                pts.append((x, y))
+            t0 = a + f * (b - a) * 0.9
+            wb = max(wmain - 2, 3)
+            self.paths.append((pts, wb, t0, t0 + length * speed))
+            for g in r.get("twigs", ()):                         # 横根の途中から、さらに小枝を出す
+                j = int(g * (len(pts) - 1))
+                x, y = pts[j]
+                tl = length * 0.45
+                tw = [(x, y)]
+                for k in range(16):
+                    ang = math.radians(20 - 10 * k / 16)
+                    x -= side * math.sin(ang) * tl / 16             # 横根と反対側へ、ほぼ真下に
+                    y += math.cos(ang) * tl / 16
+                    tw.append((x, y))
+                t1 = t0 + g * length * speed
+                self.paths.append((tw, max(wb - 1, 2), t1, t1 + tl * speed))
+
+    @staticmethod
+    def _partial(pts, frac):
+        pts = np.asarray(pts, dtype=np.float32)
+        seg = np.hypot(*np.diff(pts, axis=0).T)
+        cum = np.concatenate([[0], np.cumsum(seg)])
+        L = frac * cum[-1]
+        k = int(np.searchsorted(cum, L))
+        out = [tuple(q) for q in pts[:k]]
+        if 0 < k < len(pts):
+            u = (L - cum[k - 1]) / max(seg[k - 1], 1e-6)
+            out.append(tuple(pts[k - 1] + (pts[k] - pts[k - 1]) * u))
+        return out
+
+    @staticmethod
+    def _grow(p, a, b):
+        x = min(max((p - a) / (b - a), 0), 1)
+        # にょきにょき：ぐっ、ぐっと伸びる（速さに波をつける。止まらず、戻らない）
+        return min(max(x + 0.022 * math.sin(x * math.pi * 12), 0), 1) if 0 < x < 1 else x
+
+    def _stroke(self, d, pts, w, S):
+        if len(pts) < 2:
+            return
+        q = [(x * S, y * S) for x, y in pts]
+        d.line(q, fill=self.COLOR, width=int(w * S), joint="curve")
+        for x, y in (q[0], q[-1]):
+            rr = w * S / 2
+            d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=self.COLOR)
+
+    def _leaf(self, d, base, ang, length, S):
+        if length < 2:
+            return
+        bx, by = base
+        ca, sa = math.cos(ang), math.sin(ang)
+        pts = []
+        for k in range(21):
+            u = k / 20
+            pts.append((u * length, 0.28 * length * math.sin(u * math.pi)))
+        for k in range(20, -1, -1):
+            u = k / 20
+            pts.append((u * length, -0.28 * length * math.sin(u * math.pi)))
+        q = [((bx + x * ca - y * sa) * S, (by + x * sa + y * ca) * S) for x, y in pts]
+        d.polygon(q, fill=self.LEAF, outline=self.COLOR, width=int(3 * S))
+
+    def frame(self, p):
+        S = 2
+        layer = Image.new("RGBA", (W * S, H * S), (0, 0, 0, 0))
+        d = ImageDraw.Draw(layer)
+        for pts, w, a, b in self.paths:
+            g = self._grow(p, a, b)
+            if g > 0:
+                self._stroke(d, self._partial(pts, g), w, S)
+        sp = self.sprout
+        if sp:
+            a, b = self.sprout_span
+            ox, oy = sp["origin"]
+            h = sp.get("height", 110)
+            g = self._grow(p, a, a + (b - a) * 0.65)             # 茎が伸びて
+            stem = [(ox + 5 * math.sin(u * math.pi), oy - u * h) for u in np.linspace(0, 1, 30)]
+            part = self._partial(stem, g)
+            self._stroke(d, part, sp.get("width", 5), S)
+            x = min(max((p - (a + (b - a) * 0.6)) / ((b - a) * 0.4), 0), 1)   # 双葉がひらく
+            if x > 0 and part:
+                k = 1 + 0.18 * math.sin(x * math.pi) if x < 1 else 1
+                L = sp.get("leaf", 48) * x * k
+                top = part[-1]
+                tilt = (1 - x) * 0.9                             # 閉じた状態から左右へ
+                self._leaf(d, top, math.radians(-155) + tilt, L, S)
+                self._leaf(d, top, math.radians(-25) - tilt, L, S)
+        out = self.plate.copy()
+        out.alpha_composite(layer.resize((W, H), Image.LANCZOS))
+        return out
+
+
 class ImageScene(Scene):
     """イラスト・写真を全面に敷き、札に字幕を載せる（初リールと同じ見せ方）"""
     stars = False
 
-    def __init__(self, image, text="", ypos=0.2, sec=None, grow=None, sprout=None):
+    def __init__(self, image, text="", ypos=0.2, sec=None, grow=None, sprout=None, plant=None):
         img = Image.open(image).convert("RGB")
         scale = max(W / img.width, H / img.height)
         img = img.resize((int(img.width * scale) + 1, int(img.height * scale) + 1), Image.LANCZOS)
@@ -433,10 +621,14 @@ class ImageScene(Scene):
         self.grow = GrowingLines(self.img, grow) if grow else None
         # 任意：芽などを地面から伸び上がらせる（"sprout": {"box": [x0, y0, x1, y1]}）
         self.sprout = Sprout(self.img, sprout) if sprout else None
+        # 任意：元の根・芽を消して、単純な線で描き直して伸ばす（"plant": {...}）
+        self.plant = Plant(self.img, plant) if plant else None
 
     def render(self, canvas, t):
         z = 1 + 0.04 * t / self.sec
         frame = self.grow.frame(t / self.sec) if self.grow else self.img
+        if self.plant:
+            frame = self.plant.frame(t / self.sec)
         if self.sprout:
             frame = self.sprout.apply(frame.convert("RGB"), t / self.sec).convert("RGBA")
         big = frame.resize((int(W * z), int(H * z)), Image.BILINEAR)
@@ -477,7 +669,8 @@ class EndScene(Scene):
 def t_moon(s):
     """新月・満月：表紙（月相）→ メッセージ → 3つの問い → 締め"""
     out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase", "full"),
-                      image=s.get("cover_image") and resolve(s["cover_image"]))]
+                      image=s.get("cover_image") and resolve(s["cover_image"]),
+                      kicker_style=s.get("date_style"), hold=s.get("cover_hold"))]
     # message は文字列なら1場面、リストなら1要素1場面（オリジナルのひとことを数場面で語るとき）
     msg = s.get("message")
     for line in (msg if isinstance(msg, list) else [msg] if msg else []):
@@ -493,7 +686,8 @@ def t_moon(s):
 def t_sky(s):
     """今の星：表紙 →「人にどう思われる？」が消えて「私は、どうしたい？」→ メッセージ"""
     out = [TitleScene(s["theme"], s.get("date", ""), s.get("sub", ""), s.get("phase"),
-                      image=s.get("cover_image") and resolve(s["cover_image"]))]
+                      image=s.get("cover_image") and resolve(s["cover_image"]),
+                      kicker_style=s.get("date_style"), hold=s.get("cover_hold"))]
     if s.get("swap"):
         out.append(SwapScene(*s["swap"]))
     if s.get("message"):
@@ -524,7 +718,7 @@ def scene_from(item):
     if not isinstance(item, dict):
         return TextScene(item)
     path = item["image"] if Path(item["image"]).is_absolute() else str(ROOT / item["image"])
-    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"), item.get("grow"), item.get("sprout"))
+    return ImageScene(path, item.get("text", ""), item.get("ypos", 0.2), item.get("sec"), item.get("grow"), item.get("sprout"), item.get("plant"))
 
 
 def t_know(s):
@@ -556,19 +750,22 @@ def build_scenes(spec):
     scenes = TEMPLATES[spec["template"]](spec)
     # 任意：締めのあと・エンドカードの前に案内の場面（エンドカード自体には文字を載せない）
     if spec.get("cta"):
-        scenes.append(TextScene(spec["cta"], size=56))
+        scenes.append(CtaScene(spec["cta"], spec["cta_pet"]) if spec.get("cta_pet")
+                      else TextScene(spec["cta"], size=56))
     # 任意：場面ごとにイラストを差し込む（{"at": 1, "image": "...", "text": "...", "ypos": 0.2}）
     # 同じ at が複数あっても、JSONに書いた順で並ぶよう後ろから差し込む
     images = list(enumerate(spec.get("images", [])))
     for _, ins in sorted(images, key=lambda p: (p[1]["at"], p[0]), reverse=True):
         path = ins["image"] if Path(ins["image"]).is_absolute() else str(ROOT / ins["image"])
-        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec"), ins.get("grow"), ins.get("sprout")))
+        scenes.insert(ins["at"], ImageScene(path, ins.get("text", ""), ins.get("ypos", 0.2), ins.get("sec"), ins.get("grow"), ins.get("sprout"), ins.get("plant")))
     # 尺の指定があれば、エンドカード以外を等倍で伸び縮みさせる
     if spec.get("duration"):
-        body = sum(sc.sec for sc in scenes)
-        k = (spec["duration"] - EndScene.sec) / body
+        fixed = sum(sc.sec for sc in scenes if getattr(sc, "fixed", False))
+        body = sum(sc.sec for sc in scenes if not getattr(sc, "fixed", False))
+        k = (spec["duration"] - EndScene.sec - fixed) / body
         for sc in scenes:
-            sc.sec = max(sc.sec * k, 1.5)
+            if not getattr(sc, "fixed", False):
+                sc.sec = max(sc.sec * k, 1.5)
     scenes.append(EndScene())
     return scenes
 
