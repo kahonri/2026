@@ -144,6 +144,7 @@ npx vitest run tests/unit/personal-reading.probe.test.ts --disable-console-inter
 - **命名**：`YYYYMMDD_呼び名.md`（生成日）
 - 冒頭メタブロック：区分（無料/有料）／生年月日・出生時間と精度・出生地（緯度経度）／使った素材／選ばれた見立て（有料）または処方（無料）／納品日メモ
 - 無料分には納品時の添え文（`oshi-uranai/docs/archive/relaunch-copy.md`【B】。旧文書なので価格・告知の記述は流用しない）を末尾にコピーして付ける
+- 受付フォームで「誕生日リマインド」にチェックがある人は、納品のあと誕生日メールの今年分を `oshi-uranai-birthday-mail` スキルで作る（鑑定文の中には書かない）
 
 ### このスキルの対象外
 
