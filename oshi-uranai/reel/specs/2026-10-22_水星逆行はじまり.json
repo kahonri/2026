@@ -1,0 +1,41 @@
+{
+  "template": "moon",
+  "date": "10/24（土）水星 逆行へ",
+  "date_style": {
+    "size": 54,
+    "color": [
+      92,
+      86,
+      78
+    ],
+    "gap": 130
+  },
+  "theme": "言った。\n確かに言った。\nなのに、\n伝わってない。",
+  "phase": null,
+  "cover_image": "clips/2026-10-22_reel/00_cover.png",
+  "message": [
+    {
+      "text": "水星は、\n言葉と連絡の星。\n10/24から11/14まで、\n逆行します。",
+      "image": "clips/2026-10-22_reel/01.png",
+      "ypos": 0.24
+    },
+    {
+      "text": "言ったことと、\n受け取られたことが、\nずれやすい3週間。",
+      "image": "clips/2026-10-22_reel/02.png",
+      "ypos": 0.32
+    },
+    {
+      "text": "伝わってないとき、\n「まあいいか」で\n飲み込んでない？",
+      "image": "clips/2026-10-22_reel/00_cover.png",
+      "ypos": 0.32
+    }
+  ],
+  "closing": {
+    "text": "逆行は\n「もう一度」の時期。\n言い直していいんだよ。",
+    "image": "clips/2026-10-22_reel/03.png",
+    "ypos": 0.31,
+    "sec": 3.5
+  },
+  "duration": 20,
+  "cover_hold": 2.0
+}
