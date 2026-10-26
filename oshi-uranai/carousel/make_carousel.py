@@ -132,10 +132,10 @@ def page_cover(p, base):
     d.text((x + 14, by), p["band"], font=fb, fill=INK)
     if by + 50 > safe_bottom - 30:
         print("  ⚠ 表紙の帯がグリッドの正方形からはみ出す")
-    # 英字：正方形の内側の左上に固定
+    # 英字：正方形の内側の左上に固定（"en_x" で大コピーの左はじにそろえられる）
     fe = font(28)
     for i, ln in enumerate(p["en"]):
-        d.text((70, safe_top + 40 + i * 44), ln, font=fe, fill=SUB)
+        d.text((p.get("en_x", 70), safe_top + 40 + i * 44), ln, font=fe, fill=SUB)
     return img
 
 
