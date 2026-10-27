@@ -1,6 +1,6 @@
 # コンテンツ企画の練り直し（2026-11〜・提案）
 
-> **ステータス：提案（未決定）。** 決まったものから `STATE.md` を上書きし、スキル（`oshi-uranai-ig`／`oshi-uranai-reel`／`voice.md`／`check_ig.py`）に反映する。
+> **ステータス：2026-10-27 ユーザー決定（8章の3点すべてOK）。** `STATE.md`・`brand-concept.md`・`posting-calendar.md`・スキル（`oshi-uranai-ig`／`oshi-uranai-reel`／`voice.md`／`check_ig.py`）に反映済み。
 > 元データ：@oshino_uranaiko のインサイト（直近28日／30日・2026-10-27時点）と、ベンチマーク10アカウント（同日）。方針の原本は `brand-concept.md`（2026-10-11改訂・10-22見直し）。
 
 ---
